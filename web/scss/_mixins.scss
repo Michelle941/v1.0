@@ -1,0 +1,120 @@
+$experimental-support-for-svg: true;
+/**
+ * Get sprite image by image file name
+ *
+ * @package modularis
+ * @subpackage sprite
+ *
+ * @param $image
+ * @param $sprite
+ * @param $is-dimensions
+ * @param $offset-x
+ * @param $offset-y
+ *
+ * @type mixin
+ */
+
+@mixin modularis-sprite-image($image, $sprite, $is-dimensions: true, $offset-x: 0, $offset-y: 0) {
+
+	$sprite-map: $sprite;
+	$sprite-file: sprite-file($sprite-map, $image);
+	background: {
+		image : $sprite;
+		repeat: no-repeat;
+		position: sprite-position($sprite-map, $image, $offset-x, $offset-y);
+	}
+
+	@if $is-dimensions {
+		width: image-width($sprite-file);
+		height: image-height($sprite-file);
+	}
+	@media (min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 144dpi),
+	(min-resolution: 1.5dppx) {
+	// Workaround for https://gist.github.com/2140082
+		@if (sprite-position($images-sprite-map, $image) != sprite-position($images-sprite-map2x, $image)) {
+			$ypos: round(nth(sprite-position($images-sprite-map2x, $image), 2) / 2);
+			background-position: 0 $ypos;
+		}
+	// Grab size of non-retina sprite image.
+		@include background-size(
+				image-width(
+						sprite-path($images-sprite-map)
+				)
+				image-height(
+						sprite-path($images-sprite-map)
+				)
+		);
+		background-image: sprite-url($images-sprite-map2x);
+	}
+}
+
+/**
+ * Get sprite position by image file name
+ *
+ * @package modularis
+ * @subpackage sprite
+
+ * @param $offset-x
+ * @param $offset-y
+ *
+ * @type mixin
+ */
+
+@mixin modularis-sprite-pos($image, $sprite, $offset-x: 0, $offset-y: 0) {
+	$sprite-map: $sprite;
+	$sprite-file: sprite-file($sprite-map, $image);
+	background: {
+		position: sprite-position($sprite-map, $image, $offset-x, $offset-y);
+	}
+	@media (min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 144dpi),
+	(min-resolution: 1.5dppx) {
+	// Workaround for https://gist.github.com/2140082
+		@if (sprite-position($images-sprite-map, $image) != sprite-position($images-sprite-map2x, $image)) {
+			$ypos: round(nth(sprite-position($images-sprite-map2x, $image), 2) / 2);
+			background-position: 0 $ypos;
+		}
+	// Grab size of non-retina sprite image.
+		background-image: sprite-url($images-sprite-map2x);
+	}
+}
+
+/**
+ * Get all images in sprite map
+ *
+ * @package modularis
+ * @subpackage sprite
+ *
+ * @param $sprite
+ * @param $prefix
+ * @param $offset-x
+ * @param $offset-y
+ *
+ * @type mixin
+ */
+
+@mixin modularis-sprite-all-images($sprite, $prefix: '', $offset-x: 0, $offset-y: 0) {
+	$all-items: sprite-names($sprite);
+	$sprite-map: $sprite;
+	@each $_sprite in $all-items {
+		$sprite-file: sprite-file($sprite-map, $_sprite);
+		.#{$prefix}#{is_has_state("#{$_sprite}")} {
+			background-image : $sprite;
+			background-position: sprite-position($sprite-map, $_sprite, $offset-x, $offset-y);
+		}
+		.#{$prefix}#{is_has_state_add_class("#{$_sprite}")} {
+			background-image : $sprite;
+			background-position: sprite-position($sprite-map, $_sprite, $offset-x, $offset-y);
+		}
+	}
+}
+
+$images-sprite-map: sprite-map("assets/*.png", $spacing: 5px);
+$images-sprite-map2x: sprite-map("assets2x/*.png", $spacing: 10px);

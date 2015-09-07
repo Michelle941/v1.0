@@ -1,0 +1,136 @@
+.photo {
+	padding: 15px 0 0;
+	width: 730px;
+	img {
+		display: block;
+	}
+	&:after {
+		@extend %clearfix;
+	}
+}
+.photo__img {
+	float: left;
+	position: relative;
+	margin: 0 30px 30px 0;
+	width: 350px;
+	height: 350px;
+	.photo--comment & {
+		width: 730px;
+		height: 430px;
+		float: none;
+		margin: 0 0 30px 0;
+		clear: both;
+	}
+}
+.photo__actions {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.photo__actions-item {
+	bottom: 0;
+	display: block;
+	font: 500 18px/18px $font-stack;
+	position: absolute;
+	background: rgba(0, 0, 0, .5);
+	&.photo__actions-item--share {
+		left: 0;
+	}
+	&.photo__actions-item--like {
+		right: 0;
+	}
+	a, span {
+		padding: 30px;
+		display: block;
+		color: #fff;
+		text-decoration: none;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+.photo-meta {
+	text-align: left;
+	float: left;
+	.photo--comment & {
+		margin: 0 0 20px 0;
+		&:after {
+			@extend %clearfix;
+		}
+	}
+}
+.photo-meta__list {}
+.photo-meta__item {
+	clear: both;
+	margin: 0 0 33px 0;
+	&:after {
+		@extend %clearfix;
+	}
+	.photo--comment & {
+		float: left;
+		margin: 0 30px 0 0;
+		width: 160px;
+		clear: none;
+	}
+}
+.photo-meta__img {
+	float: left;
+	margin: 0 15px 0 0;
+	.photo--comment & {
+		float: none;
+		margin: 0 0 10px 0;
+	}
+}
+.photo-meta__content {
+	font: 500 14px/18px $font-stack;
+	float: left;
+}
+.photo-meta__title {
+	margin: 0 0 18px 0;
+}
+.photo-comment {
+	float: right;
+	.button {
+		width: auto;
+		padding: 0 30px;
+	}
+}
+.photo-social {
+	float: left;
+}
+.photo-social__container {}
+.photo-social__box {
+	width: 65px;
+	height: 65px;
+	display: block;
+	@include box-sizing('border-box');
+	padding: 16px 0 0 0;
+	border: 2px solid #000;
+	text-align: center;
+	font: 500 12px/14px $font-stack;
+	text-decoration: none;
+	&.photo-social__box--left {
+		float: left;
+	}
+	&.photo-social__box--right {
+		float: right;
+		margin: 0 0 0 30px;
+	}
+}
+a.photo-social__box:hover {
+	text-decoration: none;
+}
+.photo-social__list {
+	font-size: 0;
+	margin: 0 95px 0 65px;
+	&:after {
+		@extend %clearfix;
+	}
+}
+.photo-social__item {
+	float: left;
+	margin: 0 0 30px 30px;
+	width: 65px;
+	height: 65px;
+}

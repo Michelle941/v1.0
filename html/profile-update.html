@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>941 Social Club</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=1280">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="hidden">
+		<div id="update-profile">
+			<div class="popup">
+				<div class="form popup__form profile-update">
+					<form action="">
+						<div class="form__row">
+							<div class="form__half">
+								<input type="text" name="first-name" placeholder="First name">
+							</div>
+							<div class="form__half">
+								<input type="text" name="last-name" placeholder="Last name">
+							</div>
+						</div>
+
+						<div class="form__row">
+							<input type="text" name="tagline" placeholder="Tagline">
+						</div>
+
+						<div class="form__row">
+							<div class="form__half">
+
+							</div>
+							<div class="form__half">
+								<ul>
+									<li>
+										<div class="input__file">
+											<input type="file" accept="image/*">
+										</div>
+									</li>
+									<li>
+										<div class="input__file">
+											<input type="file" accept="image/*">
+										</div>
+									</li>
+									<li>
+										<div class="input__file">
+											<input type="file" accept="image/*">
+										</div>
+									</li>
+									<li>
+										<div class="input__file">
+											<input type="file" accept="image/*">
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="form__row">
+							<div class="form__half">
+								<h3 class="form__title">RELATIONSHIP STATUS [SELECT ONE. DUH]</h3>
+								<div class="input__radio input__radio--2">
+									<input type="radio" name="relationship" value="single" id="single"><label for="single">Single</label>
+									<input type="radio" name="relationship" value="taken" id="taken"><label for="taken">Taken</label>
+								</div>
+							</div>
+							<div class="form__half">
+								<h3 class="form__title">GENDER [SELECT ONE]</h3>
+								<div class="input__radio input__radio--2">
+									<input type="radio" name="gender" value="male" id="male"><label for="male">Male</label>
+									<input type="radio" name="gender" value="female" id="female"><label for="female">Female</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form__row">
+							<h3 class="form__title">WORK [GET CREATIVE BUT STAY HONEST. EVERYONE KNOWS YOU’RE NOT A PIMP AT LIFE]</h3>
+							<div class="radio-group">
+								<ul>
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="head" value="head">
+												<label for="head"><span>HEAD HONCHO AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="head-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="grind" value="grind">
+												<label for="grind"><span>doing the grind AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="grind-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="boss" value="boss">
+												<label for="boss"><span>MY OWN BOSS AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="boss-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="minion" value="minion">
+												<label for="minion"><span>MINION AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="minion-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="deal" value="deal">
+												<label for="deal"><span>KIND OF A BIG DEAL AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="deal-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="number" value="number">
+												<label for="number"><span>JUST ANOTHER NUMBER AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="number-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="dog" value="dog">
+												<label for="dog"><span>TOP DOG AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="dog-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="bean" value="bean">
+												<label for="bean"><span>BEAN COUNTER AT</span></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="bean-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="daddy" value="daddy">
+												<label for="daddy"><span>LIVE OFF MY DADDY</span></label>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="daddy2" value="daddy2">
+												<label for="daddy2"><span>LIVE OFF MY "DADDY"</span></label>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="custom-work" value="custom-work">
+												<label for="custom-work"></label>
+											</div>
+											<div class="radio-group__input radio-group__input--sep">
+												<div class="radio-group__input-left">
+													<input type="text" name="custom-work-at">
+												</div>
+												<div class="radio-group__input-sep">AT</div>
+												<div class="radio-group__input-right">
+													<input type="text" name="custom-work-val">
+												</div>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="radio" name="work" id="custom-work2" value="custom-work2">
+												<label for="custom-work2"></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="custom-work2">
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="form__row">
+							<h3 class="form__title">THINGS YOU LOVE [SELECT 3. PROBABLY BEST IF YOU COME UP WITH YOUR OWN]</h3>
+							<div class="radio-group" data-max="3">
+								<ul>
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="unicorns" value="unicorns">
+												<label for="unicorns"><span>UNICORNS</span></label>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="celine-dion" value="celine-dion">
+												<label for="celine-dion"><span>CELINE DION</span></label>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="donuts" value="donuts">
+												<label for="donuts"><span>DONUTS, DONUTS, DONUTS</span></label>
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="love-custom" value="love-custom">
+												<label for="love-custom"></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="love-custom-val">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="love-custom2" value="love-custom2">
+												<label for="love-custom2"></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="love-custom-val2">
+											</div>
+										</div>
+									</li>
+
+									<li class="radio-group__item">
+										<div class="radio-group__container">
+											<div class="radio-group__label">
+												<input type="checkbox" name="love" id="love-custom3" value="love-custom3">
+												<label for="love-custom3"></label>
+											</div>
+											<div class="radio-group__input">
+												<input type="text" name="love-custom-val3">
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="form__row">
+							<button type="submit" class="button">Update profile</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js"></script>
+	<script>
+		// TODO Удалить этот вызов fancybox, он только для примера
+		jQuery(function($) {
+			$.fancybox({
+				href: '#update-profile'
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+.profile-info {
+	margin: 0 0 30px 0;
+	&:after {
+		@extend %clearfix;
+	}
+}
+.profile-info__photo {
+	float: left;
+	margin: 0 30px 0 0;
+	position: relative;
+	width: 255px;
+	height: 255px;
+	img {
+		display: block;
+	}
+	&:hover {
+		.photos__actions {
+			opacity: 1;
+		}
+	}
+}
+.profile-info__info {
+	height: 255px;
+	position: relative;
+	float: left;
+	width: 645px;
+	text-transform: uppercase;
+}
+.profile-info__name {
+	font: 500 20px/26px $font-stack;
+}
+.profile-info__tagline {
+	font: 400 18px/24px $font-stack;
+	max-height: 58px;
+	overflow: hidden;
+}
+.profile-info__sum {
+	padding: 20px 0 25px 0;
+	font: 14px/20px $font-stack;
+}
+.profile-info__info-meta {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	& li {
+		float: left;
+		margin: 0 0 0 30px;
+		&:first-child {
+			margin: 0;
+		}
+	}
+}
+.profile-info__actions {
+	width: 142px;
+	float: right;
+}
+.profile-info__actions-item {
+	margin: 0 0 15px 0;
+}
+.photos {
+	clear: both;
+	&:after {
+		@extend %clearfix;
+	}
+}
+.photos__list {
+	margin: 0 0 0 -30px;
+}
+.photos__item {
+	float: left;
+	margin: 0 0 31px 30px;
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
+	img {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.photos--profile & {
+		width: 217px;
+		height: 217px;
+		&:first-child {
+			width: 465px;
+			height: 465px;
+		}
+	}
+	&:hover {
+		.photos__actions {
+			opacity: 1;
+		}
+	}
+}
+.photos__actions {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(#fff, .75);
+	@include box-sizing(border-box);
+	z-index: 100;
+	opacity: 0;
+	@include transition(opacity .2s);
+	text-align: center;
+	.photos__actions-inner {
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		margin: -30px auto 0;
+	}
+	a {
+		@extend %button;
+		line-height: 30px;
+		height: 30px;
+		margin: 0 auto 5px auto;
+		width: 145px;
+	}
+}
+.photos-info {
+	text-align: center;
+	font: 500 18px/24px $font-stack;
+	margin: 0 0 30px 0;
+}
+.profile-update {
+	width: 730px;
+	padding: 45px 0 30px;
+	margin: 0 auto;
+}
+.upgrade-form {
+	width: 540px;
+	padding: 45px 0 30px;
+	text-align: center;
+	margin: 0 auto;
+}
+.upgrade {
+	margin: 0 0 20px 0;
+	&:after {
+		@extend %clearfix;
+	}
+	.upgrade__item {
+		width: 221px;
+		border: 2px solid #000;
+		float: right;
+		padding: 45px 15px 30px;
+		&:first-child {
+			float: left;
+		}
+	}
+	.upgrade__price {
+		margin: 0 0 25px 0;
+		font: 500 24px/32px $font-stack;
+		display: block;
+	}
+	.upgrade__info {
+		padding: 25px 0 0 0;
+		font: 500 14px/17px $font-stack;
+		display: block;
+	}
+}
+.form {
+	.profile-update-photo {
+		width: 350px;
+		height: 350px;
+		position: relative;
+		z-index: 100;
+		.input__file {
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			background: transparent;
+			cursor: pointer;
+		}
+		.input__file-image {
+			background: #808080;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			&:before {
+				content: '';
+				top: 50%;
+				left: 50%;
+				@include modularis-sprite-image('add', $images-sprite-map);
+				z-index: 8;
+				position: absolute;
+				margin: -80px 0 0 -80px;
+			}
+			img {
+				position: relative;
+				z-index: 10;
+			}
+			&.width {
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+			&.height {
+				img {
+					width: auto;
+					height: 100%;
+				}
+			}
+		}
+		&:hover {
+			.profile-update-photos__actions {
+				opacity: 1;
+			}
+		}
+		.profile-update-photos__actions {
+			padding: 100px 0 0 0;
+		}
+	}
+	.profile-update-photos {
+		margin: 0 0 0 -30px;
+	}
+	.profile-update-photos__item {
+		float: left;
+		width: 160px;
+		height: 160px;
+		margin: 0 0 30px 30px;
+		position: relative;
+		z-index: 100;
+		.input__file {
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			background: transparent;
+			cursor: pointer;
+		}
+		.input__file-image {
+			background: #808080;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			&:before {
+				content: '';
+				top: 50%;
+				left: 50%;
+				@include modularis-sprite-image('add', $images-sprite-map);
+				z-index: 8;
+				position: absolute;
+				margin: -80px 0 0 -80px;
+			}
+			img {
+				position: relative;
+				z-index: 10;
+			}
+			&.width {
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+			&.height {
+				img {
+					width: auto;
+					height: 100%;
+				}
+			}
+		}
+		&:hover {
+			.profile-update-photos__actions {
+				opacity: 1;
+			}
+		}
+	}
+	.profile-update-photos__actions {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		@include box-sizing(border-box);
+		padding: 10px;
+		z-index: 100;
+		opacity: 0;
+		@include transition(opacity .2s);
+		background: rgba(#fff, .75);
+	}
+	.profile-update-photos__title {
+		display: inline-block;
+		margin: 0 0 10px 0;
+	}
+	.profile-update-photos__button {
+		@extend %button;
+		font: 14px/30px $font-stack;
+		width: 112px;
+		height: 30px;
+		position: relative;
+		display: block;
+		margin: 0 auto 10px;
+	}
+}

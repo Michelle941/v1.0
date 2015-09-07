@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>941 Social Club</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=1280">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__inner">
+				<div class="logo">
+                    <a href="#">941 Social Club</a>
+				</div>
+				<nav class="nav nav--left">
+					<ul>
+						<li><a href="#">Parties</a></li>
+						<li><a href="#">Members</a></li>
+					</ul>
+				</nav>
+                <nav class="nav nav--right">
+                    <ul>
+                        <li><a href="#" class="home-link">Home <i>3</i></a></li>
+                        <li><a href="#" class="profile-link">Constantine</a></li>
+                    </ul>
+                </nav>
+			</div>
+		</header>
+		<div class="page">
+			<div>
+				<section class="profile-info">
+					<figure class="profile-info__photo">
+						<img src="images/profile.jpg" alt="" width="255" height="255">
+					</figure>
+					<div class="profile-info__info">
+						<h1 class="profile-info__name">Jon  Snow</h1>
+
+						<div class="profile-info__info-meta">
+							<ul>
+								<li><b>89</b> PROFILE VIEWS</li>
+								<li><b>73</b> FOLLOWERS</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<a href="#upgrade" class="button fancybox">DON’T BE BASIC. UPDATE YOUR PROFILE</a>
+				</section>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="footer__inner">
+			<div class="copy">
+				&copy;2015
+			</div>
+			<nav class="footer-nav">
+				<ul>
+					<li class="footer-nav__item"><a href="#">Terms</a></li>
+					<li class="footer-nav__item"><a href="#">Privacy</a></li>
+					<li class="footer-nav__item"><a href="#">How it works</a></li>
+					<li class="footer-nav__item"><a href="#">About</a></li>
+					<li class="footer-nav__item"><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="social__item social__item--fb"><a href="#" rel="nofollow" target="_blank"></a></li>
+				<li class="social__item social__item--tw"><a href="#" rel="nofollow" target="_blank"></a></li>
+				<li class="social__item social__item--in"><a href="#" rel="nofollow" target="_blank"></a></li>
+				<li class="social__item social__item--yt"><a href="#" rel="nofollow" target="_blank"></a></li>
+			</ul>
+		</div>
+	</footer>
+	<div class="hidden">
+		<div id="upgrade">
+			<div class="popup">
+				<div class="form popup__form upgrade-form">
+					<h2 class="popup__title">SORRY CHARLIE</h2>
+					<h3 class="popup__subtitle">
+						YOU NEED TO UPGRADE YOUR MEMBERSHIP<br>
+						IN ORDER TO READ MESSAGES FROM OTHER MEMBERS
+					</h3>
+
+					<div class="upgrade">
+						<ul>
+							<li class="upgrade__item">
+								<span class="upgrade__price">$10/month</span>
+								<a href="#upgrade10" class="fancybox button">SELECT</a>
+								<span class="upgrade__info">NO COMMITMENT,<br>CANCEL ANYTIME</span>
+							</li>
+							<li class="upgrade__item">
+								<span class="upgrade__price">$50/year</span>
+								<a href="#upgrade50" class="fancybox button">SELECT</a>
+								<span class="upgrade__info">THAT’S RIGHT, YOU<br>SAVE MORE THAN 50%</span>
+							</li>
+						</ul>
+					</div>
+
+					<footer class="popup__footer">
+						<p>
+							MEMBERSHIP FEES HELP US KEEP THIS WEBSITE AS FREE YEE-HAW
+						</p>
+						<p>
+							<a href="#" class="popup__close">NO THANKS, I DON’T WANT TO UPGRADE MY MEMBERSHIP RIGHT NOW</a>
+						</p>
+					</footer>
+				</div>
+			</div>
+		</div>
+		<div id="upgrade50">
+			<div class="popup">
+				<div class="form popup__form upgrade-form">
+					<h2 class="popup__title">BRILLIANT!</h2>
+					<h3 class="popup__subtitle">
+						PLEASE COMPLETE THIS PAYMENT INFORMATION<br>
+						FOR YOUR $50 ANNUAL PREMIUM MEMBERSHIP
+					</h3>
+
+					<form action="">
+						<div class="form__row">
+							<input type="text" name="first-name" placeholder="First Name">
+						</div>
+
+						<div class="form__row">
+							<input type="text" name="last-name" placeholder="Last Name">
+						</div>
+
+						<div class="form__row">
+							<div class="card-info-inputs">
+								<input type="text" name="cc" placeholder="CC #" class="cc">
+								<input type="text" name="ccv" placeholder="CCV" class="ccv">
+							</div>
+						</div>
+
+						<div class="form__row">
+							<button type="submit" class="button">UPGRADE MEMBERSHIP</button>
+						</div>
+					</form>
+					<footer class="popup__footer">
+						<p>
+							by clicking upgrade membership, i agree to initial payment of $50 and recurring annual payments of $50 beginning first day of year 2 until i cancel in accordance with the terms of use
+						</p>
+						<p>
+							<a href="#" class="popup__close">nevermind. i chickened out and don’t want to upgrade</a>
+						</p>
+					</footer>
+				</div>
+			</div>
+		</div>
+		<div id="upgrade10">
+			<div class="popup">
+				<div class="form popup__form upgrade-form">
+					<h2 class="popup__title">MEMBERS HAVE MORE FUN</h2>
+					<h3 class="popup__subtitle">
+						PLEASE COMPLETE THIS PAYMENT INFORMATION<br>
+						FOR YOUR $10 MONTHLY PREMIUM MEMBERSHIP
+					</h3>
+
+					<form action="">
+						<div class="form__row">
+							<input type="text" name="first-name" placeholder="First Name">
+						</div>
+
+						<div class="form__row">
+							<input type="text" name="last-name" placeholder="Last Name">
+						</div>
+
+						<div class="form__row">
+							<div class="card-info-inputs">
+								<input type="text" name="cc" placeholder="CC #" class="cc">
+								<input type="text" name="ccv" placeholder="CCV" class="ccv">
+							</div>
+						</div>
+
+						<div class="form__row">
+							<button type="submit" class="button">UPGRADE MEMBERSHIP</button>
+						</div>
+					</form>
+					<footer class="popup__footer">
+						<p>
+							by clicking upgrade membership, i agree to initial payment of $10 and recurring monthly payments of $10 beginning first day of month 2 until i cancel in accordance with the terms of use
+						</p>
+						<p>
+							<a href="#" class="popup__close">nevermind. i chickened out and don’t want to upgrade</a>
+						</p>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js"></script>
+</body>
+</html>

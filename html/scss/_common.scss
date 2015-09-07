@@ -1,0 +1,278 @@
+.hidden {
+	display: none !important;
+}
+html {
+	height: 100%;
+}
+body {
+	color: #000;
+	font-family: $font-stack;
+	height: 100%;
+	min-width: 1100px;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+a {
+	color: #000;
+	text-decoration: none;
+	&:hover {
+
+	}
+}
+.wrapper {
+	height: auto !important;
+	min-height: 100%;
+	margin: 0 0 -54px 0;
+	&:after {
+		content: '';
+		clear: both;
+		height: 54px;
+		display: block;
+	}
+}
+.header {
+	background: #000 url(../images/header.jpg) repeat-x 50% 0 scroll;
+	padding: 15px 0 0;
+	height: 159px;
+	position: relative;
+	z-index: 1000;
+	a {
+		color: #fff;
+		&:hover {
+
+		}
+	}
+}
+.header__inner {
+	position: relative;
+	@extend %inner;
+}
+.logo {
+	color: #fff;
+	@include modularis-sprite-image('logo', $images-sprite-map);
+	text-indent: -100%;
+	overflow: hidden;
+	margin: 0 auto;
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+.nav {
+	position: absolute;
+	top: 65px;
+	text-transform: uppercase;
+	font: 14px/18px $font-stack;
+	& > ul {
+		& > li {
+			float: left;
+			.dropdown-menu {
+				display: none;
+				position: absolute;
+				right: 0;
+				top: 23px;
+				font: 12px/18px $font-stack;
+				background: #000;
+				padding: 2px 0;
+				border: 1px solid #fff;
+				&.active {
+					display: block;
+				}
+				li {
+					a {
+						padding: 2px 10px;
+					}
+				}
+			}
+			&.dropdown {
+				position: relative;
+			}
+		}
+	}
+	&.nav--left {
+		left: 0;
+		& > ul {
+			& > li {
+				margin: 0 110px 0 0;
+			}
+		}
+	}
+	&.nav--right {
+		right: 0;
+		& > ul {
+			& > li {
+				margin: 0 0 0 110px;
+			}
+		}
+	}
+	a {
+		max-width: 170px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: block;
+		text-decoration: none;
+	}
+	.home-link {
+		i {
+			display: inline-block;
+			background: #fff;
+			height: 13px;
+			margin: 2px 0 0 5px;
+			color: #000;
+			font: 11px/13px $font-stack;
+			padding: 0 5px;
+			vertical-align: top;
+		}
+	}
+	.profile-link {
+		&:after {
+			font-size: 0px;
+			border: solid transparent;
+			content: '';
+			height: 0;
+			width: 0;
+			display: inline-block;
+			border-color: rgba(255, 255, 255, 0);
+			border-top-color: #fff;
+			border-top-width: 10px;
+			border-bottom-width: 0;
+			border-left-width: 7px;
+			border-right-width: 7px;
+			margin: 0 0 0 5px;
+		}
+	}
+}
+.page {
+    @extend %inner;
+	padding: 30px 0 0 0;
+}
+.page__title {
+	font: 400 24px/29px $font-stack;
+	margin: 0 0 20px 0;
+}
+.footer {
+	background: #000;
+	height: 54px;
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+	text-transform: uppercase;
+    font: 12px/14px $font-stack;
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+.footer__inner {
+    @extend %inner;
+}
+.copy {
+	float: left;
+	padding: 20px 0 0 0;
+}
+.footer-nav {
+	float: left;
+	padding: 20px 0 0 0;
+}
+.footer-nav__item {
+	float: left;
+	margin: 0 0 0 43px;
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+.social {
+	float: right;
+	padding: 17px 0 0 0;
+}
+.social__item {
+	float: left;
+	margin: 0 0 0 15px;
+	&.social__item--fb {
+		@include modularis-sprite-image('fb', $images-sprite-map);
+	}
+	&.social__item--tw {
+		@include modularis-sprite-image('tw', $images-sprite-map);
+	}
+	&.social__item--in {
+		@include modularis-sprite-image('in', $images-sprite-map);
+	}
+	&.social__item--yt {
+		@include modularis-sprite-image('yt', $images-sprite-map);
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+.load-more {
+	@extend %button;
+	margin: 0 0 30px 0;
+	clear: both;
+	line-height: 60px;
+}
+.content-button {
+	margin: 0 0 30px 0;
+	clear: both;
+	line-height: 60px;
+}
+a.button, div.button {
+	@extend %button;
+	line-height: 50px !important;
+	text-decoration: none;
+}
+div.button {
+	cursor: default;
+}
+.button__full {
+	margin: 0 0 30px 0;
+}
+.popup {
+	padding: 0 15px;
+	text-align: center;
+	min-width: 300px;
+}
+.popup__title {
+	font: 500 25px/30px $font-stack;
+	margin: 0 0 10px 0;
+}
+.popup__subtitle {
+	font: 400 12px/16px $font-stack;
+	margin: 0 0 25px 0;
+}
+.popup__footer {
+	font: 400 12px/16px $font-stack;
+	padding: 15px 0 0 0;
+	p {
+		margin: 0 0 12px 0;
+	}
+}
+.search {
+	margin: 0 0 30px 0;
+	.form {
+		input[type="search"] {
+			line-height: 60px;
+			height: 60px;
+		}
+	}
+}
+.small-12 {
+	font-size: 12px;
+}
+.small-10 {
+	font-size: 10px;
+}
+.ui-datepicker {
+	font-size: 12px;
+}
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
