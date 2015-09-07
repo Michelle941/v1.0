@@ -112,10 +112,10 @@ AppAsset::register($this);
                 </ul>
             </nav>
             <ul class="social">
-                <li class="social__item social__item--fb"><a href="#" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--tw"><a href="#" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--in"><a href="#" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--yt"><a href="#" rel="nofollow" target="_blank"></a></li>
+                <li class="social__item social__item--fb"><a href="https://www.facebook.com/yummy.marshamello" rel="nofollow" target="_blank"></a></li>
+                <li class="social__item social__item--tw"><a href="https://twitter.com/marshamello941" rel="nofollow" target="_blank"></a></li>
+                <li class="social__item social__item--in"><a href="https://instagram.com/marshamello941" rel="nofollow" target="_blank"></a></li>
+                <li class="social__item social__item--yt"><a href="https://www.youtube.com/user/941SocialClub" rel="nofollow" target="_blank"></a></li>
             </ul>
         </div>
     </footer>
