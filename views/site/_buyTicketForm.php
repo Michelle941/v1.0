@@ -20,10 +20,9 @@ use yii\helpers\Url;
             <div class="buy-tickets__form">
                 <div class="buy-tickets__inner">
                     <h1 class="popup__title"><?php echo $sale->top_text?></h1>
-                    <?php
-                    if(isset($sale->ticket)):
-                        foreach($sale->ticket as $ticket) : $available = $ticket->countAvailable();
-                        ?>
+                    <?php if(isset($sale->ticket)): ?>
+                        <?php foreach($sale->ticket as $ticket):
+                            $available = $ticket->countAvailable(); ?>
                             <div class="buy-tickets__item">
                                 <div class="input__number">
                                     <?php if($available):?>
@@ -51,9 +50,8 @@ use yii\helpers\Url;
                                     <?=$ticket->description;?>
                                 </p>
                             </div>
-                        <?php endforeach;
-                    endif;
-                    ?>
+                        <?php endforeach;?>
+                    <?php endif; ?>
                     <br><br>
                     <h3 class="popup__title"><?php echo $sale->bottom_text?></h3>
                     <p><?php echo $sale->bottom_text_8?></p>
