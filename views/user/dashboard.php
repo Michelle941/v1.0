@@ -129,7 +129,7 @@ use app\models\Ticket;
                                             <?php if(!Yii::$app->user->can('premium')): ?>
                                                 <?php echo Yii::$app->controller->renderPartial('/notice/buy_premium');?>
                                             <?php else:?>
-                                                <?= $msg->getText();?>
+                                                <?= nl2br($msg->getText());?>
                                                 <?php if(!$msg->read_at){$msg->read_at = time();$msg->save();}?>
                                             <?php endif;?>
                                         </div>
@@ -138,7 +138,7 @@ use app\models\Ticket;
                                                 <img src="/upload/30x30_square<?php echo $user->avatar?>" alt="" width="30" height="30">
                                             </a>
                                             <div  class="text">
-                                                <?= $msg->getText();?>
+                                                <?= nl2br($msg->getText());?>
                                             </div>
                                         <?php endif?>
                                     </div>
