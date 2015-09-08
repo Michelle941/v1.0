@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
         </div>
         <ul class="photos__list">
             <?php $ids = []; if(count($party->photo)):?>
-                <? foreach (array_reverse($party->photo) as $key => $photo): $ids[] = $photo->id; ?>
+                <?php foreach (array_reverse($party->photo) as $key => $photo): $ids[] = $photo->id; ?>
                     <li class="photos__item">
                         <a href="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>" class="modalButton" value="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>">
                             <img src="/upload/350x350_square<?=$photo->image;?>" alt="">
