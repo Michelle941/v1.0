@@ -104,7 +104,7 @@
             </p>
             <p><span >Want to share an idea with us?</span></p>
 
-            <p><span ><a href="mailto:holla@941socialclub.com" target="_blank">holla@941socialclub.com</a></span></p>
+            <p><span ><a href="mailto:holla@941socialclub.com">holla@941socialclub.com</a></span></p>
 
             <br><br><br>
 
