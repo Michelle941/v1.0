@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
             <?php endif;?>
 
             <?php $photos = \app\models\Photo::getPartyNewPhotos($party->id, 6, 0, $ids); if(count($photos)):?>
-                <? foreach ($photos as $key => $photo): $ids[] = $photo->id; ?>
+                <?php foreach ($photos as $key => $photo): $ids[] = $photo->id; ?>
                     <li class="photos__item x350">
                         <a href="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>" class="modalButton" value="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>">
                             <img src="/upload/350x350_square<?=$photo->image;?>" alt="" width="350">
@@ -51,7 +51,7 @@ use yii\widgets\ActiveForm;
                 <?php endforeach;?>
             <?php endif;?>
             <?php $photos = \app\models\Photo::getPartyPhotos($party->id, 10000, 0, $ids); if(count($photos)):?>
-                <? foreach ($photos as $key => $photo): ?>
+                <?php foreach ($photos as $key => $photo): ?>
                     <li class="photos__item x350">
                         <a href="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>" class="modalButton" value="<?=Url::to(['/site/photo', 'id' => $photo->id]);?>">
                             <img src="/upload/350x350_square<?=$photo->image;?>" alt="" width="350">
