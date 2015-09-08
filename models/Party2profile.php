@@ -65,6 +65,19 @@ class Party2profile extends \yii\db\ActiveRecord
         //Todo: order by?
         return $result->all();
     }
+    public static function findByParty($party_id, $page = 0, $limit = 12)
+    {
+        $result = Party2profile::find()
+            ->joinWith('user')
+            ->where(['party_id' => $party_id])
+            ->orderBy('user.rank ASC, user.view_count DESC')
+        ;
+        $result->offset = $page;
+        $result->limit = $limit;
+
+        //Todo: order by?
+        return $result->all();
+    }
     public static function countByUser($id)
     {
         $result = Party2profile::find()

@@ -42,7 +42,7 @@ use yii\helpers\Html;
         </ul>
         <br><br><br><br><br><br>
 
-    <?php $tickets = \app\models\Ticket::getUsers($ticket->party->id, 6);?>
+    <?php $tickets = \app\models\Party2profile::findByParty($ticket->party->id);?>
     <p><center>see who else is going</center></p><br><br>
     <ul class="members__list">
         <?php foreach ($tickets as $t): ?>
@@ -59,5 +59,5 @@ use yii\helpers\Html;
     <?php else:?>
         <p></p>
     <?php endif;?>
-
 </div>
+<br><br><br>

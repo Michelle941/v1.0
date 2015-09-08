@@ -1016,6 +1016,9 @@ class SiteController extends Controller
                 $ticket = Ticket::find()->where(['id' => $id])->one();
                 $ticket->user_id = $userId;
                 $ticket->save();
+                if(!Party2profile::is_shared($ticket->party_id, $userId)){
+                    Party2profile::share($ticket->party_id, $userId);
+                }
                 NotificationTask::addTicket($userId, 'Bought a ticket for '.$tickets[0]['party']['title']);
             }
             $this->redirect('/user/dashboard');

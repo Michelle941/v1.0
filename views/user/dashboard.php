@@ -229,11 +229,11 @@ use app\models\Ticket;
                             </ul>
                             <p style="clear:both;padding: 20px 10px; font-size: 18px">Check out who already bought tickets</p>
                             <ul>
-                                <?php $users = Ticket::getUsers($party->id); if(!empty($users)) :foreach($users as $ticketUser):?>
+                                <?php $users = \app\models\Party2profile::findByParty($party->id); if(!empty($users)) :foreach($users as $user):?>
                                 <li class="members__item">
-                                    <a href="/member/qt<?=@$ticketUser->user->id;?>">
+                                    <a href="/member/qt<?=@$user->user->id;?>">
                                         <figure class="members__photo">
-                                            <img src="/upload/160x160_square<?=@$ticketUser->user->avatar;?>" alt="" width="160" height="160">
+                                            <img src="/upload/160x160_square<?=@$user->user->avatar;?>" alt="" width="160" height="160">
                                         </figure>
                                     </a>
                                 </li>
