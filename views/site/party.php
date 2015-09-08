@@ -26,7 +26,11 @@ if(isset($party->sale)) {
                 echo $this->render('_buyTicketForm', ['sale' => $party->sale, 'partyID' => $party->id]);
             };?>
         </div>
-
+        <?php if(!empty($profile)):?>
+            <div class="event__photo">
+                <img src="<?= Yii::$app->params['flayerPath']; ?>/<?= $party->sale->message_banner; ?>" alt="" width="1110">
+                <br>
+            </div>
         <div class="members pagination">
             <ul class="members__list">
                 <?php  echo $this->render('_party2profile', ['profile' => $profile]); ?>
@@ -35,6 +39,7 @@ if(isset($party->sale)) {
             <a href="<?= Url::to(['/site/load-party-profile', 'id' => $party->id]); ?>" class="button load-more">SEE MORE MEMBERS WHO BOUGHT TICKETS</a>
             <?php endif; ?>
         </div>
+        <?php endif;?>
     </section>
 <?php
 }
