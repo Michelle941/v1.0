@@ -31,12 +31,10 @@ use MetzWeb\Instagram\Instagram;
 
 use AuthorizeNetAIM;
 
-//define("AUTHORIZENET_API_LOGIN_ID", "3L4vk3DWC6nQ");
-//define("AUTHORIZENET_TRANSACTION_KEY", "7Ybc56H3mGqT97hS"); //Simon
-define("AUTHORIZENET_API_LOGIN_ID", "5s3FZ3Wrm");
-define("AUTHORIZENET_TRANSACTION_KEY", "2VXwr6zrMJ2936Kb"); //Simon
-define("AUTHORIZENET_MD5_SETTING", "muhit");
-define("AUTHORIZENET_SANDBOX", true);
+define("AUTHORIZENET_API_LOGIN_ID", "4YBsRE4q4L7y");
+define("AUTHORIZENET_TRANSACTION_KEY", "2tLSy8SKD223m8DH"); //Simon
+define("AUTHORIZENET_MD5_SETTING", "9414l!fe");
+define("AUTHORIZENET_SANDBOX", false);
 
 class SiteController extends Controller
 {
