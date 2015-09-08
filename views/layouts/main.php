@@ -37,7 +37,9 @@ AppAsset::register($this);
         .load-more, a.button, div.button, .form .button, .photos__actions a, .form .profile-update-photos__button{
             background: #3B3B3B;
         }
+        .fancybox-type-swf{cursor: pointer;}
     </style>
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -100,7 +102,7 @@ AppAsset::register($this);
                                 <li><a href="<?=Url::to(['/user/profile']);?>">View my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/update']);?>">Update my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/settings']);?>">Update my settings</a></li>
-                                <li><a href="#">Order a pizza</a></li>
+                                <li><a href="/video/_Pizza_Cat_v5.swf" id="order-pizza">Order a pizza</a></li>
                                 <li><a href="<?=Url::to(['/site/logout']);?>">Log out</a></li>
                             </ul>
                         </li>
@@ -191,6 +193,31 @@ AppAsset::register($this);
         </div>
     </div>
 <?php $this->endBody() ?>
+<script>
+    jQuery(document).ready(function ($) {
+        $("#order-pizza").fancybox({
+            // all your API options here, whatever they are
+            fitToView: false,
+            width: '90%',
+            height: '90%',
+            autoSize: false,
+            closeClick: false,
+            openEffect: 'none',
+            closeEffect: 'none',
+            helpers: {
+                title: {
+                    type: 'outside'
+                }
+            },
+            type: "swf"
+        }); // fancybox
+    }); // ready
+    $( ".fancybox-type-swf" ).delegate( ".fancybox-inner", "click", function() {
+        window.location.href = '/parties';
+        console.log('Fuck you');
+    });
+
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
