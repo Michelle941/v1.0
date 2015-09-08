@@ -21,36 +21,7 @@ use yii\helpers\Url;
                 <div class="buy-tickets__inner">
                     <h1 class="popup__title"><?php echo $sale->top_text?></h1>
                     <?php if(isset($sale->ticket)): ?>
-                        <?php foreach($sale->ticket as $ticket):
-                            $available = $ticket->countAvailable(); ?>
-                            <div class="buy-tickets__item">
-                                <div class="input__number">
-                                    <?php if($available):?>
-                                    <span class="input__number-control input__number-control--minus"></span>
-                                    <span class="input__number-control input__number-control--plus"></span>
-                                    <input class="count" type="number" value="0" min="0" name="ticket[<?=$ticket->id;?>]" id="buy-50">
-                                <?php else:?>
-                                        <span class="input__number-control sold-out">SOLD OUT</span>
-                                <?endif;?>
-                                </div>
-                                <label for="buy-50" class="buy-tickets__title ticket-title">
-                                    <?=$ticket->title;?>
-                                </label>
-                                <?php if(!empty($ticket->actual_price)):?>
-                                <label class="buy-tickets__title actual_price flash-price">
-                                    <strike>$<?=number_format($ticket->actual_price, 2, '.', '');?></strike></label>
-                                <?php endif;?>
-                                <label for="buy-50" class="buy-tickets__title ">
-                                    <b>$<?=number_format($ticket->price, 2, '.', '');?></b>
-                                </label>
-                                <?php if(!empty($ticket->actual_price)):?>
-                                <label for="buy-50" class="buy-tickets__title flash">Flash Sale</label>
-                                <?php endif;?>
-                                <p>
-                                    <?=$ticket->description;?>
-                                </p>
-                            </div>
-                        <?php endforeach;?>
+                        
                     <?php endif; ?>
                     <br><br>
                     <h3 class="popup__title"><?php echo $sale->bottom_text?></h3>
