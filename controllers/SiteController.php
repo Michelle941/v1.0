@@ -183,6 +183,10 @@ class SiteController extends Controller
 
     public function actionPage($id)
     {
+        if(in_array($id, array('about', 'contact', 'how-it-works'))){
+            return $this->render('about', ['title' => $id]);
+        }
+
         $page = Page::find()->where(['url' => $id])->one();
         if(!$page instanceof Page)
             throw new NotFoundHttpException('The requested page does not exist.');
