@@ -24,7 +24,15 @@ use yii\helpers\Url;
                         <?php foreach($sale->ticket as $ticket):
                             $available = $ticket->countAvailable(); ?>
                             <div class="buy-tickets__item">
-                                
+                                <div class="input__number">
+                                    <?php if($available > 0):?>
+                                    <span class="input__number-control input__number-control--minus"></span>
+                                    <span class="input__number-control input__number-control--plus"></span>
+                                    <input class="count" type="number" value="0" min="0" name="ticket[<?php echo $ticket->id;?>]" id="buy-50">
+                                    <?php else:?>
+                                        <span class="input__number-control sold-out">SOLD OUT</span>
+                                    <?php endif;?>
+                                </div>
                                 <label for="buy-50" class="buy-tickets__title ticket-title">
                                     <?php echo $ticket->title;?>
                                 </label>
