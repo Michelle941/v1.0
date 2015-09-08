@@ -50,7 +50,6 @@ use yii\helpers\Url;
                                     <?=$ticket->description;?>
                                 </p>
                             </div>
-                        <?php };?>
                     <?php endif; ?>
                     <br><br>
                     <h3 class="popup__title"><?php echo $sale->bottom_text?></h3>
