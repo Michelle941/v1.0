@@ -90,6 +90,7 @@ class Photo extends \yii\db\ActiveRecord
 
     protected function makePreview($file, $sizesSquares = array(), $sizes = array())
     {
+        Photo::rotateIos($file);
         foreach($sizesSquares as $size) {
             Image::thumbnail(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $file, $size[0], $size[1])
                 ->save(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $size[0] . 'x' . $size[1].'_square' . $file);
@@ -228,5 +229,25 @@ class Photo extends \yii\db\ActiveRecord
             ->one();
         ;
     }
+    public static function rotateIos($uniqueName){
+    $target = Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqueName;
+    $buffer = ImageCreateFromJPEG($target);
+    $exif = exif_read_data($target);
+    if(!empty($exif['Orientation'])){
+        switch($exif['Orientation']){
+            case 8:
+                $buffer = imagerotate($buffer,90,0);
+                break;
+            case 3:
+                $buffer = imagerotate($buffer,180,0);
+                break;
+            case 6:
+                $buffer = imagerotate($buffer,-90,0);
+                break;
+        }
+    }
+
+    imagejpeg($buffer, $target, 90);
+}
 
 }

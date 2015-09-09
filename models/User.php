@@ -395,6 +395,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->{$attribute} = $uniqueName;
     }
     private function resizeImage($uniqueName){
+        Photo::rotateIos($uniqueName);
         foreach (Yii::$app->params['avatarSize'] as $size) {
             Image::thumbnail(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqueName, $size[0], $size[1], 'inset')
                 ->save(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $size[0] . 'x' . $size[1] . $uniqueName);
