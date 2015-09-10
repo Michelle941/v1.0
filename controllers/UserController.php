@@ -118,12 +118,7 @@ class UserController extends Controller
         {
             $model->loadPhoto('avatar');
             if($model->save()) {
-                $notification = new NotificationTask([
-                    'type' => NotificationTask::TYPE_MEMBER_UPDATE_PROFILE,
-                    'from_user' => Yii::$app->user->getId(),
-                    'user_list' => implode('#', Following::getFollowers(Yii::$app->user->getId()))
-                ]);
-                $notification->save();
+                NotificationTask::addUpdateProfile(Yii::$app->user->getId());
                 $this->redirect(Url::to('/user/profile'));
             }
         }
@@ -614,15 +609,6 @@ class UserController extends Controller
             $message->save();
             print_r($post);
         }
-    }
-    private function addNotification($type){
-        $notification = new NotificationTask([
-            'type' => $type,
-            'from_user' => Yii::$app->user->getId(),
-            'user_list' => implode('#', Following::getFollowers(Yii::$app->user->getId()))
-        ]);
-        $notification->save();
-        UserNotification::createProfile(Yii::$app->user->getId(), $notification->id);
     }
 
     public function actionUnpremium()
