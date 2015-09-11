@@ -566,7 +566,7 @@ class SiteController extends Controller
         return $this->actionInstagramPhotos($model->id);
     }
     private function getInstagram(){
-        $redirectUrl = Yii::$app->params['domen'].'site/instagram-token';
+        $redirectUrl = Yii::$app->params['domen'].'/site/instagram-token';
 
         return  new Instagram(array(
             'apiKey'      => Yii::$app->params['instagramApiKey'],

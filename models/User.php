@@ -485,7 +485,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         }
         if($interval->y > 80){
-            $this->addError($attribute, 'Old Man! What do you wanna do here.');
+            $this->addError($attribute, 'Enter Valid DOB  MM/DD/YYYY');
             return false;
         }
     }
