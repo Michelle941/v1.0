@@ -158,7 +158,7 @@ class UserController extends Controller
         if(!$model->instagram_token){
             return $this->renderAjax('instagram_photos',['model' => $model, 'instagramtUrl' => $instagram->getLoginUrl()]);
         }else{
-            $images = $instagram->getUserMedia($model->instagram_user_id, 100);
+            $images = $instagram->getUserMedia($model->instagram_user_id, 1000);
             return $this->renderAjax('instagram_photos',['model' => $model, 'images' => $images]);
         }
 

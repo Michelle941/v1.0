@@ -229,6 +229,7 @@ use yii\widgets\ActiveForm;
         field = $('#add-comment_'+userId);
         var data = $(field).data();
         data.val = $(field).val();
+        data.party_id = party_id;
         $.post( '/site/save-comment', data).done(function(respose){
             cb(respose);
         });

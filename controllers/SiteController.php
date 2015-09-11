@@ -598,7 +598,7 @@ class SiteController extends Controller
             Yii::$app->session['user_id_instagram'] = $model->id;
             return $this->renderAjax('instagram_photos',['model' => $model, 'instagramtUrl' => $instagram->getLoginUrl()]);
         }else{
-            $images = $instagram->getUserMedia($model->instagram_user_id, 100);
+            $images = $instagram->getUserMedia($model->instagram_user_id, 1000);
             return $this->renderAjax('instagram_photos',['model' => $model, 'images' => $images]);
         }
 
@@ -1328,6 +1328,7 @@ class SiteController extends Controller
             $model->$data['name'] = $data['val'];
         }
         elseif('SharingPhoto' == $data['model']){
+            Party2profile::share($data['party_id'], Yii::$app->user->getId());
             $model = new $class;
             $model->$data['name'] = $data['val'];
             $model->obj_id = $data['obj_id'];

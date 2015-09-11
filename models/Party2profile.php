@@ -96,8 +96,11 @@ class Party2profile extends \yii\db\ActiveRecord
     public static function share($party, $user)
     {
         //если нужно, тут добавить логику, кому можно шарить пати к себе
-        $p2u = new Party2profile(['user_id' => $user, 'party_id' => $party, 'created_at' => time()]);
-        $p2u->save();
+        if(!self::is_shared($party, $user)){
+            $p2u = new Party2profile(['user_id' => $user, 'party_id' => $party, 'created_at' => time()]);
+            $p2u->save();
+        }
+
     }
 
     public static function countByParty($partyID)
