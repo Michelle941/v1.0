@@ -53,7 +53,7 @@
             <p>
                 <b><span >What is 941 Social Club?</span></b>
                 <br>
-                <span >941 Social Club is a community of fun mofos who share experiences and share photos. C'mon, just read our tag line.</span>
+                <span >941 Social Club is a community of fun mofos who share experiences and share photos. C'mon, just read our tagline.</span>
             </p>
 
             <p>
@@ -86,7 +86,7 @@
             </p>
 
             <p>
-                <b><span >My friend sai she is able to read messages for free. </span></b>
+                <b><span >My friend said she is able to read messages for free. </span></b>
                 <br>
                 <span >Your friend is a liar. </span>
             </p>
