@@ -472,7 +472,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         $dob_arr  = explode('/', $this->dob);
 
-        if (count($dob_arr) !== 3 or !checkdate($dob_arr[0], $dob_arr[1], $dob_arr[2])) {
+        if (count($dob_arr) !== 3 or !checkdate($dob_arr[0], $dob_arr[1], $dob_arr[2]) or strlen($dob_arr[2]) !=4) {
             $this->addError($attribute, 'Enter Valid DOB  MM/DD/YYYY');
             return false;
         }
@@ -484,8 +484,8 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
 
         }
-        if($interval->y > 80){
-            $this->addError($attribute, 'Enter Valid DOB  MM/DD/YYYY');
+        if($interval->y > 8000){
+            $this->addError($attribute, 'Oops sorry! you are so young.');
             return false;
         }
     }

@@ -102,7 +102,7 @@ AppAsset::register($this);
                                 <li><a href="<?=Url::to(['/user/profile']);?>">View my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/update']);?>">Update my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/settings']);?>">Update my settings</a></li>
-                                <li><a href="/video/_Pizza_Cat_v5.swf" id="order-pizza">Order a pizza</a></li>
+                                <li><a href="/video/pizzacat.swf" id="order-pizza">Order a pizza</a></li>
                                 <li><a href="<?=Url::to(['/site/logout']);?>">Log out</a></li>
                             </ul>
                         </li>

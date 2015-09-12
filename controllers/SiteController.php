@@ -1326,8 +1326,9 @@ class SiteController extends Controller
         if(!empty($data['id']) ){
             $model = $this->findModel($data['id'], sprintf('app\models\%s', $data['model']));
             $model->$data['name'] = $data['val'];
+            $model->Save();
         }
-        elseif('SharingPhoto' == $data['model']){
+        elseif('SharingPhoto' == $data['model'] && $data['party_id']){
             Party2profile::share($data['party_id'], Yii::$app->user->getId());
             $model = new $class;
             $model->$data['name'] = $data['val'];
@@ -1336,8 +1337,9 @@ class SiteController extends Controller
             $model->user_id =Yii::$app->user->getId();
             $model->created_at =time();
             NotificationTask::addPhoto(Yii::$app->user->getId());
+            $model->Save();
         }
-        $model->Save();
+
 
         $photo = Photo::find()
             ->where(['id' => $data['obj_id']])
