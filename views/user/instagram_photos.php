@@ -48,6 +48,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
             });
         }
     function loadMore(url){
+    if(!url){return false;}
         $.ajax({
               type: "get",
               url: '/site/instagram-more-photos',
