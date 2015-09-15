@@ -20,7 +20,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
         <div class="form">
             <h2 class="popup__title" style="text-align:center">Select Image</h2>
             <div class="members">
-                <ul class="members__list" load-more-url="<?php echo @$images->pagination->next_url?>">
+                <ul class="members__list" load-more-url="<?php echo  isset($images->pagination->next_url) ? $images->pagination->next_url: ''?>">
                     <?php if(isset($images->data) && count($images->data) >0){foreach ($images->data as $photo){?>
                     <li class="members__item">
                         <a onclick="saveImage('<?=$photo->images->standard_resolution->url;?>')" href="javascript:void(0)">
@@ -53,6 +53,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
         }
 
         function loadMore(url){
+        if(!url){return false;}
         $.ajax({
               type: "get",
               url: '/site/instagram-more-photos',
