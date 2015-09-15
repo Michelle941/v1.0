@@ -1422,6 +1422,9 @@ class SiteController extends Controller
             'ticket' => $ticket,
         ]);
     }
+    public function actionPizzaCat(){
+        echo  $this->renderPartial('pizza-cat');
+    }
 }
 
 
