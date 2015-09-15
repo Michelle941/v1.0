@@ -598,10 +598,24 @@ class SiteController extends Controller
             Yii::$app->session['user_id_instagram'] = $model->id;
             return $this->renderAjax('instagram_photos',['model' => $model, 'instagramtUrl' => $instagram->getLoginUrl()]);
         }else{
-            $images = $instagram->getUserMedia($model->instagram_user_id, 1000);
+            $images = $instagram->getUserMedia($model->instagram_user_id, 2);
             return $this->renderAjax('instagram_photos',['model' => $model, 'images' => $images]);
         }
 
+    }
+
+    public function actionInstagramMorePhotos($url){
+        $data = @file_get_contents($url);
+        $data = @json_decode($data);
+
+        $jsonResult = [
+            'html' => $this->renderPartial('instagram_more_photos', [
+                'images' => $data
+            ]),
+            'next_url' => isset($data->pagination->next_url) ? $data->pagination->next_url: null
+        ];
+
+        echo json_encode($jsonResult);
     }
     public function actionSaveInstagramAvatar(){
         $userId = Yii::$app->session['user_id_instagram'];
