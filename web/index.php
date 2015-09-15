@@ -6,6 +6,7 @@ defined('YII_ENV') or define('YII_ENV', getenv('APPLICATION_ENV') ? getenv('APPL
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 ini_set('memory_limit', '-1');
+ini_set('upload_max_filesize', '40M');
 ini_set('max_execution_time', 300);
 
 require(__DIR__ . '/../vendor/autoload.php');
