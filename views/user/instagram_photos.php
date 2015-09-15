@@ -33,7 +33,6 @@ elseif(!isset($images->data) || empty($images->data)):?>
     </div>
 
 <?php
-    $url = $images->pagination->next_url;
     $js = <<<JS
         function saveImage(type, key, image){
         $('div.popup').html('<div><img src="/images/fancybox_loading.gif"> </div>');
