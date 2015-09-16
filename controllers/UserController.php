@@ -96,7 +96,7 @@ class UserController extends Controller
                 Yii::$app->response->cookies->add(new \yii\web\Cookie([
                     'name' => 'countView'.Yii::$app->user->getId(),
                     'value' => 'true',
-                    'expire' => time() + 60*10 //10 minute
+                    'expire' => time() + 60*60 //60 minute
                 ]));
             }
         }

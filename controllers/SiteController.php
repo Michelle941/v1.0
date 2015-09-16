@@ -427,7 +427,7 @@ class SiteController extends Controller
                 Yii::$app->getResponse()->getCookies()->add(new \yii\web\Cookie([
                         'name' => 'countPhotoView'.$photo->id,
                         'value' => '1',
-                        'expire' => time() + 60*10 //10 minute
+                        'expire' => time() + 60*60 //60 minute
                     ]));
                 $photo->view_count += 1 ;
                 $photo->save();
