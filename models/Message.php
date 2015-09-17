@@ -76,9 +76,9 @@ class Message extends \yii\db\ActiveRecord
             ->with('receiver')
             ->where(['user_from' => $userId])
             ->orWhere(['user_to' => $userId])
-            ->orderBy("message.created_at DESC");
+            ->orderBy("created_at DESC");
 
-        $result->select('message.user_from, message.user_to');
+        $result->select('message.user_from, message.user_to, max(message.created_at) as created_at');
 
         $result->groupBy("message.user_from, message.user_to");
 
