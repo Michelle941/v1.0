@@ -67,12 +67,12 @@ use app\models\Ticket;
     <?php endif;?>
     <section class="dashboard">
         <header class="dashboard__header">
-            <h2 class="dashboard__name"><?=$user->name;?></h2>
             <ul class="dashboard__meta">
                 <li><b><?=Statistic::countByType($user->id, Statistic::TYPE_PROFILE_VIEWS);?></b> PROFILE VIEWS</li>
                 <li><b><?=\app\models\Following::countFollowing($user->id);?></b> FOLLOWERS</li>
             </ul>
         </header>
+        <h3 class=""><span class="dashboard__title-text">941 Messages</span></h3>
         <ul class="dashboard__list">
             <li class="dashboard__item">
                 <h3 class="dashboard__title">
