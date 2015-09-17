@@ -90,7 +90,7 @@ AppAsset::register($this);
                 else {
                     ?>
                     <ul>
-                        <li><a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">Dashboard</a></li>
+                        <li><a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">MESSAGES</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle profile-link"
                                data-toggle="dropdown"

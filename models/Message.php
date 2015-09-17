@@ -75,11 +75,11 @@ class Message extends \yii\db\ActiveRecord
             ->with('sender')
             ->with('receiver')
             ->where(['user_from' => $userId])
-            ->orWhere(['user_to' => $userId]);
+            ->orWhere(['user_to' => $userId])
+            ->orderBy("message.created_at DESC");
 
         $result->select('message.user_from, message.user_to');
 
-        $result->orderBy("message.created_at DESC");
         $result->groupBy("message.user_from, message.user_to");
 
         return $result->all();
