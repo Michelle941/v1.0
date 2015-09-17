@@ -20,6 +20,9 @@
         margin: 0px;
         padding: 0px;;
     }
+    li.message div.title{text-align: center;width: 70%;}
+    li.message div.title.right{float: right;}
+
     li.message div.body.left{text-align: left;width: 70%;}
     li.message div.body a{float: left;margin-right: 10px;}
     li.message div.body.right{text-align: right; float: right;width: 70%;}
@@ -120,7 +123,11 @@ use app\models\Ticket;
                         <ul>
                             <?php foreach($message->getMessages() as $msg): ?>
                                 <li class="message">
+                                    <div class="title <?php echo $msg->user_to === $user->id ? 'left':'right'?>">
+                                        <?=$msg->getDate();?>
+                                    </div>
                                     <div class="body <?php echo $msg->user_to === $user->id ? 'left':'right'?>">
+
                                         <?php if($msg->user_to === $user->id):?>
                                         <a href="/member/qt<?php echo $msg->user_from?>">
                                             <img src="/upload/30x30_square<?php echo $msg->sender->avatar?>" alt="" width="30" height="30">
