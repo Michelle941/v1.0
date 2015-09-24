@@ -1342,8 +1342,10 @@ class SiteController extends Controller
             $model->$data['name'] = $data['val'];
             $model->Save();
         }
-        elseif('SharingPhoto' == $data['model'] && $data['party_id']){
-            Party2profile::share($data['party_id'], Yii::$app->user->getId());
+        elseif('SharingPhoto' == $data['model']){
+            if($data['party_id']){
+                Party2profile::share($data['party_id'], Yii::$app->user->getId());
+            }
             $model = new $class;
             $model->$data['name'] = $data['val'];
             $model->obj_id = $data['obj_id'];
