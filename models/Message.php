@@ -127,6 +127,15 @@ class Message extends \yii\db\ActiveRecord
         return $result->all();
 
     }
+
+    public static function getAllUnreadMessageCount(){
+        $toUser = (int)Yii::$app->user->getId();
+        return  Message::find()
+            ->where(['user_to' => $toUser])
+            ->andWhere('read_at is null')
+            ->count();
+
+    }
     public function getDate(){
         return date( 'M d Y', $this->created_at);
     }

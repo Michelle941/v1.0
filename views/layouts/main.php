@@ -39,6 +39,21 @@ AppAsset::register($this);
             background: #3B3B3B;
         }
         .fancybox-type-swf{cursor: pointer;}
+        #noti_Container {
+            position:relative;
+        }
+        .noti_bubble {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            padding: 5px;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            font-size: 0.95em;
+            border-radius: 15px;
+            box-shadow: 1px 1px 1px gray;
+        }
     </style>
 
     <script>
@@ -90,7 +105,14 @@ AppAsset::register($this);
                 else {
                     ?>
                     <ul>
-                        <li><a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">MESSAGES</a></li>
+                        <li id="noti_Container">
+                            <a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">
+                                <span>MESSAGES</span>
+                            </a>
+                            <?php if($count =  \app\models\Message::getAllUnreadMessageCount()):?>
+                            <div class="noti_bubble"><?php echo $count?></div>
+                            <?php endif;?>
+                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle profile-link"
                                data-toggle="dropdown"
