@@ -124,7 +124,9 @@ AppAsset::register($this);
                                 <li><a href="<?=Url::to(['/user/tickets']);?>">My tickets</a></li>
                                 <li><a href="<?=Url::to(['/user/profile']);?>">View my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/update']);?>">Update my profile</a></li>
+                                <?php if(Yii::$app->user->can('premium')): ?>
                                 <li><a href="<?=Url::to(['/user/settings']);?>">Update my settings</a></li>
+                                <?php endif;?>
                                 <li><a href="/site/pizza-cat" class="fancybox-ajax" id="order-pizza">Order a pizza</a></li>
                                 <li><a href="<?=Url::to(['/site/logout']);?>">Log out</a></li>
                             </ul>

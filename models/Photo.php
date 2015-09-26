@@ -56,7 +56,7 @@ class Photo extends \yii\db\ActiveRecord
         if (!empty($image)) {
             $uniqName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
             if ($image->saveAs(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqName)) {
-                $this->makePreview($uniqName, Yii::$app->params['previewSize']);
+                $this->makePreview($uniqName, Yii::$app->params['previewSize'], [], $image->getExtension());
                 return $uniqName;
             }
         }
@@ -67,7 +67,7 @@ class Photo extends \yii\db\ActiveRecord
         if (!empty($image)) {
             $uniqName = Yii::$app->security->generateRandomString() . '.' . $image->getExtension();
             if ($image->saveAs(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqName)) {
-                $this->makePreview($uniqName, Yii::$app->params['previewSize'], Yii::$app->params['previewSizeSquare']);
+                $this->makePreview($uniqName, Yii::$app->params['previewSize'], Yii::$app->params['previewSizeSquare'], $image->getExtension());
                 $this->$attribute =  $uniqName;
             }
         }
@@ -88,9 +88,9 @@ class Photo extends \yii\db\ActiveRecord
         return $this->{$attribute} = $uniqueName;
     }
 
-    protected function makePreview($file, $sizesSquares = array(), $sizes = array())
+    protected function makePreview($file, $sizesSquares = array(), $sizes = array(), $type = 'jpg')
     {
-        Photo::rotateIos($file);
+        Photo::rotateIos($file, $type);
         foreach($sizesSquares as $size) {
             Image::thumbnail(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $file, $size[0], $size[1])
                 ->save(Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $size[0] . 'x' . $size[1].'_square' . $file);
@@ -229,25 +229,29 @@ class Photo extends \yii\db\ActiveRecord
             ->one();
         ;
     }
-    public static function rotateIos($uniqueName){
-    $target = Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqueName;
-    $buffer = ImageCreateFromJPEG($target);
-    $exif = exif_read_data($target);
-    if(!empty($exif['Orientation'])){
-        switch($exif['Orientation']){
-            case 8:
-                $buffer = imagerotate($buffer,90,0);
-                break;
-            case 3:
-                $buffer = imagerotate($buffer,180,0);
-                break;
-            case 6:
-                $buffer = imagerotate($buffer,-90,0);
-                break;
-        }
-    }
+    public static function rotateIos($uniqueName, $type){
 
-    imagejpeg($buffer, $target, 90);
-}
+        if($type !== 'jpg'){
+            return ;
+        }
+        $target = Yii::$app->basePath . Yii::$app->params['imageUploadDir'] . $uniqueName;
+        $buffer = ImageCreateFromJPEG($target);
+        $exif = exif_read_data($target);
+        if(!empty($exif['Orientation'])){
+            switch($exif['Orientation']){
+                case 8:
+                    $buffer = imagerotate($buffer,90,0);
+                    break;
+                case 3:
+                    $buffer = imagerotate($buffer,180,0);
+                    break;
+                case 6:
+                    $buffer = imagerotate($buffer,-90,0);
+                    break;
+            }
+        }
+
+        imagejpeg($buffer, $target, 90);
+    }
 
 }

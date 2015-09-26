@@ -546,10 +546,10 @@ class UserController extends Controller
             }
             $this->refresh();
         }
-
         return $this->render('settings',
             [
                 'settings' => $settings,
+                'user' => User::find()->where(['id' => Yii::$app->user->getId()])->one(),
             ]
         );
     }
@@ -631,9 +631,7 @@ class UserController extends Controller
             $request  = new AuthorizeNetARB;
             $request->cancelSubscription($user->subscription_id);
         }
-
-        Yii::$app->session->addFlash('success', 'Your are not premium anymore.');
-        $this->redirect(Url::to(['/user/dashboard']));
+        echo  $this->render('unpremium');
     }
     /**
      *
