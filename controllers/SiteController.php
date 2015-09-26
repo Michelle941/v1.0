@@ -165,6 +165,31 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $query = Party::searchNew($_GET)->orderBy('rank')->limit(6);
+        $query->with([
+                'photo' => function ($query) {
+                    $query->where('photo.deleted_party =0 or photo.deleted_party is NULL')
+                        ->orderBy('photo.view_count DESC');
+                },
+                'sale' => function ($query) {
+                    $query->where(['<=', 'sale.started_at', time()]);
+                    $query->andWhere(['>=', 'sale.finished_at', time()]);},
+                'party2profile' => function($query)
+                {
+                    $query->joinWith('user')
+                        ->orderBy('user.rank')
+                        ->limit(8);
+                }]
+        );
+
+        $party = $query->all();
+        $countAll = $query->count();
+
+        return $this->render('parties', [
+            'parties' => $party,
+            'is_last' => ($countAll <= 6)
+        ]);
+
         if (!Yii::$app->user->isGuest) {
             $user = User::findOne(Yii::$app->user->getId());
             if($user->status == User::STATUS_SING_UP_FROM_FACEBOOK)
