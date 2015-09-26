@@ -35,6 +35,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style>
+
         .load-more, a.button, div.button, .form .button, .photos__actions a, .form .profile-update-photos__button{
             background: #3B3B3B;
         }

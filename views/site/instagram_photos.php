@@ -1,14 +1,31 @@
-<div id="instagram" style="width: 815px;>
+<div id="instagram" style="width: 815px;">
+<?php if(!$model->instagram_token): ?>
+    <p>So cool you want to use Instagram to upload photos.</p>
+    </br>
+    <p>You need to do a few simple steps first.</p>
+    </br>
+    <p>Step 1 - unblock Instagram popups (this is normally at the top of your browser settings)</p>
+    </br>
+    <p>Step 2 - make your Instagram account public - hey, this is Instagram's rule to allow you to connect with us.</p>
+    </br>
+    <p>Step 3 - come back to this message and <a id="refresh" href="/site/instagram-photos/<?php echo $model->id?>" class="fancybox-ajax">click here</a></p>
+    </br>
+    <p>Step 4 - go ham</p>
+
 <?php
-if(!$model->instagram_token):
-    echo '<a id="refresh" href="/site/instagram-photos/'.$model->id.'" class="fancybox-ajax">Please unblock browser popup for instagram and Click here</a>';
     $js = <<<JS
     window.open('$instagramtUrl');
 
     $(window).focus(function() {
-        console.log('Focus');
         $( "#refresh" ).trigger( "click" );
     });
+    $('#instagram').focus(function() {
+        $( "#refresh" ).trigger( "click" );
+    });
+    $(document).ready(function(){
+      $.fancybox._setDimension();
+      $.fancybox.reposition()
+    })
 JS;
     $this->registerJs($js);
 elseif(!isset($images->data) || empty($images->data)):?>
@@ -35,8 +52,6 @@ elseif(!isset($images->data) || empty($images->data)):?>
 
 <?php
     $js = <<<JS
-      $.fancybox._setDimension();
-      $.fancybox.reposition()
         function saveImage(image){
         $('div.popup').html('<div><img src="/images/fancybox_loading.gif"> </div>');
             $.ajax({
@@ -68,6 +83,9 @@ elseif(!isset($images->data) || empty($images->data)):?>
             });
         }
     $(document).ready(function(){
+      $.fancybox._setDimension();
+      $.fancybox.reposition()
+
       loadMore($('.members__list').attr('load-more-url'));
     })
 
