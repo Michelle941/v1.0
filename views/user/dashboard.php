@@ -86,7 +86,7 @@ use app\models\Ticket;
                 </h3>
                 <div class="dashboard__content">
                     <ul>
-                        <?php foreach($notification941 as $not): $notice = $not->getNotification();?>
+                        <?php foreach($notification941 as $not): $notice = $not->getNotification(); $not->markAsRead();?>
                             <li class="message">
                                 <div class="title"><?=$not->getDate();?></div>
                                 <div class="body">

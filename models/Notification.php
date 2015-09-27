@@ -98,4 +98,12 @@ class Notification extends \yii\db\ActiveRecord
 
         return self::findBySql(sprintf($sql,$userId ))->all();
     }
+    public static function countNew(){
+        $userId = Yii::$app->user->getId();
+        return Notification::find()->where("user_id = $userId and type = 0 and is_read = 0")->orderBy('created_at DESC')->count();
+    }
+    public function markAsRead(){
+        $this->is_read = 1;
+        $this->save();
+    }
 }

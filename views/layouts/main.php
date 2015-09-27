@@ -108,11 +108,15 @@ AppAsset::register($this);
                     <ul>
                         <li id="noti_Container">
                             <a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">
+                                <?php $count =0 ;?>
+                                <?php $count = $count+ \app\models\Notification::countNew()?>
+                                <?php $count = $count+ \app\models\Message::getAllUnreadMessageCount()?>
+                                <?php if($count):?>
+                                    <span style="background-color: white;color: #000000;padding: 2px;" class="count"><?php echo $count?></span>
+                                <?php endif;?>
                                 <span>MESSAGES</span>
                             </a>
-                            <?php if($count =  \app\models\Message::getAllUnreadMessageCount()):?>
-                            <div class="noti_bubble"><?php echo $count?></div>
-                            <?php endif;?>
+
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle profile-link"
