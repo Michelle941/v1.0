@@ -3,8 +3,8 @@
 
 // comment out the following two lines when deployed to production
 defined('YII_ENV') or define('YII_ENV', getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV'):'dev');
-//defined('YII_DEBUG') or define('YII_DEBUG', YII_ENV !== 'prod');
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_DEBUG') or define('YII_DEBUG', YII_ENV !== 'prod');
+//defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 ini_set('memory_limit', '-1');
 ini_set('upload_max_filesize', '40M');

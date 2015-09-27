@@ -32,7 +32,8 @@
         "authorizenet/authorizenet": "*",
         "kotchuprik/yii2-instagram-authclient": "*",
         "zendframework/zend-http": "~2.3@dev",
-        "cosenary/instagram": "^2.4@dev"
+        "cosenary/instagram": "^2.4@dev",
+        "markokeeffe/yii-airbrake": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

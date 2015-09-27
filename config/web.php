@@ -21,6 +21,10 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+            //'class'=>'ErrorHandler',
+            //'apiKey' => 'f7a2e4342795e5a4e8ab3794cfad3e3e056c14a9',
+            //'endpoint'=>'https://airbrake.io/api/v3/projects/116117/notices',
+            //'environment'=>'Testing',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
