@@ -17,9 +17,9 @@ use yii\helpers\Html;
         ]);
         ?>
     </ul>
-    <?php
+   <?php /*?> <?php
     if(! $is_last){
     ?>
     <a href="<?=Url::to(['/site/load-more-party']);?>?search=<?= @$_GET['search']?>" class="button load-more">Load more</a>
-    <?php } ?>
+    <?php } ?><?php */?>
 </section>

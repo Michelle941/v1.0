@@ -11,24 +11,27 @@ use yii\widgets\ActiveForm;
     .photo-social li{ display: inline;}
     .photo-social li:first-child{ float: left;}
     .photo-social li:last-child{ float: right;}
-    a.fancybox-item.fancybox-close{display: none !important;}
+   /* a.fancybox-item.fancybox-close{display: none !important;}*/
     #photo-popup a.button{height: 50px; margin: 15px 0px; position: relative}
+	
 </style>
 <div  class="popup">
+<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>
     <div id="photo-popup"  class="photo" style="width: 770px">
         <figure class="photo__img">
-            <img src="/upload/350x350<?=$photo->image;?>" alt="" width="350" height="350">
+            <img src="http://localhost/v1.0/web/upload/<?=$photo->image;?>" alt="" width="350" height="350">
             <ul class="photo-social">
                 <li><?= (int)$photo->view_count?> Views</li>
                 <li class=""><?= \app\models\Likes::countLike($photo->id);?> likes</li>
                 <li class=""><?= \app\models\SharingPhoto::countShare($photo->id);?> shares</li>
             </ul>
+            
         </figure>
         <div class="photo-meta">
             <ul class="photo-meta__list">
                 <li class="photo-meta__item">
                     <figure class="photo-meta__img">
-                        <a href="/member/qt<?=$photo->user->id;?>"><img src="/upload/95x95_square<?=$photo->user->avatar;?>" alt="" width="95" height="95"></a>
+                        <a href="/member/qt<?=$photo->user->id;?>"><img src="http://localhost/v1.0/web/upload/<?=$photo->user->avatar;?>" alt="" width="95" height="95"></a>
                     </figure>
                     <div class="photo-meta__content">
                         <h3 class="photo-meta__title">PHOTO UPLOADED BY <?=$photo->user->name;?></h3>
@@ -41,7 +44,7 @@ use yii\widgets\ActiveForm;
                 <?php $userIds = [$photo->user->id]; if(isset($shares)): foreach($shares as $share):$userIds[] = $share->user_id;?>
                     <li class="photo-meta__item">
                         <figure class="photo-meta__img">
-                            <a href="/member/qt<?=$share->user_id;?>"><img src="/upload/95x95_square<?=$share->user->avatar;?>" alt="" width="95" height="95"></a>
+                            <a href="/member/qt<?=$share->user_id;?>"><img src="http://localhost/v1.0/web/upload/<?=$share->user->avatar;?>" alt="" width="95" height="95"></a>
                         </figure>
                         <div class="photo-meta__content">
                             <h3 class="photo-meta__title">PHOTO Shared BY <?=$share->user->name;?></h3>
@@ -54,7 +57,7 @@ use yii\widgets\ActiveForm;
                 <?php endforeach; endif;if(!Yii::$app->user->isGuest && !in_array($userId, $userIds)):?>
                 <li class="photo-meta__item share hide">
                     <figure class="photo-meta__img">
-                        <a href="/member/qt<?=$userId;?>"><img src="/upload/95x95_square<?=$user->avatar;?>" alt="" width="95" height="95"></a>
+                        <a href="/member/qt<?=$userId;?>"><img src="http://localhost/v1.0/web/upload/<?=$user->avatar;?>" alt="" width="95" height="95"></a>
                     </figure>
                     <div class="photo-meta__content">
                         <h3 class="photo-meta__title">PHOTO Shared BY <?=$user->name;?></h3>
@@ -191,6 +194,9 @@ use yii\widgets\ActiveForm;
         return false;
     })
     $('.fancybox-close').click(function(){
+        location.reload();
+    })
+	 $('.popup-close').click(function(){
         location.reload();
     })
     $('.like').off('click').on('click', function(e)
