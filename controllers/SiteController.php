@@ -200,10 +200,9 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-		
         $model = $this->loginForm;
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(Url::to('/v1.0/web/user/profile'));
+            return $this->redirect(Url::to('/user/profile'));
         }
         $this->loginForm->password = '';
         if(isset($_SERVER['HTTP_X_REQUESTED_WITH'] )){
@@ -786,7 +785,7 @@ class SiteController extends Controller
 
     public function actionParties()
     {
-        /*$query = Party::searchNew($_GET)->orderBy('rank')->limit(6);*/
+        //$query = Party::searchNew($_GET)->orderBy('rank')->limit(6);
 		$query = Party::searchNew($_GET)->orderBy('rank');
         $query->with([
                 'photo' => function ($query) {
@@ -807,7 +806,7 @@ class SiteController extends Controller
         $party = $query->all();
         $countAll = $query->count();
 
-        /*return $this->render('parties', [
+       /* return $this->render('parties', [
                 'parties' => $party,
                 'is_last' => ($countAll <= 6)
             ]);*/
