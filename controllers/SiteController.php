@@ -401,7 +401,7 @@ class SiteController extends Controller
             'newPhotoId' => $newPhotoId,
             'highlighed' => $highlighed,
             'hasMorePhoto' => ($photoCount > 10000),
-            'hasMoreParties' => ($partyCount > 3)
+            'hasMoreParties' => ($partyCount > 10000)
         ]);
     }
 
