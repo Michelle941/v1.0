@@ -47,7 +47,7 @@ use yii\bootstrap\ActiveForm;
 
         <footer class="popup__footer">
             <p>
-                BY JOINING YOU AGREE TO OUR <a href="<?php Url::to('/page/terms');?>" target="_blank">TERMS OF USE</a><br>
+                BY JOINING YOU AGREE TO OUR <a href="<?php echo Url::to('/page/terms');?>" target="_blank">TERMS OF USE</a><br>
                 ALREADY A MEMBER? <a href="#login" class="fancybox">LOG IN NOW</a>
             </p>
         </footer>

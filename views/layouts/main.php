@@ -155,7 +155,7 @@ AppAsset::register($this);
             <nav class="footer-nav">
                 <ul>
                     <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>">Terms</a></li>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'privacy']);?>">Privacy</a></li>
+                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>">Privacy</a></li>
                     <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'how-it-works']);?>">How it works</a></li>
                     <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'about']);?>">About</a></li>
                     <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'contact']);?>">Contact</a></li>

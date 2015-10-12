@@ -69,7 +69,7 @@ use yii\bootstrap\ActiveForm;
         <input type="submit" value="Buy Tickets" class="button submit buy">
         <br>
         <br>
-        <p>By clicking Buy Tickets, i agree to one-time payment of $<?php echo number_format($total, 2, '.', '')?> in accordance with the <a class="terms" href="" target="_blank">TERMS OF USE</a></p>
+        <p>By clicking Buy Tickets, i agree to one-time payment of $<?php echo number_format($total, 2, '.', '')?> in accordance with the <a class="terms" href="<?=Url::to(['/site/page', 'id' => 'terms']);?>" target="_blank">TERMS OF USE</a></p>
     <?php ActiveForm::end(); ?>
 </div>
 <?php

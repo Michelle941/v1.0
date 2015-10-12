@@ -62,10 +62,10 @@ use yii\bootstrap\ActiveForm;
     <?php if($type === 'monthly'):?>
         <p>By clicking upgrade membership, i agree to initial payment of $<?php echo $amount?></p>
         <p>and recurring monthly payments of $<?php echo $amount?> beginning the first day of</p>
-        <p>month 2 until i cancel in accordance with the <a href="" target="_blank">TERMS OF USE</a></p>
+        <p>month 2 until i cancel in accordance with the <a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>" target="_blank">TERMS OF USE</a></p>
         <?php else:?>
         <p>By clicking upgrade membership, i agree to initial payment of $<?php echo $amount?></p>
         <p>and recurring annual payments of $<?php echo $amount?> beginning the first day of</p>
-        <p>year 2 until i cancel in accordance with the <a href="" target="_blank">TERMS OF USE</a></p>
+        <p>year 2 until i cancel in accordance with the <a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>" target="_blank">TERMS OF USE</a></p>
     <?php endif;?>
 </div>
