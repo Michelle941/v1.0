@@ -467,7 +467,7 @@ class UserController extends Controller
                 },
                 'sales' => function ($query) {
                     $query->with(['ticket'])->where(['<=', 'sale.started_at', time()])
-                        ->andWhere(['>=', 'sale.finished_at', strtotime("-2 day 00:00:00")])
+                        ->andWhere(['>=', 'sale.finished_at', time()])
                         ->orderBy('sale.started_at DESC');
                 },
                 'party2profile' => function($query)
