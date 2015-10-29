@@ -244,7 +244,7 @@ class SiteController extends Controller
         $this->saveViewedProfile(array_merge($popularMembers, $newMembers));
 
         $members = User::find()
-            ->orderBy('rank ASC')
+            ->orderBy('rank ASC, view_count DESC')
             ->where('id not in ('.$this->getViewedMemberIds().')')
             ->andWhere(['status' => 10])
             ->limit(12)
