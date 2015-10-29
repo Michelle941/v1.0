@@ -237,7 +237,7 @@ class SiteController extends Controller
             ->orderBy('created_at DESC')
             ->where(['rank' => 2])
             ->andWhere(['status' => 10])
-            ->limit(12)
+            ->limit(6)
             ->asArray()
             ->all();
 
