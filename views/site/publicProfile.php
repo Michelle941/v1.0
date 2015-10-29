@@ -97,9 +97,9 @@ use app\models\Statistic;
                     $work = explode('#', $user->work);
                     $work[1] = isset($work[1]) ? $work[1]: '';
                     if ($work[0] < 10) {
-                        echo HandBook::getWorkHeader($work[0]) . ' ' . ((!empty($work[1])) ? $work[1] : '');
+                        echo empty($work[1]) ? '': HandBook::getWorkHeader($work[0]) . ' ' . ((!empty($work[1])) ? $work[1] : '');
                     } else if ($work[0] == 10) {
-                        echo ((!empty($work[1])) ? $work[1] : '') . ' AT ' . ((!empty($work[2])) ? $work[2] : '');
+                        echo (!empty($work[1]) && !empty($work[2]))  ? $work[1] . ' AT ' . $work[2] : '';
                     } else echo((!empty($work[1])) ? $work[1] : '');
                 }
 
