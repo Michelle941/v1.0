@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 ?>
+<section id="join">
 <div class="popup">
     <div class="form">
         <h2 class="popup__title">
@@ -15,15 +16,19 @@ use yii\bootstrap\ActiveForm;
 	            'template' => '{input}{error}'
             ],
         ]); ?>
-        <div class="form__row">
-	        <div class="input__file-button">
-		        <div class="button">Upload from computer</div>
-		        <?= $form->field($model, 'avatar')->fileInput()->label(false); ?>
-	        </div>
+
+<br><br>
+ 	<div class="form__row">
+                        <div class="input__file-button">
+                        <label class="custom-file-input" style="width: 245px;">
+                        <?= $form->field($model, 'avatar')->fileInput(array('style'=>'display: none'))->label(false); ?>
+                        <br>&nbsp;</label>
+                        </div>
+                </div>
         </div>
 
-        <div class="form__row">
-            <a href="/user/instagram-photos?type=user&key=avatar" class="button fancybox-ajax">UPLOAD FROM INSTAGRAM</a>
+        <div class="form__row" style="margin-bottom: 25px;">
+            <a href="/user/instagram-photos?type=user&key=avatar" class="button-follow fancybox-ajax" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp; UPLOAD FROM INSTAGRAM &nbsp;&nbsp;&nbsp;&nbsp;</a>
         </div>
         <?php ActiveForm::end(); ?>
     </div>
@@ -35,7 +40,7 @@ use yii\bootstrap\ActiveForm;
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(input).closest('.input__file-button').find('.button').text('Uploading...');
+					//$(input).closest('.input__file-button').find('.button').text('Uploading...');
                     $( "#upload-avatar" ).submit();
 				};
 				reader.readAsDataURL(input.files[0]);
@@ -51,3 +56,4 @@ if( isMobile.any() ) {
 JS;
 $this->registerJs($js);
 ?>
+</section>

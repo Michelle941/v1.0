@@ -119,7 +119,7 @@ class UserController extends Controller
             $model->loadPhoto('avatar');
             if($model->save()) {
                 NotificationTask::addUpdateProfile(Yii::$app->user->getId());
-                $this->redirect(Url::to('/user/profile'));
+                $this->redirect(Url::to('/user/update'));
             }
         }
 
@@ -238,6 +238,8 @@ class UserController extends Controller
             foreach($images as $image){
                 if(file_exists($_FILES['User']['tmp_name'][$image])){
                     $model->loadPhoto($image);
+		    $model->save();
+		    return $this->redirect(Url::to('/user/update'));
                 }
 
             }
@@ -245,7 +247,7 @@ class UserController extends Controller
             if($model->save())
             {
                 NotificationTask::addUpdateProfile(Yii::$app->user->getId());
-
+		return $this->redirect(Url::to('/user/profile'));
                 if (! Yii::$app->request->isAjax)
                     return $this->redirect(Url::to('/user/profile'));
             }

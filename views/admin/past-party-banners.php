@@ -57,6 +57,42 @@ use dosamigos\fileinput\FileInput;
             ]);
             ?>
         </div>
+	<div class="col-md-6">
+            Party First:
+            <?php
+            echo FileInput::widget([
+                'model' => $model,
+                'attribute' => 'party_first',
+                'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_first.'">',
+                'style' => FileInput::STYLE_IMAGE
+            ]);
+            ?>
+        </div>
+        <div class="col-md-6">
+            Party Last:
+            <?php
+            echo FileInput::widget([
+                'model' => $model,
+                'attribute' => 'party_last',
+                'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_last.'">',
+                'style' => FileInput::STYLE_IMAGE
+            ]);
+            ?>
+        </div>
+        <div class="col-md-6">
+            Party More:
+            <?php
+            echo FileInput::widget([
+                'model' => $model,
+                'attribute' => 'party_more',
+                'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_more.'">',
+                'style' => FileInput::STYLE_IMAGE
+            ]);
+            ?>
+        </div>
+
+
+
     </div>
     <div class="form-group">
         <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>

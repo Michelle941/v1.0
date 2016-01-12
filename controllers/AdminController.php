@@ -135,6 +135,9 @@ class AdminController extends Controller
             $party->loadPhoto('flyer_top');
             $party->loadPhoto('flyer_bottom');
             $party->loadPhoto('message_banner');
+	    $party->loadPhoto('party_first');
+	    $party->loadPhoto('party_last');
+	    $party->loadPhoto('party_more');
             if($party->save()){
                 return $this->refresh();
             }
@@ -164,7 +167,9 @@ class AdminController extends Controller
                 $flashSale->loadPhoto('flyer_top');
                 $flashSale->loadPhoto('flyer_bottom');
                 $flashSale->loadPhoto('message_banner');
-
+		$flashSale->loadPhoto('party_first');
+                $flashSale->loadPhoto('party_last');
+                $flashSale->loadPhoto('party_more');
                 if($flashSale->save()) {
                     Yii::$app->getSession()->setFlash('success', Yii::t('yii','Save'));
                     $this->refresh();
@@ -195,7 +200,9 @@ class AdminController extends Controller
                 $regSale->loadPhoto('flyer_top');
                 $regSale->loadPhoto('flyer_bottom');
                 $regSale->loadPhoto('message_banner');
-
+		$regSale->loadPhoto('party_first');
+                $regSale->loadPhoto('party_last');
+                $regSale->loadPhoto('party_more');
                 if($regSale->save()) {
                     Yii::$app->getSession()->setFlash('success', Yii::t('yii','Save'));
                     $this->refresh();
@@ -359,8 +366,11 @@ class AdminController extends Controller
         $sale->loadPhoto('flyer_top');
         $sale->loadPhoto('flyer_bottom');
         $sale->loadPhoto('message_banner');
-
-        if($sale->load(Yii::$app->request->post()) && $sale->save())
+	$sale->loadPhoto('party_first');
+        $sale->loadPhoto('party_last');
+        $sale->loadPhoto('party_more');
+        
+	if($sale->load(Yii::$app->request->post()) && $sale->save())
         {
             $this->redirect(Url::to(['edit-price', 'id' => $id]));
         }

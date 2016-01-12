@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
+<section id = "join">
 <style>
     .photo-meta__content .photo-meta__title{margin-bottom: 5px;}
     .comment{margin: 0px; width: 277px; height: 70px;text-transform: uppercase; }
@@ -64,6 +65,7 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
+</section>
 <script>
 
     $('.like').off('click').on('click', function(e)

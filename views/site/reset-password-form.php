@@ -4,6 +4,8 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use kartik\password\PasswordInput;
 ?>
+
+<section id = "reset-password">
 <div class="form">
     <div>
         <?php $form = ActiveForm::begin([
@@ -29,6 +31,7 @@ use kartik\password\PasswordInput;
 
         </p>
     </footer>
+</section>
 </div>
 <script>
 // get the form id and set the event

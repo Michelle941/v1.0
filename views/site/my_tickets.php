@@ -27,7 +27,11 @@ use yii\helpers\Html;
                         </div>
                         <div class="clear" style="clear: both;"></div><br><br>
                         <div class="left image" style="float: left;margin-right: 10px" >
-                            <a style="float: left" class="left" href="/member/qt<?php echo $ticket->user->id?>">
+                            <a style="float: left" class="left" href="/member/qt<?php 
+				if(isset($ticket->user->id)){
+				echo $ticket->user->id
+				}else{}
+?>">
                                 <img src="/upload/160x160_square<?php echo $ticket->user->avatar?>" alt="" width="135" height="135">
                             </a>
                         </div>

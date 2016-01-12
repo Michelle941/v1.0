@@ -12,6 +12,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $user_id
  * @property string $comment
+ * @property integer $load_user_id
  */
 class SharingPhoto extends \yii\db\ActiveRecord
 {
@@ -35,8 +36,8 @@ class SharingPhoto extends \yii\db\ActiveRecord
     {
         return [
             [['obj_id', 'created_at', 'user_id'], 'required'],
-            [['obj_id', 'created_at', 'user_id'], 'integer'],
-            [['comment'], 'string', 'max' => 255]
+            [['obj_id', 'created_at', 'user_id', 'load_user_id'], 'integer'],
+            [['comment'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,6 +52,7 @@ class SharingPhoto extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'user_id' => 'User ID',
             'comment' => 'Comment',
+	    'load_user_id' => 'original photo owner placeholder'
         ];
     }
 

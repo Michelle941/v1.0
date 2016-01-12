@@ -45,7 +45,6 @@ use app\models\Statistic;
             <div class="profile-info__info-meta">
                 <ul>
                     <li><a href="#secret" class="fancybox"><?=Statistic::countByType($model->id, Statistic::TYPE_PROFILE_VIEWS);?> PROFILE VIEWS</a></li>
-                    <li><a href="#secret" class="fancybox"><?=\app\models\Following::countFollowing($model->id);?> FOLLOWERS</a></li>
                 </ul>
             </div>
         </div>

@@ -6,13 +6,14 @@ use yii\bootstrap\ActiveForm;
 <style>
     .popup__footer a{text-decoration:underline !important;}
 </style>
+<section id = "join">
 <div class="popup">
-    <div class="form">
-        <h2 class="popup__title">
+    <div class="margins-75">
+        <h2 style="margin-bottom: 5px;">
             JOIN THE CLUB
         </h2>
-	    <div class="form__row">
-        (OR DON'T. WHATEVER)
+	    <div class="form__row" style="font-family: 'Questrial';">
+        (Or don't. Whatever)
 	    </div>
         <?php $form = ActiveForm::begin([
             'id' => 'join-form',
@@ -21,7 +22,7 @@ use yii\bootstrap\ActiveForm;
 			]
         ]); ?>
         <div class="form__row">
-            <?= $form->field(Yii::$app->controller->newUserModel, 'name')->textInput(array('placeholder' => 'First Name', 'required' => 'required'))->label(false); ?>
+            <?= $form->field(Yii::$app->controller->newUserModel, 'name')->textInput(array('placeholder' => 'First name', 'required' => 'required'))->label(false); ?>
         </div>
         <div class="form__row">
             <?= $form->field(Yii::$app->controller->newUserModel, 'last_name')->textInput(array('placeholder' => 'Last name', 'required' => 'required'))->label(false); ?>
@@ -36,19 +37,18 @@ use yii\bootstrap\ActiveForm;
             <?= $form->field(Yii::$app->controller->newUserModel, 'password_repeat')->passwordInput(array('placeholder' => 'Repeat password', 'required' => 'required'))->label(false); ?>
         </div>
         <div class="form__row">
-            <div class="form-group">
+	<br>
                 <div class="col-lg-offset-1 col-lg-11">
-                    <?= Html::submitButton('Next', ['class' => 'button', 'name' => 'login-button', 'id' => 'joinButton']) ?>
-                </div>
+                    <?= Html::submitButton('Next', ['class' => 'button-follow', 'name' => 'login-button', 'id' => 'joinButton']) ?>
             </div>
         </div>
 
         <?php ActiveForm::end(); ?>
-
+</section>
         <footer class="popup__footer">
-            <p>
-                BY JOINING YOU AGREE TO OUR <a href="<?php echo Url::to('/page/terms');?>" target="_blank">TERMS OF USE</a><br>
-                ALREADY A MEMBER? <a href="#login" class="fancybox">LOG IN NOW</a>
+            <p><br>
+                By joining you agree to our <a href="<?php echo Url::to('/page/terms');?>" target="_blank">Terms of Use</a><br>
+                Already a member? <a href="#login" class="fancybox">Log In</a>
             </p>
         </footer>
     </div>

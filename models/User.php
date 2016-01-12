@@ -46,7 +46,7 @@ class User extends ActiveRecord implements IdentityInterface
             }],
             ['email', 'email'],
             [['password'], 'string', 'min' => 6, 'tooShort' => 'Weak sauce'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message'=>"OOPS. PASSWORDS DON'T MATCH. TRY AGAIN"],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message'=>"Oops. Passwords don't match. Try again"],
             [['name', 'last_name', 'city', 'region', 'state', 'zip_code', 'relation_status', 'gender', 'work', 'love', 'tag_line', 'password_repeat', 'password'], 'safe']
         ];
     }
@@ -473,19 +473,19 @@ class User extends ActiveRecord implements IdentityInterface
         $dob_arr  = explode('/', $this->dob);
 
         if (count($dob_arr) !== 3 or !checkdate($dob_arr[0], $dob_arr[1], $dob_arr[2]) or strlen($dob_arr[2]) !=4) {
-            $this->addError($attribute, 'Enter Valid DOB  MM/DD/YYYY');
+            $this->addError($attribute, 'Enter valid birthdate mm/dd/yyyy');
             return false;
         }
 
         $this->dateTimeDob = \DateTime::createFromFormat('m/d/Y', $this->dob);
         $interval = $this->dateTimeDob->diff(new \DateTime);
         if($interval->y < 18){
-            $this->addError($attribute, 'Oops sorry! you are so young.');
+            $this->addError($attribute, 'You are too young');
             return false;
 
         }
         if($interval->y > 8000){
-            $this->addError($attribute, 'Oops sorry! you are so young.');
+            $this->addError($attribute, 'You are too young');
             return false;
         }
     }

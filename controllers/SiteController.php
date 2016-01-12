@@ -28,6 +28,7 @@ use app\models\User;
 use yii\web\NotFoundHttpException;
 use yii\base\ActionEvent;
 use MetzWeb\Instagram\Instagram;
+use yii\db\Query;
 
 use AuthorizeNetAIM;
 
@@ -190,12 +191,101 @@ class SiteController extends Controller
 //            'is_last' => ($countAll <= 6)
 //        ]);
 
+
+//begin parties clone
         if (!Yii::$app->user->isGuest) {
             $user = User::findOne(Yii::$app->user->getId());
             if($user->status == User::STATUS_SING_UP_FROM_FACEBOOK)
                 $this->redirect(Url::to(['/user/singup-from-facebook']));
         }
-        return $this->render('index');
+
+	/*
+	$query = Party::searchNew($_GET)->orderBy('rank');
+        $query->with([
+                'photo' => function ($query) {
+                    $query->where('photo.deleted_party =0 or photo.deleted_party is NULL')
+                        ->orderBy('photo.view_count DESC');
+                },
+                'sale' => function ($query) {
+                    $query->where(['<=', 'sale.started_at', time()]);
+                    $query->andWhere(['>=', 'sale.finished_at', time()]);},
+                'party2profile' => function($query)
+                {
+                    $query->joinWith('user')
+                    ->orderBy('user.rank'); //the limit 8 here applied to the ENTIRE query set, not this join set! REMOVED LIMIT!
+                },]
+        );
+
+	$party = $query->all();
+	$countAll = $query->count();
+	*/
+
+	$query_upcoming = Party::searchNew($_GET)->where('started_at > UNIX_TIMESTAMP(NOW())')->orderBy('started_at DESC');
+        $query_upcoming->with([
+                'photo' => function ($query_upcoming) {
+                    $query_upcoming->where('photo.deleted_party =0 or photo.deleted_party is NULL')
+                        ->orderBy('photo.view_count DESC');
+                },
+                'sale' => function ($query_upcoming) {
+                    $query_upcoming->where(['<=', 'sale.started_at', time()]);
+                    $query_upcoming->andWhere(['>=', 'sale.finished_at', time()]);},
+                'party2profile' => function($query_upcoming)
+                {
+                    $query_upcoming->joinWith('user')
+                    ->orderBy('user.rank'); //the limit 8 here applied to the ENTIRE query set, not this join set! REMOVED LIMIT!
+                },]
+        );
+
+	$party_upcoming = $query_upcoming->all();
+	//print_r($party_upcoming);
+		
+	$query_past = Party::searchNew($_GET)->where('started_at < UNIX_TIMESTAMP(NOW())')->orderBy('started_at DESC');
+        $query_past->with([
+                'photo' => function ($query_past) {
+                    $query_past->where('photo.deleted_party =0 or photo.deleted_party is NULL')
+                        ->orderBy('photo.view_count DESC');
+                },
+                'sale' => function ($query_past) {
+                    $query_past->where(['<=', 'sale.started_at', time()]);
+                    $query_past->andWhere(['>=', 'sale.finished_at', time()]);},
+                'party2profile' => function($query_past)
+                {
+                    $query_past->joinWith('user')
+                    ->orderBy('user.rank'); //the limit 8 here applied to the ENTIRE query set, not this join set! REMOVED LIMIT!
+                },]
+        );
+
+	$party_past = $query_past->all();
+
+	$countAll = $query_upcoming->count();
+	$countAll += $query_past->count();
+
+	$homepage = 1;
+	$stinger = 1;
+	if(!(empty($party_upcoming))) {
+	    //print_r("UPCOMING EXISTS");
+	    //since we have an upcoming party, we only want to show one past party
+	    $party_past = array_slice($party_past, 0, 1);
+	    $party = array_merge($party_upcoming, $party_past);
+            $past_only = 0;
+	    return $this->render('home', array(
+                'parties' => $party, 'past_only'=>$past_only, 'homepage' => $homepage, 'stinger' => $stinger
+            ));
+	}else{
+	    //print_r($party_past);
+	    $party = array_slice($party_past, 0, 2);
+	    $past_only = 1;
+	    return $this->render('home', array(
+                'parties' => $party,
+		'past_only' => $past_only,
+		'homepage' => $homepage,
+		'stinger' => $stinger
+            ));
+	}
+
+	//end parties clone
+
+        //return $this->render('parties');
     }
 
     public function actionLogin()
@@ -229,6 +319,7 @@ class SiteController extends Controller
             ->orderBy('view_count DESC')
             ->where(['rank' => 1])
             ->andWhere(['status' => 10])
+	    ->andWhere(['org_user' => null])
             ->limit(8)
             ->asArray()
             ->all();
@@ -237,7 +328,7 @@ class SiteController extends Controller
             ->orderBy('created_at DESC')
             ->where(['rank' => 2])
             ->andWhere(['status' => 10])
-            ->limit(6)
+	    ->andWhere(['org_user' => null])
             ->asArray()
             ->all();
 
@@ -247,6 +338,7 @@ class SiteController extends Controller
             ->orderBy('rank ASC, view_count DESC')
             ->where('id not in ('.$this->getViewedMemberIds().')')
             ->andWhere(['status' => 10])
+	    ->andWhere(['org_user' => null])
             ->limit(12)
             ->asArray()
             ->all();
@@ -348,9 +440,12 @@ class SiteController extends Controller
         $currentUserId = Yii::$app->user->getId();
         $user =  $this->findModel($id, 'app\models\User');
 
+	/*
         if($currentUserId == $id && !$user->is_full_filled()){
             $this->redirect(Url::to(['user/profile']));
         }
+	*/
+	//we are no longer redirecting to base profile. use public profile
 
         if (!isset(Yii::$app->request->cookies['countView'.$user->id])) {
             if(Statistic::countPlusOne($user->id, Statistic::TYPE_PROFILE_VIEWS)){
@@ -720,7 +815,7 @@ class SiteController extends Controller
         Yii::$app->user->login($model);
         //отправка welcome письма
         NotificationTask::addMail(array(Yii::$app->user->getId()), Config::getValue('mainPage', 'welcome_letter'));
-        $this->redirect(Url::to(['/user/profile']));
+        $this->redirect(Url::to(['/user/update']));
     }
 
     public function actionConfirmation()
@@ -797,16 +892,33 @@ class SiteController extends Controller
                     $query->andWhere(['>=', 'sale.finished_at', time()]);},
                 'party2profile' => function($query)
                 {
-                    $query->joinWith('user')
+		    $query->joinWith('user')
+                    ->orderBy('user.rank'); //the limit 8 here applied to the ENTIRE query set, not this join set! REMOVED LIMIT!
+		},]
+        );
+
+        $party = $query->all();
+        $countAll = $query->count();
+/*
+foreach($party as $p){
+print_r($p->party2profile);
+echo '<br><br>';
+}
+*/
+
+/*
+	$query2->with([
+		'party2profile' => function($query2)
+                {
+                    $query2->joinWith('user')
                     ->orderBy('user.rank')
                     ->limit(8);
                 }]
         );
 
-        $party = $query->all();
-        $countAll = $query->count();
 
-       /* return $this->render('parties', [
+        $party2 = $query2->all();
+	/* return $this->render('parties', [
                 'parties' => $party,
                 'is_last' => ($countAll <= 6)
             ]);*/
@@ -1188,7 +1300,7 @@ class SiteController extends Controller
                     'x_fp_hash'       => $fp,
                     'x_fp_timestamp'  => $time,
                     'x_relay_response'=> "TRUE",
-                    'x_relay_url'     => "http://941social.com/site/response",
+                    'x_relay_url'     => "http://ec2-54-213-43-16.us-west-2.compute.amazonaws.com/site/response",
                     'x_login'         => AUTHORIZENET_API_LOGIN_ID,
                     'x_description'   => implode('@', $invoice),
                     'party_id'        => $partyID,
@@ -1322,7 +1434,7 @@ class SiteController extends Controller
         $instagram = new Instagram(array(
             'apiKey'      => '96edaf43296b4bf2ac7a6db17d79bdb5',
             'apiSecret'   => '59e3b6c20b754a5ca1f73ee144332bc1',
-            'apiCallback' => 'http://941social.com/site/instagram' // must point to success.php
+            'apiCallback' => 'http://ec2-54-213-43-16.us-west-2.compute.amazonaws.com/site/instagram' // must point to success.php
         ));
 
         // create login URL
@@ -1405,7 +1517,33 @@ class SiteController extends Controller
         $userId = Yii::$app->user->getId();
 
         $photo = Photo::find()->where(['id' => $id, 'load_user_id' => $userId])->one();
-        if($photo->load_user_id === Yii::$app->user->getId()){
+
+	//added logic for 'deletion from shared table'
+	$shared_scenario = false;
+	if(!isset($photo)){
+           $photo = SharingPhoto::find()
+	   ->with('photo')
+	   ->where(['obj_id' => $id, 'type' => 0])->one(); 
+	   $shared_scenario == true;
+	   if(!isset($photo->photo->load_user_id)){
+		try{		
+			break;
+		}catch (Exception $e) {}
+	   }
+	}
+	/*
+	$test = SharingPhoto::find()
+           ->with('photo')
+           ->where(['obj_id' => 376, 'type' => 0])->one();
+	print_r($test);
+	*/        
+	/*
+	print_r($test->photo->load_user_id);
+        $test->load_user_id = $test->photo->load_user_id;
+        print_r($test->load_user_id);
+	*/
+
+        if($photo->load_user_id === Yii::$app->user->getId() && $shared_scenario == false){
             $photo->deleted_user = 1;
             if(@$_POST['new'] == 1 ){
                 $photo->deleted_party = 1;

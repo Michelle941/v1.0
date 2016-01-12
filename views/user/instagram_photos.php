@@ -15,9 +15,11 @@ elseif(!isset($images->data) || empty($images->data)):?>
       <p>Sorry but this feature only works </br> if your Instagram account is public.</p>
   </div>
 <?php else:?>
+<section id="join">
     <div class="popup" style="width: 640px;">
         <div class="form">
-            <h2 class="popup__title">Select Image</h2>
+            <h2 class="popup__title" style:"text-align: center">Select Image</h2>
+	    <br>
             <div class="members">
                 <ul class="members__list" load-more-url="<?php echo isset($images->pagination->next_url) ? $images->pagination->next_url: ''?>">
                     <?php if(isset($images->data) && count($images->data) >0){foreach ($images->data as $photo){?>
@@ -31,7 +33,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
             </div>
         </div>
     </div>
-
+</section>
 <?php
     $js = <<<JS
         function saveImage(type, key, image){

@@ -1,11 +1,17 @@
 <?php
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\assets\AppAsset;
 use yii\bootstrap\ActiveForm;
 
 AppAsset::register($this);
+
+$isMobile = (bool) strpos($_SERVER['HTTP_USER_AGENT'],'Mobile');
+
 ?>
+
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -29,7 +35,26 @@ AppAsset::register($this);
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <meta name="viewport" content="width=1280">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link href="<?=Url::to(['css/styles/style.css']);?>" rel="stylesheet">
+        <link rel="stylesheet" href="<?=Url::to(['css/fa/css/font-awesome.min.css']);?>">
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.min.js"></script>
+            <script src="js/html5shiv-printshiv.min.js"></script>
+        <![endif]-->
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+
+        <script type="text/javascript" src="<?=Url::to(['js/jquery-1.9.1.min.js']);?>"></script>
+
+<?php
+                $controller = Yii::$app->controller;
+                $default_controller = Yii::$app->defaultRoute;
+                $isHome = (($controller->id === $default_controller) && ($controller->action->id === $controller->defaultAction)) ? true : false;
+		$user = \app\models\User::findOne(Yii::$app->user->getId());
+?>
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -68,108 +93,141 @@ AppAsset::register($this);
 
     </script>
 </head>
-<body>
 
-<?php $this->beginBody() ?>
+<nav>
 
-<div class="wrapper">
-    <header class="header">
-        <div class="header__inner">
-	        <?php
-	        $controller = Yii::$app->controller;
-	        $default_controller = Yii::$app->defaultRoute;
-	        $isHome = (($controller->id === $default_controller) && ($controller->action->id === $controller->defaultAction)) ? true : false;
-	        ?>
-            <div class="logo">
-	            <?php if($isHome == true): ?>
-                    <h1>941 Social Club</h1>
-	            <?php else: ?>
-		            <a href="<?=Yii::$app->homeUrl;?>">941 Social Club</a>
-	            <?php endif; ?>
-            </div>
-            <nav class="nav nav--left">
-                <ul>
-                    <li><a href="<?=Url::to(['/site/parties']);?>">Parties</a></li>
-                    <li><a href="<?=Url::to(['/site/members'])?>">Members</a></li>
-                </ul>
-            </nav>
-            <nav class="nav nav--right">
-                <?php
-                if(Yii::$app->user->isGuest) {
-                    ?>
-                    <ul>
-                        <li><a href="#join" class="fancybox" id="join-url">Join</a></li>
-                        <li><a href="#login" class="fancybox" id="login-url">Log in</a></li>
-                    </ul>
-                <?php
-                }
-                else {
-                    ?>
-                    <ul>
-                        <li id="noti_Container">
-                            <a href="<?=Url::to(['/user/dashboard']);?>" class="home-link">
-                                <?php $count =0 ;?>
-                                <?php $count = $count+ \app\models\Notification::countNew()?>
-                                <?php $count = $count+ \app\models\Message::getAllUnreadMessageCount()?>
-                                <?php if($count):?>
-                                    <span style="background-color: white;color: #000000;padding: 2px;" class="count"><?php echo $count?></span>
-                                <?php endif;?>
-                                <span>MESSAGES</span>
-                            </a>
+        <div class="margins-80">
 
-                        </li>
+                <div class="nav-image">
+
+                        <a href="<?=Yii::$app->homeUrl;?>">
+                                <img src="<?=Url::to(['images/nav-logo.png']);?>" alt="941 Social Club: Home" />
+                        </a>
+
+                </div><!-- nav image -->
+
+                <div class="nav-tagline hidemobile">
+
+                        <img src="<?=Url::to(['images/nav-tagline1.png']);?>" alt="Share Experiences. Share Photos." />
+
+                </div><!-- nav tagline -->
+
+                <div class="nav-link-cell">
+
+                        <a href="<?=Url::to(['/site/parties']);?>">
+                                <span>
+                                        parties
+                                </span>
+                        </a>
+
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell">
+
+                        <a href="<?=Url::to(['/site/members'])?>">
+                                <span>
+                                        members
+                                </span>
+                        </a>
+
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell">
+                        <?php
+                                if($user){
+                        ?>
+                        <?php
+                                }
+                                else{
+                        ?>
+                                        <a href="#join" class="fancybox" id="join-url">
+                                        <span>
+                                                JOIN
+                                        </span>
+                                        </a>
+                        <?php
+                                }
+                        ?>
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell-login">
+                        <?php
+                                if($user){
+                        ?>
+                        <nav class="nav nav--right">
+                        <ul>
                         <li class="dropdown">
                             <a class="dropdown-toggle profile-link"
                                data-toggle="dropdown"
                                href="#"><?php
                                 $user = \app\models\User::findOne(Yii::$app->user->getId());
                                 echo $user->name;
+				$user_id = $user->id;
                                 ?></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?=Url::to(['/user/tickets']);?>">My tickets</a></li>
-                                <li><a href="<?=Url::to(['/user/profile']);?>">View my profile</a></li>
+                                <li><a href="<?=Url::to(['/member/qt' . $user_id]);?>">View my profile</a></li>
                                 <li><a href="<?=Url::to(['/user/update']);?>">Update my profile</a></li>
-                                <?php if(Yii::$app->user->can('premium')): ?>
-                                <li><a href="<?=Url::to(['/user/settings']);?>">Update my settings</a></li>
-                                <?php endif;?>
                                 <li><a href="/site/pizza-cat" class="fancybox-ajax" id="order-pizza">Order a pizza</a></li>
                                 <li><a href="<?=Url::to(['/site/logout']);?>">Log out</a></li>
                             </ul>
                         </li>
-                    </ul>
-                    <?php
-                }
-                ?>
-            </nav>
-        </div>
-    </header>
+                        </ul>
+                        </nav>
+                        <?php
+                                }
+                                else{
+                        ?>
+                                        <a href="#login" class="fancybox" id="login-url">
+                                        <button>
+                                                login
+                                        </button>
+                                        </a>
+                        <?php
+                                }
+                        ?>
+
+
+                </div><!-- nav link cell -->
+
+
+
+        </div><!-- margins: nav-->
+
+        <div class="clearfix"></div>
+
+</nav><!-- navigation: fixed -->
+
+
+<body>
+
+<?php $this->beginBody() ?>
     <div class="page">
         <?= $content ?>
     </div>
     </div>
-    <footer class="footer">
-        <div class="footer__inner">
-            <div class="copy">
-                &copy;2015
-            </div>
-            <nav class="footer-nav">
-                <ul>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>">Terms</a></li>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'terms']);?>">Privacy</a></li>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'how-it-works']);?>">How it works</a></li>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'about']);?>">About</a></li>
-                    <li class="footer-nav__item"><a href="<?=Url::to(['/site/page', 'id' => 'contact']);?>">Contact</a></li>
-                </ul>
-            </nav>
-            <ul class="social">
-                <li class="social__item social__item--fb"><a href="https://www.facebook.com/yummy.marshamello" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--tw"><a href="https://twitter.com/marshamello941" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--in"><a href="https://instagram.com/marshamello941" rel="nofollow" target="_blank"></a></li>
-                <li class="social__item social__item--yt"><a href="https://www.youtube.com/user/941SocialClub" rel="nofollow" target="_blank"></a></li>
-            </ul>
-        </div>
-    </footer>
-    <div class="hidden">
+
+
+<?php  if(Yii::$app->user->isGuest) {?>
+<section id="call-to-action">
+
+	<div class="margins-80">
+
+		<button action="">
+
+			join the club
+
+		</button>
+
+		<div class="clearfix"></div>
+
+		Already a Club Member? <a href="">Log In</a>!
+
+	</div><!-- margins: call to action -->
+
+</section><!-- call to action section -->
+<?php } ?>
+
+ <div class="hidden" style="display:none; position: absolute; left: -9999px" >
         <div id="fake-form">
             <?php
             echo $this->render('/site/fake-form');
@@ -196,32 +254,233 @@ AppAsset::register($this);
         else {
             ?>
             <div id="login">
-	            <div class="form__result">
+                    <div class="form__result">
                     Hi <?=$user->name;?>. You are already logged into the club
-	            </div>
+                    </div>
             </div>
 
             <div id="join">
-	            <div class="form__result">
+                    <div class="form__result">
                     Hi <?=$user->name;?>. You are already a member of the club
-	            </div>
+                    </div>
             </div>
 
         <?php
 
         };?>
 
-        <div id="secret">
+        <div id="secret" style="display: none;">
             <div class="popup">
                 <div class="form">
-                    <div style="font-size: 16px;">941 Social Club is all about <br/>sharing the love, but some<br/>things are better kept secret</div>
-                    <footer class="popup__footer">
-                        <p>We don't share the names of who is<br/>viewing your profile or following you</p>
+                    <div style="font-size: 16px; align: center;">941 Social Club is all about sharing the love,<br /> but some things are better kept secret</div>
+                    <footer class="popup__footer" style="align: center; font-size:16px">
+                        <p>We don't share the names of who is viewing <br /> your profile or following you</p>
                     </footer>
                 </div>
             </div>
         </div>
     </div>
+
+
+<footer>
+
+	<div class="margins-60">
+
+		<div class="footer-left">
+
+			<a>
+				<a href="/page/about">About Us</a>
+			</a>
+			<br />
+			
+			<a>
+				<a href="/page/how-it-works">How it Works</a>
+			</a>
+			<br />
+
+			<a>
+				<a href="/page/contact">Contact</a>
+			</a>
+			
+			<div style="height: 8px;"></div>
+
+			<a href="/page/terms" class="smaller">
+				Terms of Use
+			</a>
+
+			<br />
+
+			<a href="/page/terms" class="smaller">
+				Privacy Policy
+			</a>
+
+			<br />
+
+			<span class="smaller">
+				&copy;<?php echo date("Y") ?>
+			</span>
+
+		</div><!-- footer left -->
+
+		<div class="footer-middle">
+
+			<a href="http://www.youtube.com/941socialclub">
+				<i class="fa fa-youtube"></i> /941socialclub 
+			</a>
+			<br />
+
+			<a href="http://www.instagram.com/marshamello941">
+				<i class="fa fa-instagram"></i> @marshamello941 
+			</a>
+			<br />
+
+			<a href="http://www.facebook.com/yummy.marshamello">
+				<i class="fa fa-facebook-official"></i> /yummy.marshamello
+			</a>
+			<br />
+
+			<a href="http://www.facebook.com/941SocialClub">
+				<i class="fa fa-facebook-official"></i> /941SocialClub 
+			</a>
+			<br />
+
+			<a href="http://www.twitter.com/marshamello941">
+				<i class="fa fa-twitter"></i> @marshamello941 
+			</a>
+
+		</div><!-- footer middle -->
+
+		<div class="footer-right">
+
+&nbsp;
+		</div><!-- footer right -->
+
+	</div><!-- margins: footer -->
+
+	<div class="clearfix"></div>
+
+</footer>
+
+</body>
+
+<div id="nav-scroll" class="hidemobile">
+
+        <div class="margins-80">
+
+                <div class="nav-image nav-image-scroll">
+
+                        <a href="index.php">
+                                <img src="<?=Url::to(['images/nav-logo-scroll.png']);?>" alt="941 Social Club: Home" />
+                        </a>
+
+                </div><!-- nav image -->
+
+                <div class="nav-tagline nav-tagline-scroll">
+
+                        <img src="<?=Url::to(['images/nav-tagline-scroll.png']);?>" />
+
+                </div><!-- nav tagline -->
+
+                <div class="nav-link-cell nav-link-cell-scroll">
+
+                        <a href="<?=Url::to(['/site/parties']);?>">
+                                <span>
+                                        parties
+                                </span>
+                        </a>
+
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell nav-link-cell-scroll">
+
+                        <a href="<?=Url::to(['/site/members']);?>">
+                                <span>
+                                        members
+                                </span>
+                        </a>
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell nav-link-cell-scroll">
+			 <?php
+                                if($user){
+                        ?>
+                        <?php
+                                }
+                                else{
+                        ?>
+                                        <a href="#join" class="fancybox" id="join-url">
+                                        <span>
+                                                JOIN
+                                        </span>
+                                        </a>
+                        <?php
+                                }
+                        ?>
+                </div><!-- nav link cell -->
+
+                <div class="nav-link-cell-login nav-link-cell-login-scroll">
+			 <?php
+                                if($user){
+                        ?>
+                        <nav class="nav nav--right">
+                        <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle profile-link"
+                               data-toggle="dropdown"
+                               href="#"><?php
+                                $user = \app\models\User::findOne(Yii::$app->user->getId());
+                                echo $user->name;
+				$user_id = $user->id;
+                                ?></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?=Url::to(['/member/qt' . $user_id]);?>">View my profile</a></li>
+                                <li><a href="<?=Url::to(['/user/update']);?>">Update my profile</a></li>
+                                <li><a href="/site/pizza-cat" class="fancybox-ajax" id="order-pizza">Order a pizza</a></li>
+                                <li><a href="<?=Url::to(['/site/logout']);?>">Log out</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                        </nav>
+                        <?php
+                                }
+                                else{
+                        ?>
+                                        <a href="#login" class="fancybox" id="login-url">
+                                        <button>
+                                                login
+                                        </button>
+                                        </a>
+                        <?php
+                                }
+                        ?>
+
+                </div><!-- nav link cell -->
+
+        </div><!-- margins: nav-->
+
+        <div class="clearfix"></div>
+
+</div><!-- scrolling navigation -->
+
+</body>
+
+<script type="text/javascript">
+$(window).scroll(function(){
+ 
+if ($(this).scrollTop() > 400) {
+$('#nav-scroll').fadeIn();
+}
+else {
+$('#nav-scroll').fadeOut();
+}
+ 
+});
+</script>
+
+<!-- (c) 2015 941 Social Club
+     Made in San Francisco <3
+-->
+
 <?php $this->endBody() ?>
 </body>
 </html>

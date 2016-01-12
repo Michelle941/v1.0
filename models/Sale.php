@@ -25,7 +25,7 @@ class Sale extends \yii\db\ActiveRecord
         return [
             [['party_id', 'sale_type', 'created_at', 'started_at', 'finished_at'], 'required'],
             [['party_id', 'sale_type', 'created_at'], 'integer'],
-            [['started_at', 'finished_at', 'top_text','bottom_text','bottom_text_8'], 'safe']
+            [['eventbrite_html','started_at', 'finished_at', 'top_text','bottom_text','bottom_text_8'], 'safe']
         ];
     }
 
@@ -62,7 +62,10 @@ class Sale extends \yii\db\ActiveRecord
             'top_text' => 'Top Text',
             'bottom_text' => 'Bottom Text',
             'bottom_text_8' => 'Bottom Text 8',
-
+	    'eventbrite_html'=> 'EventBrite HTML',
+	    'party_first' => 'Party First',
+	    'party_last' => 'Party Last',
+	    'party_more' => 'Party More'
         ];
     }
 

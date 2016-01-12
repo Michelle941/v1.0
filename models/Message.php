@@ -137,7 +137,7 @@ class Message extends \yii\db\ActiveRecord
 
     }
     public function getDate(){
-        return date( 'M d Y', $this->created_at);
+        return date( 'M d Y h:i:s A', $this->created_at);
     }
     public function getCountStr($useId){
         $count = $this->getUnreadMessageCount($useId);

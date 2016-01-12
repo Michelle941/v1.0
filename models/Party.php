@@ -178,7 +178,10 @@ class Party extends \yii\db\ActiveRecord
             'mini_flyer' => $obj->mini_flyer,
             'flyer_top' => $obj->flyer_top,
             'flyer_bottom' => $obj->flyer_bottom,
-            'message_banner' => $obj->message_banner
+            'message_banner' => $obj->message_banner,
+	    'party_first' => $obj->party_first,
+	    'party_last' => $obj->party_last,
+	    'party_more' => $obj->party_more
         ];
     }
 }

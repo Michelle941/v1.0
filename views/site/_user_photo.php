@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
+<section id="join">
 <div class="popup">
 	<div class="photo">
 		<figure class="photo__img">
@@ -55,6 +56,7 @@ use yii\widgets\ActiveForm;
 		</div>
 	</div>
 </div>
+</section>
 <script>
 	$('.like').off('click').on('click', function(e)
 		{

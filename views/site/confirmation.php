@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\password\PasswordInput;
 ?>
+<section id = "reset-password">
 <div class="site-login">
     <?php
     if($type == 'not_valid_hash')
@@ -11,7 +12,7 @@ use kartik\password\PasswordInput;
     }
     elseif($type == 'reset-password')
     {
-        echo "WE EMAILED YOU PASSWORD RESET INSTRUCTIONS<br> ALONG WITH A DIRTY PICTURE. <br><br>YOU'RE WELCOME!";
+        echo "We emailed you password reset instructions along with a dirty picture <br><br>You're welcome!";
     }
     elseif($type == 'success_change_password')
     {
@@ -21,5 +22,5 @@ use kartik\password\PasswordInput;
         echo 'Please check your email to complete registration';
     }
 ?>
-
+</section>
 

@@ -3,6 +3,18 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 ?>
+<?php
+$isMobile = (bool) strpos($_SERVER['HTTP_USER_AGENT'],'Mobile');
+if($isMobile==true){
+$deviceName="Device";
+$deviceClassNew="custom-file-input3";
+}
+else{
+$deviceName="Computer";
+$deviceClassNew="custom-file-input";
+}
+?>
+<section id = 'join2'>
 <div class="popup">
     <div class="form">
         <h2 class="popup__title">
@@ -19,28 +31,33 @@ use yii\bootstrap\ActiveForm;
         <?= $form->field($model, 'id')->hiddenInput(); ?>
 
         <div class="form__row">
-            <?= $form->field($model, 'dob')->textInput(array('placeholder' => 'DoB: mm/dd/yyyy', 'class' => '', 'required' => 'required'))->label(false); ?>
+            <?= $form->field($model, 'dob')->textInput(array('placeholder' => 'DOB: mm/dd/yyyy', 'class' => '', 'required' => 'required'))->label(false); ?>
         </div>
 
-        <div class="form__row">
-            <?= $form->field($model, 'zip_code')->textInput(array('placeholder' => 'ZIP CODE', 'required' => 'required'))->label(false); ?>
+        <div class="form__row" style="margin-bottom: 35px;">
+            <?= $form->field($model, 'zip_code')->textInput(array('placeholder' => 'zip code', 'required' => 'required'))->label(false); ?>
         </div>
 
         <div class="form__row">
             <p style="font-size: 18px">Show off your cute face!</p>
             <p style="font-size: 14px">Upload a main profile photo</p>
         </div>
-        <div class="form__row">
-	        <div class="input__file-button">
-		        <div class="button">Upload from computer</div>
-		        <?= $form->field($model, 'avatar')->fileInput()->label(false); ?>
+        <br><br>
+	<div class="form__row">
+			<div class="input__file-button">
+			<label class="<?php echo $deviceClassNew; ?>" style="width: 245px;"><br><br>
+		        <?= $form->field($model, 'avatar')->fileInput(array('style'=>'display: none'))->label(false); ?>
+			&nbsp;</label>
+			</div>
 	        </div>
         </div>
-        <div class="form__row">
-            <a id="instagram_image" href="#" class="button instagram_image">UPLOAD FROM INSTAGRAM</a>
+	<br><br>
+        <div class="form__row" style="margin-bottom: 25px;">
+            <a id="instagram_image" style="text-decoration: none;" href="#" class="button-follow">&nbsp;&nbsp;&nbsp;&nbsp; UPLOAD FROM INSTAGRAM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
             <div class="image"></div>
         </div>
         <?php ActiveForm::end(); ?>
+</section>
     </div>
 </div>
 <script>
@@ -50,7 +67,7 @@ use yii\bootstrap\ActiveForm;
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(input).closest('.input__file-button').find('.button').text('Uploading...');
+					$(input).closest('.input__file-button').find('.custom-file-input').html('<br>Uploading...');
 					$(input).next('.input__file-image').html('<img src="' + e.target.result + '">')
 				};
 				reader.readAsDataURL(input.files[0]);
@@ -60,8 +77,15 @@ use yii\bootstrap\ActiveForm;
 </script>
 <?php
 $js = <<<JS
+$(document).ready(function () {
+
+        $(window).scrollTop(0);
+        return false;
+
+    });
+
 if( isMobile.any() ) {
-	$('.input__file-button').find('.button').text('Upload from device');
+	//$('.input__file-button').find('.button).text('Upload from device');
 }
 $('.date-picker-input').datepicker({
 	changeMonth: true,

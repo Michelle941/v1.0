@@ -23,7 +23,8 @@ use yii\grid\DataColumn;
                 'format' => 'yyyy-mm-dd hh:ii'
             ]
         ]); ?>
-
+    
+    <?= $form->field($model, 'eventbrite_html')->textarea(['rows' => 10]) ?>
     <?= $form->field($model, 'top_text')->textarea(['rows' => 2]) ?>
     <?= $form->field($model, 'bottom_text')->textarea(['rows' => 2]) ?>
     <?= $form->field($model, 'bottom_text_8')->textarea(['rows' => 2]) ?>
@@ -86,6 +87,7 @@ use yii\grid\DataColumn;
         </div>
     </div>
     <div class="row">
+	<div class="col-md-6">
     Message Banner:
     <?php
     echo FileInput::widget([
@@ -96,6 +98,43 @@ use yii\grid\DataColumn;
         ]);
     ?>
     </div>
+	<div class="col-md-6">
+    Party First:
+    <?php
+    echo FileInput::widget([
+            'model' => $model,
+            'attribute' => 'party_first',
+            'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_first.'">',
+            'style' => FileInput::STYLE_IMAGE
+        ]);
+    ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+    Party Last:
+    <?php
+    echo FileInput::widget([
+            'model' => $model,
+            'attribute' => 'party_last',
+            'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_last.'">',
+            'style' => FileInput::STYLE_IMAGE
+        ]);
+    ?>
+    </div>
+        <div class="col-md-6">
+    Party More:
+    <?php
+    echo FileInput::widget([
+            'model' => $model,
+            'attribute' => 'party_more',
+            'thumbnail' => '<img src="'.Yii::$app->params['flayerPath'].'/'.$model->party_more.'">',
+            'style' => FileInput::STYLE_IMAGE
+        ]);
+    ?>
+        </div>
+    </div>
+
     <div class="form-group">
         <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
     </div>

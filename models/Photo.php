@@ -8,6 +8,7 @@ use yii\imagine\Image;
 
 /*
   Если party_id =0 то фотка загружена юзером в свой профайл. Ее нельзя шарить.
+  added explicit labels to photo join because of shared_photo load_user_id property for other join
  */
 
 class Photo extends \yii\db\ActiveRecord
@@ -184,7 +185,7 @@ class Photo extends \yii\db\ActiveRecord
         $sql = 'SELECT p.*
                 FROM photo p
                 LEFT JOIN sharing_photo sp ON sp.obj_id = p.id  AND sp.type = 0
-                where ((`load_user_id` = %d and (deleted_user =0 or deleted_user is NULL) ) or  sp.user_id =%d) %s
+                where ((p.`load_user_id` = %d and (deleted_user =0 or deleted_user is NULL) ) or  sp.user_id =%d) %s
                 ORDER by p.view_count DESC
                 LIMIT %d OFFSET %d';
         return photo::findBySql(sprintf($sql,$userId, $userId, $notIn, $limit, $start ))->all();
@@ -197,7 +198,7 @@ class Photo extends \yii\db\ActiveRecord
         $sql = 'SELECT p.*
                 FROM photo p
                 LEFT JOIN sharing_photo sp ON sp.obj_id = p.id  AND sp.type = 1
-                where ((`load_user_id` = %d and (deleted_user =0 or deleted_user is NULL) )  or  sp.user_id =%d) %s ';
+                where ((p.`load_user_id` = %d and (deleted_user =0 or deleted_user is NULL) )  or  sp.user_id =%d) %s ';
 
         return photo::findBySql(sprintf($sql,$userId, $userId, $notIn))->count();
     }

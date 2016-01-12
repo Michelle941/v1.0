@@ -33,6 +33,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
       <p>Sorry but this feature only works </br> if your Instagram account is public.</p>
   </div>
 <?php else:?>
+<section id="join">
     <div class="popup">
         <div class="form">
             <h2 class="popup__title" style="text-align:center">Select Image</h2>
@@ -49,7 +50,7 @@ elseif(!isset($images->data) || empty($images->data)):?>
             </div>
         </div>
     </div>
-
+</section>
 <?php
     $js = <<<JS
         function saveImage(image){
