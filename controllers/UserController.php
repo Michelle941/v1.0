@@ -36,6 +36,12 @@ use AuthorizeNetAIM;
 use AuthorizeNet_Subscription;
 use AuthorizeNetARB;
 
+use Stripe\Stripe;
+use Stripe\Charge;
+
+use app\models\Dashparty;
+
+
 if(YII_ENV === 'prod'){
     define("AUTHORIZENET_API_LOGIN_ID", "4YBsRE4q4L7y");
     define("AUTHORIZENET_TRANSACTION_KEY", "2tLSy8SKD223m8DH"); //Simon
@@ -119,7 +125,7 @@ class UserController extends Controller
             $model->loadPhoto('avatar');
             if($model->save()) {
                 NotificationTask::addUpdateProfile(Yii::$app->user->getId());
-                $this->redirect(Url::to('/user/profile'));
+                $this->redirect(Url::to('/user/update'));
             }
         }
 
@@ -238,6 +244,8 @@ class UserController extends Controller
             foreach($images as $image){
                 if(file_exists($_FILES['User']['tmp_name'][$image])){
                     $model->loadPhoto($image);
+		    $model->save();
+		    return $this->redirect(Url::to('/user/update'));
                 }
 
             }
@@ -245,7 +253,7 @@ class UserController extends Controller
             if($model->save())
             {
                 NotificationTask::addUpdateProfile(Yii::$app->user->getId());
-
+		return $this->redirect(Url::to('/user/profile'));
                 if (! Yii::$app->request->isAjax)
                     return $this->redirect(Url::to('/user/profile'));
             }
@@ -363,13 +371,14 @@ class UserController extends Controller
 
     public function actionLike($id)
     {
+        $isMobile = $this->isMobile();
         $photoID =  $id;
         if(strpos($id, 'u') === false)
         {
             //фото с пати
             $this->likeIfNotLiked($id);
             $photo = $this->findModel($id, '\app\models\Photo');
-            return $this->renderAjax('/site/_photo', [
+            return $this->renderAjax($isMobile ? '/site/mobile/_photo': '/site/_photo', [
                 'photo' => $photo,
                 'likes' => Likes::getLikes($photo->id),
                 'userId' => Yii::$app->user->getId(),
@@ -514,6 +523,31 @@ class UserController extends Controller
 
         $flashMessages = Yii::$app->session->getAllFlashes();
 
+	if(($dashparty = Dashparty::findOne($user->id)) !== null){
+	}else{
+	     $dashparty = new Dashparty();
+	}
+
+        if ($dashparty->load(Yii::$app->request->post()) ) {
+	
+	$dashparty->save();
+
+	return $this->render('dashboard',
+            [
+                'user' => $user,
+                'parties' => $parties,
+                'parties' => $parties,
+                'messages' => $Messages,
+                'myTickets' => $myTickets,
+                'partyTickets' => $partyTickets,
+                'notification' => $notification,
+                'flashMessages' => $flashMessages,
+                'notification941' => $notification941,
+                'memberNotification' => $memberNotification,
+		'dashparty' => $dashparty
+            ]
+        );
+        }else{
         return $this->render('dashboard',
             [
                 'user' => $user,
@@ -525,9 +559,22 @@ class UserController extends Controller
                 'notification' => $notification,
                 'flashMessages' => $flashMessages,
                 'notification941' => $notification941,
-                'memberNotification' => $memberNotification
+                'memberNotification' => $memberNotification,
+		'dashparty' => $dashparty
             ]
         );
+	}
+
+    }
+
+    public function actionStripe()
+    {
+	$user = User::findOne(Yii::$app->user->getId());
+        return $this->render('stripe', 
+	     [
+		'user' => $user
+	     ]
+	);
     }
 
     /******************  Settings  ****************/
@@ -762,5 +809,10 @@ class UserController extends Controller
         echo  $this->renderPartial('print_tickets', [
             'partyTickets' => $tickets,
         ]);
+    }
+
+    protected function isMobile(){
+        //return (bool) strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile');
+	return false;
     }
 }

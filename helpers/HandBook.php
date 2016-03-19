@@ -32,16 +32,16 @@ class HandBook {
     public static function getWorkHeader($type=null)
     {
         $work = [
-            0 => 'HEAD HONCHO AT',
-            1 => 'doing the grind AT',
-            2 => 'MY OWN BOSS AT',
-            3 => 'MINION AT',
-            4 => 'KIND OF A BIG DEAL AT',
-            5 => 'JUST ANOTHER NUMBER AT',
-            6 => 'TOP DOG AT',
-            7 => 'BEAN COUNTER AT',
-            8 => 'LIVE OFF MY DADDY',
-            9 => 'LIVE OFF MY "DADDY"'
+            0 => 'Head honcho at',
+            1 => 'Doing the grind at',
+            2 => 'My own boss at',
+            3 => 'Minion at',
+            4 => 'Kind of a big deal at',
+            5 => 'Just another number at',
+            6 => 'Top dog at',
+            7 => 'Bean counter at',
+            8 => 'Live off my Daddy',
+            9 => 'Live off my "Daddy"'
             //10 x At y
             //11 x
         ];
@@ -54,9 +54,9 @@ class HandBook {
     public static function getLoveHeader($type=null)
     {
         $love = [
-            0 => 'UNICORNS',
-            1 => 'CELINE DION',
-            2 => 'DONUTS, DONUTS, DONUTS'
+            0 => 'unicorns',
+            1 => 'Celine Dion',
+            2 => 'donuts, donuts, donuts'
         ];
 
         if(is_numeric($type))

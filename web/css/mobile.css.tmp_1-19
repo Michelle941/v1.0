@@ -1,0 +1,227 @@
+.loading {
+    position: relative;
+}
+.loading::before {
+    background: #000000 url(/images/fancybox_loading.gif) no-repeat center;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+body.loading {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+body.loading::before {
+    position: fixed;
+}
+
+.modal_popup {
+    background: #ffffff url('../../images/bg-light.png');
+    bottom: 0;
+    color: #445878;
+    left: 0;
+    max-height: 100%;
+    overflow: auto;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+.modal_popup img {
+    max-width: 100%;
+}
+.modal_popup .button {
+    background: transparent;
+    border: 1px solid #445878;
+    color: #445878;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px 15px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    width: 260px;
+}
+.modal_popup .button:hover {
+    background-color: #445878;
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+.modal_popup .buttons {
+    text-align: center;
+}
+.modal_popup .modal_content {
+    padding: 25px 15px 10px;
+    position: relative;
+}
+.modal_popup-title {
+    margin: 0 0 30px;
+    text-align: center;
+}
+.modal_wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 11;
+}
+.modal_wrapper div {
+    box-sizing: border-box;
+}
+.modal--visible {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.modal--visible .modal_wrapper {
+    display: block;
+}
+
+.input__file-button input[type=file] {
+    display: none;
+}
+
+.photo-statistic {
+    background-color: white;
+    border: 1px solid #445878;
+    border-radius: 35px;
+    bottom: 0;
+    box-shadow: 0 2px 5px 0 #bfbfbf;
+    font-size: 120%;
+    height: 60px;
+    left: 5%;
+    line-height: 60px;
+    position: absolute;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    width: 90%;
+}
+.photo-statistic span {
+    display: inline-block;
+    margin-left: 30px;
+}
+.photo-statistic span:first-child {
+    margin-left: 0;
+}
+
+.photo-view .photo {
+    padding: 0 0 30px;
+    position: relative;
+    width: auto;
+}
+.photo-view .photo img {
+    display: inline-block;
+    vertical-align: top;
+}
+.photo-view .photo-comment {
+    float: none;
+}
+.photo-view .photo-comment textarea {
+    box-sizing: border-box;
+    height: 80px;
+    padding: 5px 10px;
+    width: 100%;
+}
+.photo-view_section {
+    margin-top: 30px;
+}
+.uploaded-by .user-image img {
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********** MOBILE OVERRIDES **********/
+.mobile .page-party #single-photo .button-follow.instagram_image {
+    box-sizing: border-box;
+    display: block;
+}
+.mobile .page-party #single-photo .custom-file-input::before {
+    box-sizing: border-box;
+    content: "Upload from device";
+    width: 100%;
+}
+.mobile .page-party #single-photo .input__file-button {
+    height: 48px;
+}
+.mobile .page-party #single-photo #uploader {
+    box-sizing: border-box;
+    width: 100% !important;
+}
+.mobile .page-party #single-photo .popup {
+    overflow: auto;
+}
+.mobile .page-party #single-photo .photo-left-snipe { bottom: -42px; }
+
+.mobile .page-party .fancybox-wrap {
+    bottom: 0 !important;
+    left: 0 !important;
+    max-height: 100%;
+    overflow: auto;
+    position: fixed !important;
+    top: auto !important;
+    width: 100% !important;
+}
+.mobile .page-party .fancybox-wrap .fancybox-inner {
+    width: auto !important;
+}
+.mobile .page-party .fancybox-wrap .fancybox-skin {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.mobile .page-party .fancybox-wrap .button-popup {
+    box-sizing: border-box;
+    display: block;
+    width: 100% !important;
+}
+.mobile .page-party .fancybox-wrap #photo-popup { width: 100% !important; }
+.mobile .page-party .fancybox-wrap #photo-popup .photo__img { width: 100%; }
+.mobile .page-party .fancybox-wrap #photo-popup .photo__img img { max-width: 100%; }

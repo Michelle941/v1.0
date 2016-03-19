@@ -1,0 +1,121 @@
+@import "color";
+@import "vars";
+@import "mixins";
+
+$nav-height: 100px;
+
+nav{
+	width: 100%;
+	@include elementshadow;
+	@include bg-light;
+	border-bottom: 1px solid $color-1_darker;
+	@include font3;
+
+	img{
+		width: auto;
+		height: 100px;
+		margin: 10px 0 10px 0;
+	}
+}
+
+.nav-image{
+	width: 9%;
+	float: left;
+}
+
+	.nav-image-scroll{
+		img{
+			height: 30px;
+			margin-top: 10px;
+		}
+	}
+
+.nav-tagline{
+	width: 41%;
+	float: left;
+	padding-top: 30px;
+	color: $color-3_lighter;
+	text-transform: uppercase;
+
+	img{
+		width: auto;
+		height: 30px;
+	}
+}
+
+	.nav-tagline-scroll{
+		padding-top: 10px;
+
+		img{
+			width: auto;
+			height: 23px;
+			padding-top: 3px;
+		}
+	}
+
+.nav-link-cell{
+	width: 12.5%;
+	float: left;
+	padding-top: 55px;
+	text-align: center;
+	color: $color-3;
+
+	&:hover{
+		span{
+			border-bottom: 1px solid $color-3;
+			padding-bottom: 9px;
+		}
+	}
+}
+
+	.nav-link-cell-scroll{
+		padding-top: 17px;
+	}
+
+.nav-link-cell-login{
+	width: 12.5%;
+	float: left;
+	padding-top: 45px;
+
+	button{
+		width: 100%;
+		@include boxsizing;
+		padding: 10px;
+		outline: 1px solid $color-3;
+		text-transform: uppercase;
+		color: $color-3;
+
+		&:hover{
+			background-color: $color-3;
+			color: $color-1;
+			@include simpletransition;
+		}
+	}
+}
+
+	.nav-link-cell-login-scroll{
+		padding-top: 8px;
+	}
+
+.nav-link-cell,.nav-link-cell-login{
+	text-transform: uppercase;
+
+	a{
+		color: $color-3;
+		text-decoration: none;
+	}
+}
+
+// scrolling
+
+	$nav-scroll-height: 50px;
+
+	#nav-scroll{
+	  width: 100%; height: $nav-scroll-height;
+	  position: fixed; top: 0; left: 0;
+	  display: none;
+	  z-index: 9998;
+	  @include bg-light;
+	  @include elementshadow;
+	  @include font3;
+	}

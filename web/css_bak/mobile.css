@@ -1,0 +1,373 @@
+.loading {
+    position: relative;
+}
+.loading::before {
+    background: #000000 url(/images/fancybox_loading.gif) no-repeat center;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+body.loading {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+body.loading::before {
+    position: fixed;
+}
+
+.modal_popup {
+    background: #ffffff url('../../images/bg-light.png');
+    bottom: 0;
+    color: #445878;
+    left: 0;
+    max-height: 100%;
+    overflow: auto;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+.modal_popup img {
+    max-width: 100%;
+}
+.modal_popup .buttons {
+    text-align: center;
+}
+.modal_popup .buttons .button {
+    background: transparent;
+    border: 1px solid #445878;
+    color: #445878;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px 15px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    width: 260px;
+}
+.modal_popup .buttons .button:hover {
+    background-color: #445878;
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+.modal_popup form input.form-control {
+    height: auto;
+    text-align: start;
+}
+.modal_popup .error,
+.modal_popup .help-block-error {
+    color: #ff0000;
+}
+.modal_popup .modal_content {
+    padding: 25px 15px 10px;
+    position: relative;
+}
+.modal_popup-title {
+    margin: 0 0 30px;
+    text-align: center;
+}
+.modal_top {
+    background: rgb(109,131,161);
+    display: none;
+    height: 40px;
+    left: 0;
+    padding: 5px 20px;
+    overflow: hidden;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 100%;
+}
+.modal_wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 11;
+}
+.modal_wrapper div {
+    box-sizing: border-box;
+}
+.modal--fullscreen .modal_content {
+    height: 100%;
+    overflow: auto;
+}
+.modal--fullscreen .modal_popup {
+    height: 100%;
+    padding-top: 40px;
+}
+.modal--fullscreen .modal_top {
+    display: block;
+}
+.modal--visible {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.modal--visible .modal_wrapper {
+    display: block;
+}
+
+.ios-button-back {
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    height:30px;
+    width:auto;
+    padding: 0 10px 0 6px;
+    background-size : 30px 30px;
+
+    background-repeat:repeat-x;
+    background-position :0;
+    background-image : -moz-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+    background-image : -o-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+    background-image : -webkit-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+
+    border-radius: 5px;
+
+    border-bottom: 0px solid rgba(255,255,255,0.4);
+
+    box-shadow :0 -1px 1px rgba(0,0,0,0.2)inset,
+        0 1px 2px rgba(0,0,0,0.8)inset;
+
+    color:#fff;
+    text-shadow : 0px -1px 0px rgba(0,0,0,0.8);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.ios-button-back:before{
+    position:absolute;
+    content : ' ';
+    left:-8px;
+    top:4px;
+    height : 23px;
+    width: 24px;
+    z-index : 1;
+
+    background-repeat:repeat-x;
+    background-size : 30px 30px;
+    background-position :-1px -1.5px;
+    background-image : -moz-linear-gradient(
+        45deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 52%,
+        rgba(255,255,255,0.1) 52%,
+        rgba(255,255,255,0.4) 100%
+        );
+    background-image : -o-linear-gradient(
+        45deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 52%,
+        rgba(255,255,255,0.1) 52%,
+        rgba(255,255,255,0.4) 100%
+        );
+    background-image : -webkit-linear-gradient(
+        45deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 52%,
+        rgba(255,255,255,0.1) 52%,
+        rgba(255,255,255,0.4) 100%
+        );
+    background-image : linear-gradient(
+        45deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 52%,
+        rgba(255,255,255,0.1) 52%,
+        rgba(255,255,255,0.4) 100%
+        );
+
+
+    -moz-transform : rotateZ(-45deg) skewY(-10deg) skewX(-10deg);
+    -o-transform : rotateZ(-45deg) skewY(-10deg) skewX(-10deg);
+    -webkit-transform : rotateZ(-45deg) skewY(-10deg) skewX(-10deg);
+    transform : rotateZ(-45deg) skewY(-10deg) skewX(-10deg);
+    border-top-right-radius : 11px;
+    border-top-left-radius :0px;
+    border-bottom-right-radius : 0;
+    border-bottom-left-radius : 10px;
+
+    border-left : 1px solid rgba(255,255,255,0.4);
+
+    box-shadow :  0px 1px 1px rgba(0,0,0,0.7) inset,
+        2px -2px 2px -3px rgba(0,0,0,0.5) inset;
+
+    /*-webkit-mask-image :
+        -webkit-gradient(linear, left top, right bottom,
+            from(#000000),
+            color-stop(0.4,#000000),
+            color-stop(0.5, transparent),
+            to(transparent));
+    */
+}
+.ios-button-back:after {
+
+    font-family : HelveticaNeue,Helvetica, Arial;
+    font-weight: 400;
+    font-size : 12px;
+    line-height : 30px;
+    text-align:center;
+    content: attr(title)"";
+    z-index: 999;
+    left:-2px;
+    padding-left:3px;
+    position:relative;
+    height: 30px;
+    line-height:30px;
+    display:block;
+    background-repeat:repeat-x;
+    background-size : 30px 30px;
+    background-position :-1px -0.5px;
+    box-shadow :0 -3px 1px -2px rgba(0,0,0,0.3)inset,
+                0 4px 2px -3px rgba(0,0,0,0.8)inset;
+    background-image : -webkit-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+    background-image : -moz-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+    background-image : -o-linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 50%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.3) 100%
+        );
+}
+.ios-button-back,
+.ios-button-back:after,
+.ios-button-back:before {
+    background-color: rgba(74,108,155,1);/*originalcolor*/
+
+}
+
+.ios-button-back:hover,
+.ios-button-back:hover:after,
+.ios-button-back:hover:before {
+    background-color: rgba(54,88,135,1);/*hovercolor*/
+}
+
+.input__file-button input[type=file] {
+    display: none;
+}
+
+.photo-statistic {
+    background-color: white;
+    border: 1px solid #445878;
+    border-radius: 35px;
+    bottom: 0;
+    box-shadow: 0 2px 5px 0 #bfbfbf;
+    font-size: 120%;
+    height: 60px;
+    left: 5%;
+    line-height: 60px;
+    position: absolute;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    width: 90%;
+}
+.photo-statistic span {
+    display: inline-block;
+    margin-left: 30px;
+}
+.photo-statistic span:first-child {
+    margin-left: 0;
+}
+
+.photo-view .photo {
+    padding: 0 0 30px;
+    position: relative;
+    width: auto;
+}
+.photo-view .photo img {
+    display: inline-block;
+    vertical-align: top;
+}
+.photo-view .photo-comment {
+    float: none;
+}
+.photo-view .photo-comment textarea {
+    box-sizing: border-box;
+    height: 80px;
+    padding: 5px 10px;
+    width: 100%;
+}
+.photo-view_section {
+    margin-top: 30px;
+}
+.user-image img {
+    border-radius: 50%;
+    height: 95px;
+    width: 95px;
+}
+
+
+
+
+/********** OVERRIDES **********/
+.page {
+    position: relative;
+    z-index: 0;
+}
+#forgot-password input.form-control,
+#join input.form-control,
+#login input.form-control {
+    margin: 15px 0 5px;
+}
+#forgot-password .popup__footer,
+#join .popup__footer,
+#login .popup__footer {
+    padding-bottom: 10px;
+    width: 100%;
+}
+#forgot-password .popup__footer p,
+#join .popup__footer p,
+#login .popup__footer p {
+    margin-top: 15px;
+}
+
+.modal_popup #join .custom-file-input::before {
+    display: none;
+}
