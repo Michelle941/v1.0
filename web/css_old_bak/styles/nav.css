@@ -1,0 +1,100 @@
+nav {
+  width: 100%;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 #bfbfbf;
+  background-image: url("../../images/bg-light.png");
+  background-position: left top;
+  background-color: #fff;
+  border-bottom: 1px solid #d9d9d9;
+  font-family: 'Questrial', sans-serif; }
+  nav img {
+    width: auto;
+    height: 100px;
+    margin: 10px 0 10px 0; }
+
+.nav-image {
+  width: 9%;
+  float: left; }
+
+.nav-image-scroll img {
+  height: 30px;
+  margin-top: 10px; }
+
+.nav-tagline {
+  width: 41%;
+  float: left;
+  padding-top: 30px;
+  color: #627ca6;
+  text-transform: uppercase; }
+  .nav-tagline img {
+    width: auto;
+    height: 30px; }
+
+.nav-tagline-scroll {
+  padding-top: 10px; }
+  .nav-tagline-scroll img {
+    width: auto;
+    height: 23px;
+    padding-top: 3px; }
+
+.nav-link-cell {
+  width: 12.5%;
+  float: left;
+  padding-top: 55px;
+  text-align: center;
+  color: #445878; }
+  .nav-link-cell:hover span {
+    border-bottom: 1px solid #445878;
+    padding-bottom: 9px; }
+
+.nav-link-cell-scroll {
+  padding-top: 17px; }
+
+.nav-link-cell-login {
+  width: 12.5%;
+  float: left;
+  padding-top: 45px; }
+  .nav-link-cell-login button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    outline: 1px solid #445878;
+    text-transform: uppercase;
+    color: #445878; }
+    .nav-link-cell-login button:hover {
+      background-color: #445878;
+      color: white;
+      -khtml-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      transition: all 0.3s; }
+
+.nav-link-cell-login-scroll {
+  padding-top: 8px; }
+
+.nav-link-cell, .nav-link-cell-login {
+  text-transform: uppercase; }
+  .nav-link-cell a, .nav-link-cell-login a {
+    color: #445878;
+    text-decoration: none; }
+
+#nav-scroll {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 9998;
+  background-image: url("../../images/bg-light.png");
+  background-position: left top;
+  background-color: #fff;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 #bfbfbf;
+  font-family: 'Questrial', sans-serif; }
+
+/*# sourceMappingURL=nav.css.map */

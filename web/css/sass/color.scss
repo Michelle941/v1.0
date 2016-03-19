@@ -1,0 +1,43 @@
+$bg-light: #fff;
+
+$bg-dark: #DCDDD8;
+
+$color-1: white;
+
+	$color-1_light: lighten($color-1, 5%);
+	$color-1_lighter: lighten($color-1, 15%);
+	$color-1_lightest: lighten($color-1, 25%);
+
+	$color-1_dark: darken($color-1, 5%);
+	$color-1_darker: darken($color-1, 15%);
+	$color-1_darkest: darken($color-1, 25%);
+
+$color-2: #1C1D21;
+
+	$color-2_light: lighten($color-2, 5%);
+	$color-2_lighter: lighten($color-2, 15%);
+	$color-2_lightest: lighten($color-2, 25%);
+
+	$color-2_dark: darken($color-2, 5%);
+	$color-2_darker: darken($color-2, 15%);
+	$color-2_darkest: darken($color-2, 25%);
+
+$color-3: #445878;
+
+	$color-3_light: lighten($color-3, 5%);
+	$color-3_lighter: lighten($color-3, 15%);
+	$color-3_lightest: lighten($color-3, 25%);
+
+	$color-3_dark: darken($color-3, 5%);
+	$color-3_darker: darken($color-3, 15%);
+	$color-3_darkest: darken($color-3, 25%);
+
+$color-4: #31353D;
+
+	$color-4_light: lighten($color-4, 5%);
+	$color-4_lighter: lighten($color-4, 15%);
+	$color-4_lightest: lighten($color-4, 25%);
+
+	$color-4_dark: darken($color-4, 5%);
+	$color-4_darker: darken($color-4, 15%);
+	$color-4_darkest: darken($color-4, 25%);

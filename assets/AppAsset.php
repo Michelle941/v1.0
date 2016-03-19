@@ -18,11 +18,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
+	'css/styles/style.css',
     ];
     public $js = [
         'js/app.js',
-        'js/jquery.form.js'
+        'js/jquery.form.js',
     ];
     public $depends = [
 		'yii\web\JqueryAsset',

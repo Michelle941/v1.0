@@ -1,0 +1,1516 @@
+@import "assets";
+@import "mixins";
+@import "color";
+@import "vars";
+@import "nav";
+
+#hero{
+	width: 100%; 
+	height: 100%;
+	background-color: $color-1_dark;
+	background-image: url('../../images/hero.jpg');
+	background-attachment: fixed;
+	@include bgcover;
+	display: table;
+}
+
+	.hero-overlay{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background-color: rgba($color-2_darkest, .75);
+		display: table-cell;
+		vertical-align: middle;
+		color: $color-1;
+		@include textshadow;
+		text-align: center;
+
+		h1.herobig{
+			font-size: 500%;
+			text-align: center;
+			margin-bottom: $md;
+		}
+
+		button{
+			width: 30%;
+			@include boxsizing;
+			padding: $xs;
+			border: 0;
+			outline: 1px solid $color-1;
+			@include bigfont;
+			text-transform: uppercase;
+			color: $color-1;
+			@include font2;
+		}
+	}
+
+	.hero-link-down{
+		width: 100%;
+		height: 75px;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+
+		img{
+			width: auto;
+			height: $md;
+
+			&:hover{
+				-ms-transform: rotate(180deg); /* IE 9 */
+    		-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    		transform: rotate(180deg);
+    		@include simpletransition;
+			}
+		}
+	}
+
+#hero-event{
+	@include bg-light;
+	padding: $lg 0 $xl 0;
+}
+
+	.hero-event-image{
+		width: 100%;
+		background-color: $color-1_darkest;
+		@include bgcover;
+		border-radius: 10px;
+	}
+
+	.hero-event-image-overlay{
+		width: 100%;
+		position: relative;
+		padding: $lg 0 ($xx + $xl) 0;
+		background-color: rgba($color-2, .3);
+		text-align: center;
+		border-radius: 10px;
+	}
+
+	.hero-event-image-avatar-container{
+		width: 70%;
+		height: $xl;
+		position: absolute;
+		left: 15%;
+		bottom: -($xl / 2);
+	}
+
+	.hero-event-image-avatar-cell{
+		width: 25%;
+		float: left;
+	}
+
+	.hero-event-image-avatar{
+		width: $xl - 10px;
+		height: $xl - 10px;
+		margin: 0px auto;
+		background-color: $color-1_darkest;
+		border: 5px solid $bg-light;
+		border-radius: 50%;
+		@include bgcover;
+	}
+
+//
+//  parties
+//
+
+#party-search{
+	width: 100%;
+	@include bg-light;
+	position: relative;
+	text-align: center;
+	padding: $md 0 0 0;
+	@include font3;
+}
+
+	.party-search-bar{
+		width: 50%;
+		margin: 0px auto;
+
+		input[type=text]{
+			width: 85%;
+			max-height: 30px;
+			float: left;
+			@include boxsizing;
+			padding: 4px;
+			// @include bigfont;
+			font-size: 100%;
+		}
+
+		button{
+			width: 15%;
+			height: 30px;
+			background-color: $color-3;
+			outline: 1px solid $color-3;
+			float: left;
+			border: 0;
+			outline: 0;
+			@include boxsizing;
+			//padding: $ss;
+			@include bigfont;
+			color: $color-1;
+			padding-bottom: 5px;
+
+			i{
+				font-size: 65%;
+				padding-bottom: 3px;
+			}
+		}
+	}
+
+#party-share-stinger{
+	width: 100%;
+	padding-bottom: 40px;
+	text-align: center;
+
+	img{
+		width: 80%;
+		height: auto;
+	}
+}
+
+#party{
+	width: 100%;
+	padding: 50px 0 40px 0;
+	position: relative;
+	@include font3;
+}
+
+	.party-dark{
+		@include bg-dark;
+
+		.party-avatar,
+		.share-avatar{
+			border: 5px solid $color-1_dark;
+		}
+
+		.share-avatar-first,
+		.share-avatar-last{
+			background-color: $color-1_dark;
+		}
+	}
+
+	.party-light{
+		@include bg-light;
+
+		.party-avatar,
+		.share-avatar{
+			border: 5px solid $color-1;
+		}
+
+		.share-avatar-first,
+		.share-avatar-last{
+			background-color: $color-1;
+		}
+	}
+
+	.party-hero{
+		text-align: center;
+
+		img{
+			width: 100%;
+			height: auto;
+			z-index: -1;
+		}
+	}
+
+	.party-avatar-container{
+		width: 100%;
+		margin-left: 0;
+		position: relative;
+		z-index: 8888;
+	}
+
+	.party-avatar-cell{
+		width: 14.28%;
+		float: left;
+	}
+
+	.party-avatar{
+		width: $xl - 10px;
+		height: $xl - 10px;
+		margin: 0px auto;
+		margin-top: - ($xl / 2);
+		background-color: $color-1_darkest;
+		@include bgcover;
+		border-radius: 50%;
+	}
+
+	.share-avatar{
+		width: $xl - 10px;
+		height: $xl - 10px;
+		margin: 0px auto;
+		margin-top: - ($xl / 2);
+		background-color: $color-1_darkest;
+		@include bgcover;
+		border-radius: 8px;
+	}
+
+	.share-avatar-first{
+		background-image: url('../../images/share-avatar-fisrst.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: contain;
+		background-color: transparent !important;
+		border: 0 !important;
+		color: $color-4;
+		font-weight: bold;
+		text-transform: uppercase;
+
+		p{
+			margin-top: 40px;
+			-webkit-transform: rotate(-45deg);
+			-moz-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			-o-transform: rotate(-45deg);
+			filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+		}
+	}
+
+	.share-avatar-last{
+		background-image: url('../../images/share-avatar-last.png');
+		background-size: contain;
+		background-color: $color-1;
+		color: $color-4;
+		text-transform: uppercase;
+		font-weight: bold;
+		background-color: transparent !important;
+		border: 0 !important;
+
+		p{
+			margin-top: 40px;
+			-webkit-transform: rotate(-45deg);
+			-moz-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			-o-transform: rotate(-45deg);
+			filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+		}
+	}
+
+//
+//  single parties
+//
+
+#party-single-banners{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 0 0;
+	@include font3;
+
+	img{
+		width: 100%;
+		height: auto;
+		@include elementshadow;
+	}
+
+	button{
+		width: 100%;
+		padding: $sm 0 $sm 0;
+		outline: 1px solid $color-3;
+		color: $color-3;
+		margin: $md 0 $md 0;
+		@include bigfont;
+		text-transform: uppercase;
+		@include elementshadow;
+
+		&:hover{
+			background-color: $color-3;
+			color: $color-1;
+			@include simpletransition;
+		}
+	}
+}
+
+#party-single-avatars{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 ($md - $xs) 0;
+	@include font3;
+
+	img{
+		width: 100%;
+		height: auto;
+		margin-bottom: $md;
+		@include elementshadow;
+	}
+}
+
+	.party-single-avatars-big-cell{
+		width: 20%;
+		height: $xx;
+		float: left;
+		margin-bottom: $xs;
+	}
+
+	.party-single-avatars-big-circle{
+		width: $xx;
+		height: $xx;
+		margin: 0px auto;
+		@include bgcover;
+		background-color: $color-1_darkest;
+		border-radius: 50%;
+	}
+
+	.party-single-avatars-small-cell{
+		width: 10%;
+		height: 80px;
+		float: left;
+		margin-bottom: $xs;
+	}
+
+	.party-single-avatars-small-circle{
+		width: 80px;
+		height: 80px;
+		margin: 0px auto;
+		@include bgcover;
+		background-color: $color-1_darkest;
+		border-radius: 50%;
+	}
+
+#party-single-banners-past{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 $md 0;
+	text-align: center;
+	@include font3;
+
+	img{
+		width: 100%;
+		height: auto;
+	}
+
+	button{
+		width: 50%;
+		@include boxsizing;
+		padding: $xs;
+		outline: 1px solid $color-3;
+		color: $color-3;
+		margin-top: $md;
+		@include bigfont;
+		text-transform: uppercase;
+		@include elementshadow;
+
+		&:hover{
+			background-color: $color-3;
+			color: $color-1;
+			@include simpletransition;
+		}
+	}
+}
+
+#party-single-photos-past{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 $md 0;
+	@include font3;
+}
+
+	.party-past-single-photo{
+		width: 19%;
+		height: 0;
+		padding-bottom: 19%;
+		float: left;
+		margin-left: 1.25%;
+		background-color: $color-1_darkest;
+		@include elementshadow;
+		border-radius: 8px;
+		@include bgcover;
+		margin-bottom: $ss;
+	}
+
+//
+//  members
+//
+
+#members-search{
+	width: 100%;
+	@include bg-light;
+	position: relative;
+	text-align: center;
+	padding: $md 0 35px 0;
+	@include font3;
+
+	h1{
+		margin-bottom: $sm;
+		@include bigfont;
+	}
+}
+
+	.members-search-bar{
+		width: 50%;
+		margin: 0px auto;
+
+		input[type=text]{
+			width: 85%;
+			max-height: 30px;
+			float: left;
+			@include boxsizing;
+			padding: 4px;
+			// @include bigfont;
+			font-size: 100%;
+		}
+
+		button{
+			width: 15%;
+			height: 30px;
+			background-color: $color-3;
+			outline: 1px solid $color-3;
+			float: left;
+			border: 0;
+			outline: 0;
+			@include boxsizing;
+			//padding: $ss;
+			@include bigfont;
+			color: $color-1;
+			padding-bottom: 5px;
+
+			i{
+				font-size: 65%;
+				padding-bottom: 3px;
+			}
+		}
+	}
+
+#members-stinger{
+	width: 100%;
+	padding-bottom: 40px;
+	text-align: center;
+
+	img{
+		width: 80%;
+		height: auto;
+	}
+}
+
+#members-big-avatars{
+	width: 100%;
+	@include bg-light;
+	padding-bottom: 25px;
+}
+
+	.members-big-avatars-cell{
+		width: 25%;
+		height: 16vw;
+		float: left;
+		margin-bottom: 25px;
+		@include font3;
+	}
+
+	.members-big-avatars-avatar{
+		width: 16vw;
+		height: 16vw;
+		margin: 0px auto;
+		background-color: $color-1_darkest;
+		border-radius: 50%;
+		@include bgcover;
+		text-align: center;
+
+		h1{
+			@include bigfont;
+			padding-top: 9.5vw;
+			text-transform: uppercase;
+			@include textshadow;
+			color: $color-1;
+		}
+
+		&:hover{
+			h1{
+				padding-top: 10vw;
+				@include simpletransition;
+			}
+		}
+	}
+
+#members-small-avatars{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 ($md - 15px) 0;
+	@include font3;
+}
+
+	.members-small-card{
+		width: 30%;
+		@include boxsizing;
+		padding-top: $sm;
+		padding-left: 85px;
+		padding-right: $sm;
+		padding-bottom: $sm;
+		position: relative;
+		float: left;
+		background-color: $bg-light;
+		margin-bottom: 35px;
+		@include elementshadow;
+		-webkit-border-bottom-right-radius: 15px;
+		-moz-border-radius-bottomright: 15px;
+		border-bottom-right-radius: 15px;
+		@include elementshadow;
+
+		h1{
+			margin-bottom: 15px;
+			text-transform: uppercase;
+		}
+
+		span{
+			font-style: italic;
+		}
+	}
+
+	.members-small-card-snipe{
+		width: 75px;
+		height: 75px;
+		position: absolute;
+		top: -20px;
+		left: -20px;
+		background-color: $color-1_darkest;
+		border: 5px solid $bg-light;
+		border-radius: 50%;
+	}
+
+	.members-small-card-margin{
+		margin-left: 5%;
+	}
+
+//
+//  profile
+//
+
+#profile-info{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 $md 0;
+	@include font3;
+}
+
+	.profile-left{
+		width: 29%;
+		float: left;
+	}
+
+	.profile-left-under{
+		width: 29%;
+		float: left;
+	}
+
+		.button-message{
+			width: 100%;
+			padding: 15px 0 15px 0;
+			border: 1px solid $color-3;
+			text-align: center;
+			margin-bottom: 15px;
+			@include elementshadow;
+			text-transform: uppercase;
+			color: $color-3;
+
+			&:hover{
+				background-color: $color-3;
+				color: $color-1;
+				@include simpletransition;
+			}
+		}
+
+		.button-follow{
+			width: 100%;
+			padding: 15px 0 15px 0;
+			border: 1px solid $color-3;
+			text-align: center;
+			@include elementshadow;
+			text-transform: uppercase;
+			color: $color-3;
+			margin-bottom: 15px;
+
+			&:hover{
+				background-color: $color-3;
+				color: $color-1;
+				@include simpletransition;
+			}
+		}
+
+		.profile-left-cell{
+			width: 100%;
+			@include boxsizing;
+			padding: $xs;
+			border-bottom: 1px solid $color-1_darker;
+			@include bigfont;
+			font-weight: 100;
+
+			span:first-of-type{
+				font-weight: bold;
+				margin-right: $ss;
+			}
+		}
+
+	.profile-top-stripe{
+		width: 100%;
+		position: relative;
+		background-color: $color-3;
+		color: $color-1;
+		@include bigfont;
+		font-weight: 100;
+		@include boxsizing;
+		padding: $sm;
+	}
+
+		.pts-top-left{
+			-webkit-border-top-left-radius: 10px;
+			-moz-border-radius-topleft: 10px;
+			border-top-left-radius: 10px;
+		}
+
+		.pts-bottom-left{
+			-webkit-border-bottom-left-radius: 10px;
+			-moz-border-radius-bottomleft: 10px;
+			border-bottom-left-radius: 10px;
+		}
+
+		.pts-top-right{
+			-webkit-border-top-right-radius: 10px;
+			-moz-border-radius-topright: 10px;
+			border-top-right-radius: 10px;
+		}
+
+		.pts-bottom-right{
+			-webkit-border-bottom-right-radius: 10px;
+			-moz-border-radius-bottomright: 10px;
+			border-bottom-right-radius: 10px;
+		}
+
+	.profile-top-stripe-snipe{
+		width: 100%;
+		height: 170px;
+		position: absolute;
+		left: 0;
+		top: -80px;
+	}
+
+	.profile-top-stripe-avatar{
+		width: 175px;
+		height: 175px;
+		margin: 0px auto;
+		background-color: $color-1_darkest;
+		border: 5px solid lighten($bg-dark, 10%);
+		border-radius: 50%;
+		@include bgcover;
+	}
+
+	.profile-right{
+		width: 70%;
+		float: left;
+		margin-left: 1%;
+	}
+
+	.profile-right-under{
+		width: 70%;
+		float: left;
+		margin-left: 1%;
+		background-color: $bg-dark;
+	}
+
+		.profile-right-under-image{
+			width: 32%;
+			height: 0;
+			padding-bottom: 32%;
+			float: left;
+			background-color: $color-1_darkest;
+			margin-left: 2%;
+			border-radius: 6px;
+			@include elementshadow;
+			margin-bottom: 15px;
+			@include bgcover;
+		}
+
+		.profile-left-under,.profile-right-under{
+			@include elementshadow;
+			@include boxsizing;
+			background-color: $color-1;
+			padding: $sm $sm ($sm - 15px) $sm;
+		}
+
+	.profile-holdname{
+		width: 100%;
+		height: $md + $sm;
+		font-size: 300%;
+		@include boxsizing;
+		padding: $ss $sm;
+		text-transform: uppercase;
+	}
+
+#profile-parties{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 $md 0;
+	@include font3;
+}
+
+	.profile-parties-attended{
+		width: 24%;
+		height: 0;
+		padding-bottom: 24%;
+		float: left;
+		background-color: $color-1_darkest;
+		margin-left: 1.25%;
+		border-radius: 8px;
+		@include elementshadow;
+		@include bgcover;
+	}
+
+//
+//  profile update
+//
+
+$profile-line-color: $color-4_lightest;
+
+#profile-update-basic{
+	width: 100%;
+	padding: $sm 0 0 0;
+	@include bg-light;
+	@include bigfont;
+	text-align: center;
+	@include font3;
+	margin-bottom: -25px;
+}
+
+#profile-update-name{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 $md 0;
+	@include font3;
+}
+
+	.profile-update-avatar{
+		width: $xl;
+		height: $xl;
+		margin: 0px auto;
+		background-color: $color-1_darkest;
+		border-radius: 50%;
+		@include bgcover;
+	}
+
+	.profile-update-names{
+		width: 75%;
+		margin: 0px auto;
+		margin-top: $sm;
+
+		input[type=text]{
+			@include bigfont;
+			outline: 0;
+			border-top: 0;
+			border-bottom: 1px solid $profile-line-color;
+			background-color: transparent;
+			@include font3;
+		}
+	}
+
+	.profile-update-firstname{
+		width: 49%;
+		float: left;
+		border-right: 1px solid $profile-line-color;
+		border-left: 0;
+		text-align: right;
+	}
+
+	.profile-update-lastname{
+		width: 49%;
+		float: right;
+		border-left: 1px solid $profile-line-color;
+		border-right: 0;
+	}
+
+	.profile-update-tagline{
+		width: 100%;
+		border-left: 1px solid $profile-line-color;
+		border-right: 1px solid $profile-line-color;
+		border-bottom: 1px solid $profile-line-color;	
+		text-align: center;
+		margin-top: $sm;	
+	}
+
+	.profile-update-firstname,
+	.profile-update-lastname,
+	.profile-update-tagline{
+		@include boxsizing;
+		padding: 10px;
+		color: $color-3;
+		text-align: center;
+	}
+
+#profile-update-pictures{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 ($md - 15px) 0;
+	@include font3;
+}
+
+	.profile-update-pictures-single{
+		width: 32%;
+		height: 0;
+		padding-bottom: 32%;
+		position: relative;
+		float: left;
+		background-color: $color-1_darkest;
+		margin-left: 2%;
+		margin-bottom: 20px;
+		@include bgcover;
+		border-radius: 5px;
+
+		&:hover{
+			.profile-update-single-inner{
+				visibility: visible;
+				outline: 1px solid $color-3;
+			}
+		}
+	}
+
+		.profile-update-single-inner{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba($color-1, .8);
+			text-align: center;
+			visibility: hidden;
+			color: $color-3;
+
+			p{
+				margin-bottom: 15px;
+				text-transform: uppercase;
+				@include font3;
+			}
+
+			textarea{
+				width: 90%;
+				margin-left: 5%;
+				height: 75px;
+				background-color: rgba($color-1_lightest, 0.75);
+				//border-radius: 10px;
+				outline: 0;
+				border-left: 1px solid $color-3_lightest;
+				border-bottom: 1px solid $color-3_lightest;
+				border-right: 0;
+				border-top: 0;
+				resize: none;
+				margin-bottom: 15px;
+				@include boxsizing;
+				padding: 10px;
+				@include font3;
+				font-size: 110%;
+				color: $color-3;
+				@include elementshadow;
+			}
+
+				textarea::-webkit-input-placeholder{
+				   text-align: center; 
+				   padding-top: 15px;
+				}
+
+				textarea:-moz-placeholder{
+				   text-align: center;  
+				   padding-top: 15px;
+				}
+
+				textarea::-moz-placeholder{
+				   text-align: center;  
+				   padding-top: 15px;
+				}
+
+				textarea:-ms-input-placeholder{  
+				   text-align: center;  
+				   padding-top: 15px;
+				}
+
+			button:first-of-type{
+				margin-bottom: 15px;
+				background-color: $color-1;
+				color: $color-3;
+				outline: 1px solid $color-3;
+			}
+
+			button:last-of-type{
+				border: 1px solid $color-3;
+				color: $color-1;
+				background-color: $color-3;
+			}
+
+			button:first-of-type,
+			button:last-of-type{
+				width: 70%;
+				@include boxsizing;
+				padding: $ss;
+				border-radius: 2px;
+				text-transform: uppercase;
+			}
+
+		}
+
+	.profile-update-pictures-lead{
+		width: 32%;
+		height: 0;
+		padding-bottom: 32%;
+		float: left;
+		margin-left: 2%;
+		margin-bottom: 20px;
+		background-image: url('../../images/profile-update-pictures-lead.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: bottom right;
+		@include bigfont;
+		font-weight: 100;
+		color: $color-3;
+	}
+
+#profile-update-toggles{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 $md 0;
+	@include font3;
+}
+
+	.profile-update-toggles-left{
+		float: left;
+	}
+
+	.profile-update-toggles-right{
+		float: right;
+	}
+
+	.profile-update-toggles-right,
+	.profile-update-toggles-left{
+		@include bigfont;
+		font-weight: 100;
+		width: 47%;
+
+		p{
+			margin-bottom: $xs;
+		}
+
+		.select-option-left{
+			width: 49%;
+			float: left;
+		}
+
+		.select-option-right{
+			width: 49%;
+			float: right;
+		}
+
+		.select-option-left,
+		.select-option-right{
+			text-align: center;
+			@include boxsizing;
+			padding: $xs;
+			text-transform: uppercase;
+			cursor: pointer;
+			cursor: hand;
+		}
+
+		.active{
+			border: 1px solid $color-3;
+			color: $color-3;
+		}
+
+		.inactive{
+			border: 1px solid $color-3_lightest;
+			color: $color-3_lightest;
+		}
+	}
+
+#profile-update-fields-work{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 ($md - 20px) 0;
+	@include font3;
+
+	p{
+		@include bigfont;
+		font-weight: 100;
+		margin-bottom: $sm;
+	}
+}
+
+.profile-update-field-cell{
+	width: 90%;
+	margin: 0px auto;
+	margin-bottom: $sm;
+
+	.field-cell-1{
+		width: 5%;
+		float: left;
+		padding-top: 3px;
+
+			input{
+				display: none;
+			}
+					
+			label{
+				width: 15px;
+				height: 15px;
+				border-radius: 2;
+				border: 2px $color-3 solid;
+				display: block;
+				line-height: 22px;
+				text-align: center;
+				color: $color-2;
+				font-size: 40pt;
+				cursor: pointer;
+				background: $color-1_darker;
+				position: relative;
+			} 
+
+			input:checked + label:before{
+				 opacity: 1;
+			}
+
+			label:before{
+				position:absolute;
+					top:0px;
+					left:0px;
+					height:15px;
+					width:15px;
+					background: $color-3;
+					content:'';
+					opacity:0;
+			}
+
+  }
+
+	.field-cell-2{
+		width: 25%;
+		float: left;
+		padding-top: 3px;
+		font-size: 125%;
+	}
+
+		.field-cell-2-a{
+			width: 20%;
+			float: left;
+			@include font3;
+		}
+
+		.field-cell-1,
+		.field-cell-2-a{
+			input[type=text]{
+				width: 100%;
+				@include boxsizing;
+				padding: 4px;
+				margin-bottom: 25px;
+				outline: 0;
+				border-top: 0;
+				border-right: 0;
+				border-bottom: 1px solid $profile-line-color;
+				border-left: 1px solid $profile-line-color;
+				background-color: transparent;
+				font-size: 125%;
+				color: $color-3;
+				@include font3;
+			}
+		}
+
+		.field-cell-2-b{
+			width: 5%;
+			float: left;
+			text-align: center;
+			padding-top: $ss;
+			@include bigfont;
+			font-size: 125%;
+		}
+
+		.field-cell-2-c{
+			width: 95%;
+			float: left;
+
+			input[type=text]{
+				width: 100%;
+				@include boxsizing;
+				padding: 4px;
+				margin-bottom: 25px;
+				outline: 0;
+				border-top: 0;
+				border-right: 0;
+				border-bottom: 1px solid $profile-line-color;
+				border-left: 1px solid $profile-line-color;
+				background-color: transparent;
+				font-size: 125%;
+				color: $color-3;
+				@include font3;
+			}
+		}
+
+	.field-cell-3{
+		width: 70%;
+		float: left;
+
+		input[type=text]{
+			width: 100%;
+			@include boxsizing;
+			padding: 4px;
+			margin-bottom: 25px;
+			outline: 0;
+			border-top: 0;
+			border-right: 0;
+			border-bottom: 1px solid $profile-line-color;
+			border-left: 1px solid $profile-line-color;
+			background-color: transparent;
+			font-size: 120%;
+			color: $color-3;
+			@include font3;
+			font-size: 125%;
+		}
+	}
+}
+
+#profile-update-fields-loves{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 ($md - 25px) 0;
+	@include font3;
+
+	p{
+		@include bigfont;
+		font-weight: 100;
+		margin-bottom: $sm;
+	}
+
+	.loves-bottom-margin{
+		margin-bottom: 25px;
+	}
+
+}
+
+
+#profile-update-submit{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 $xl 0;
+	text-align: center;
+	@include font3;
+
+	button{
+		width: 50%;
+		margin: 0px auto;
+		@include boxsizing;
+		padding: $sm;
+		outline: 1px solid $color-3;
+		text-align: center;
+		color: $color-3;
+		@include bigfont;
+		text-transform: uppercase;
+
+		&:hover{
+			background-color: $color-3;
+			color: $color-1;
+			@include simpletransition;
+		}
+	}
+}
+
+//
+//  dashboard
+//
+
+#dashboard-vitals{
+	width: 100%;
+	@include bg-light;
+	padding: $md 0 $md 0;
+
+	h1{
+		font-size: 300%;
+		float: left;
+	}
+
+	p{
+		@include bigfont;
+		float: right;
+		text-align: right;
+		margin-top: 10px;
+	}
+
+	i{
+		margin-right: 10px;
+	}
+
+	i:last-of-type{
+		margin-left: 25px;
+	}
+}
+
+#dashboard-messages{
+	width: 100%;
+	@include bg-light;
+	position: relative;
+	padding: 0 0 $md 0;
+}
+
+	.dashboard-messages-left{
+		width: 29%;
+		height: 600px;
+		//overflow: -moz-scrollbars-vertical; 
+		overflow-y: scroll;
+		float: left;
+		background-color: white;
+		@include boxsizing;
+		@include elementshadow;
+		padding: $sm $xs $sm $xs;
+		z-index: 8888;
+
+		button.new-message-button{
+			width: 100%;
+			@include boxsizing;
+			padding: $ss;
+			outline: 1px solid $color-3;
+			color: $color-3;
+			margin-bottom: 15px;
+
+			&:hover{
+				background-color: $color-3;
+				color: $color-1;
+				@include simpletransition;
+			}
+		}
+
+		.message-left-cell{
+			width: 100%;
+			padding: $ss 0 $ss 0;
+			border-bottom: 1px solid $color-1_darker;
+		}
+
+			.message-left-cell-sender{
+				width: 25%;
+				height: $md;
+				position: relative;
+				float: left;
+
+				.notify{
+					width: 12px;
+					height: 12px;
+					position: absolute;
+					left: 0;
+					top: 0;
+					border-radius: 50%;
+				}
+
+				.new{
+					background-color: #EA2E49;
+				}
+			}
+
+				.message-left-cell-sender-avatar{
+					width: $md;
+					height: $md;
+					background-color: $color-1_darker;
+					border-radius: 50%;
+					@include bgcover;
+				}
+
+			.message-left-cell-preview{
+				width: 74%;
+				height: $md;
+				float: left;
+				margin-left: 1%;
+				display: block;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+
+				p{
+					font-weight: bold;
+					margin-bottom: 10px;
+				}
+			}
+	}
+
+	.dashboard-messages-right{
+		width: 70%;
+		height: 500px;
+		float: left;
+		margin-left: 1%;
+		position: relative;
+		overflow: -moz-scrollbars-vertical; 
+		overflow-y: scroll;
+		background-color: $color-1;
+		@include boxsizing;
+		@include elementshadow;
+		padding: $sm;
+		z-index: 6666;
+
+		.message{
+			width: 70%;
+			margin-bottom: $xs;
+			border-radius: 10px;
+			position: relative;
+		}
+
+		.avatar{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			top: -8px;
+			background-color: $color-1_darker;
+			border-radius: 50%;
+			border: 2px solid $color-1;
+			@include bgcover;
+		}
+
+		.to{
+			float: right;
+			background-color: lighten($color-3, 35%);
+			color: $color-1;
+			@include boxsizing;
+			padding: $ss 50px $ss $ss;
+
+			.avatar{
+				right: -7px;
+			}
+		}
+
+		.from{
+			float: left;
+			border: 1px solid lighten($color-3, 35%);
+			@include boxsizing;
+			padding: $ss $ss $ss 50px;
+
+			.avatar{
+				left: -7px;
+			}
+		}
+
+	}
+
+		.reply{
+			width: 70%;
+			height: 101px;
+			margin-left: 1%;
+			margin-top: -1px;
+			float: left;
+			background-color: $color-1_darker;
+			z-index: 9998;
+			@include elementshadow;
+
+			.inputs{
+				width: 94%;
+				height: 100%;
+				margin: 0px auto;
+			}
+
+			input[type=text]{
+				width: 85%;
+				height: 50px;
+				margin-top: 25px;
+				float: left;
+				font-size: 100%;
+				color: $color-3;
+				@include boxsizing;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			button{
+				width: 15%;
+				height: 48px;
+				background-color: $color-3;
+				color: $color-1;
+				float: left;
+				margin-top: 25px;
+			}
+		}
+
+#dashboard-notifications{
+	width: 100%;
+	@include bg-dark;
+	padding: $md 0 $md 0;
+
+	h1{
+		font-size: 300%;
+		margin-bottom: $md;
+	}
+}
+
+	.dash-notes-icon{
+		width: 5%;
+		float: left;
+		text-align: right;
+		@include boxsizing;
+		padding-top: 35px;
+		margin-bottom: $sm;
+	}
+
+	.dash-notes-flyer{
+		width: 10%;
+		float: left;
+		margin-bottom: $sm;
+
+		.dash-notes-flyer-icon{
+			width: 70%;
+			height: 0;
+			padding-bottom: 70%;
+			margin-left: 30%;
+			background-color: $color-1;
+			@include bgcover;
+			margin-bottom: $sm;
+		}
+
+		.event{
+			border-radius: 5px;
+		}
+
+		.user{
+			border-radius: 50%;
+		}
+
+	}
+
+	.dash-notes-text{
+		width: 66%;
+		float: left;
+		margin-left: 3%;
+		@include boxsizing;
+		padding-top: 30px;
+		@include bigfont;
+		margin-bottom: $sm;
+
+		span{
+			font-weight: bold;
+		}
+	}
+
+//
+//  call to action
+//
+
+#call-to-action{
+	width: 100%;
+	background-color: $color-3;
+	padding: $lg 0 $lg 0;
+	text-align: center;
+	color: $color-1;
+	letter-spacing: 2px;
+	@include font3;
+
+	button{
+		width: 50%;
+		@inlcude boxsizing;
+		padding: $xs;
+		outline: 1px solid $color-1;
+		color: $color-1;
+		text-transform: uppercase;
+		@include bigfont;
+		margin-bottom: 25px;
+
+		&:hover{
+			background-color: $color-1;
+			color: $color-3;
+			@include simpletransition;
+		}
+	}
+}
+
+//
+//  footer
+//
+
+footer{
+	width: 100%;
+	padding: 20px 0 20px 0;
+	background-color: $color-2;
+	color: $color-1_darkest;
+	@include font3;	
+}
+
+@import "mobile";

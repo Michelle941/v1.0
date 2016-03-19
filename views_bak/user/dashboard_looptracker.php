@@ -1,0 +1,185 @@
+<?php
+use app\models\Statistic;
+use yii\helpers\Html;
+use app\models\Ticket;
+
+//TODO: onclik помечать прочтенным. Ответ на письмо.
+?>
+
+<section id="dashboard-vitals">
+
+	<div class="margins-80">
+
+		<h1>
+			<?php echo $user->name; ?>
+		</h1>
+
+		<p>
+			<i class="fa fa-eye fa-fw"></i><?=Statistic::countByType($user->id, Statistic::TYPE_PROFILE_VIEWS);?> Views 
+			<i class="fa fa-street-view fa-fw"></i><?=\app\models\Following::countFollowing($user->id);?> Followers
+		</p>
+
+	</div><!-- margins: dashboard vitals -->
+
+	<div class="clearfix"></div>
+
+</section><!-- dashboard vitals section -->
+
+<section id="dashboard-messages">
+
+	<div class="margins-80">
+
+<?php if(!empty($messages)): //the $messages array contains all messages grouped by sender-receiver: one msg per group, ordered by latest message ?>
+		<div class="dashboard-messages-left">
+	 <?php $userIds = array($user->id => true); foreach($messages as $message) : ?>
+	     <?php $titleUser = ($message->sender->id === $user->id) ? $message->receiver : $message->sender;?>
+	     <?php if(isset($userIds[$titleUser->id])) continue;?>
+             <?php $userIds[$titleUser->id] = true;?>
+	     	<?php foreach($message->getMessages() as $msg): ?>
+		<?php $message_roll[] = $msg; ?>
+		<?php endforeach;?>
+			<div class="message-left-cell">
+				<div class="message-left-cell-sender">
+					<div class="notify new"></div>
+					<div class="message-left-cell-sender-avatar" style="background-image: url('/upload/95x95_square<?php echo $titleUser->avatar; ?>');">
+					</div><!-- message left cell sender avatar -->
+				</div><!-- message left cell sender -->
+				<div class="message-left-cell-preview">
+					<p>
+						<?php echo $titleUser->name; ?>
+					</p>
+					<?= nl2br($msg->getText());?>
+				</div><!-- message left cell preview -->
+				<div class="clearfix"></div>	
+			</div><!-- message left cell -->
+	     <?php endforeach;?>
+		</div><!-- dashboard messages left -->
+
+		<div class="dashboard-messages-right">
+
+		    <?php foreach($message_roll as $msg): ?>
+			<div class="<?php echo $msg->user_to === $user->id ? 'from message':'to message'?>">
+			<div class="avatar" style="background-image: url('/upload/95x95_square<?php echo $msg->sender->avatar?>');"></div>
+			<div class="timestamp"><?=$msg->getDate();?></div>
+				<?= nl2br($msg->getText());?>
+
+			</div><!-- message -->
+	            <?php endforeach;?>
+		</div><!-- dasboard messages right -->
+	      <?php //endforeach;?>
+	      <?php //endforeach;?>
+		<div class="reply">
+
+			<div class="inputs">
+
+				<input type="text" placeholder="Reply..." />
+
+				<button>
+
+					SEND
+
+				</button>
+
+			</div><!-- inputs -->
+
+		</div><!-- reply -->
+<?php endif;?>
+		<div class="clearfix"></div>
+
+	</div><!-- margins: dashboard messages -->
+
+	<div class="clearfix"></div>
+
+</section><!-- dashboard messages section -->
+
+<section id="dashboard-notifications">
+
+	<div class="margins-80">
+
+		<h1>Recent Updates:</h1>
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon event" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this. Something else.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>	
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon user" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon event" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>	
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon user" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon event" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>	
+
+		<div class="dash-notes-icon">
+			11/28/15
+		</div><!-- dash notes icon -->
+		<div class="dash-notes-flyer">
+			<div class="dash-notes-flyer-icon user" style="background-image: url('');">
+				&nbsp;
+			</div><!-- dash notes flyer icon -->
+		</div><!-- dash notes flyer -->
+		<div class="dash-notes-text">
+			<span>Name or Event Name</span> and the details of this.
+		</div><!-- dash notes text -->
+		<div class="clearfix"></div>
+
+
+	</div><!-- margins: dashboard notifications -->
+
+	<div class="clearfix"></div>
+
+</section>
+

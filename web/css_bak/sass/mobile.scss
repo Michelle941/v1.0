@@ -1,0 +1,348 @@
+@import "color";
+@import "vars";
+@import "mixins"; 
+
+@media screen and (max-width: 640px), screen and (max-width: 640px) and (orientation: landscape) {
+
+	body{
+		min-width: 0px;
+	}
+
+	.hidemobile{display: none !important;}
+
+	.equalize{
+		height: auto !important;
+	}
+
+	.margins-95,
+	.margins-90,
+	.margins-80,
+	.margins-70,
+	.margins-60{
+		min-width: 0px;
+	}
+
+	.margins-80{
+		width: 92%;
+	}
+
+//
+//  nav
+//
+
+	$nav-height: 100px;
+
+	nav{
+		img{
+			width: auto;
+			height: 90px;
+			margin: 5px 0 5px 0;
+		}
+	}
+
+	.nav-image{
+		width: 24%;
+		float: left;
+	}
+
+	.nav-link-cell{
+		width: 38%;
+		padding-top: 20px;
+	}
+
+	.nav-link-cell-login{
+		width: 38%;
+		padding-top: 10px;
+
+		button{
+			margin-bottom: 10px;
+		}
+	}
+
+//
+//  parties
+//
+
+	.party-search-bar{
+		width: 100%;
+	}
+
+	#party-search{
+		padding: $sm 0 $ss 0;
+	}
+
+	#party-share-stinger{
+		padding-top: 0;
+		padding-bottom: 10px;
+
+		img{
+			width: 90%;
+		}
+	}
+
+	#party{
+		padding: 20px 0 20px 0;
+	}
+
+//
+//  party single upcoming
+//
+
+	#party-single-banners{
+		button{
+			font-size: 120%;
+			padding: $xs 0 $xs 0;
+			margin: $sm 0 $sm 0;
+		}
+	}
+
+	.party-single-avatars-big-cell{
+		width: 50%;
+	}
+
+	.party-single-avatars-small-cell{
+		width: 25%;
+	}
+
+//
+//  party single past
+//
+
+	#party-single-banners-past{
+		button{
+			width: 100%;
+			font-size: 120%;
+			margin-top: $sm;
+		}
+
+		padding-bottom: $sm;
+	}
+
+	#party-single-photos-past{
+		@include boxsizing;
+		padding-left: 2%;
+	}
+
+	.party-past-single-photo{
+		width: 30%;
+		padding-bottom: 30%;
+		margin-left: 0%;
+		margin-right: 3.3%
+	}
+
+//
+//  members
+//
+
+	#members-search{
+		padding: $sm 0 $ss 0;
+	}	
+
+	.members-search-bar{
+		width: 100%;
+	}
+
+	#members-stinger{
+		padding-bottom: $sm;
+		img{
+			width: 100%;
+		}
+	}
+
+	.members-big-avatars-cell{
+		width: 50%;
+		margin-bottom: 115px;
+	}
+
+	.members-big-avatars-avatar{
+		width: 165px;
+		height: 165px;
+
+		h1{
+			padding-top: 110px;
+			font-size: 100%;
+		}
+
+		&:hover{
+			h1{
+				padding-top: 120px;
+			}
+		}
+	}
+
+	.members-small-card{
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.members-small-card-snipe{
+		left: -5px;
+	}
+
+//
+//  profile
+//
+
+	.profile-left{
+		width: 100%;
+	}
+
+	.profile-right{
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.profile-top-stripe{
+		font-size: 100%;
+		text-align: center;
+	}
+
+	.profile-left-under{
+		width: 100%;
+	}
+
+	.profile-right-under{
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.pts-top-left{
+		background-color: transparent;
+	}
+
+	.pts-top-left,
+	.pts-bottom-left,
+	.pts-top-right,
+	.pts-bottom-right{
+		border-radius: 0;
+	}
+
+	.profile-top-stripe-snipe{
+		top: -99px;
+		height: 100px;
+	}
+
+	.profile-top-stripe-avatar{
+		width: 150px;
+		height: 150px;
+	}
+
+	.profile-holdname{
+		text-align: center;
+	}
+
+	.profile-left-cell{
+		text-align: center;
+		font-size: 120%;
+
+		i{
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	}
+
+	.profile-right-under-image{
+		width: 100%;
+		margin-left: 0;
+		padding-bottom: 100%;
+	}
+
+#profile-parties{
+	@include boxsizing;
+	padding: $sm;
+}
+
+	.profile-parties-attended{
+		width: 100%;
+		padding-bottom: 100%;
+		margin-left: 0%;
+		margin-bottom: 25px;
+	}
+
+//
+//  profile update
+//
+
+	.profile-update-names{
+		width: 100%;
+	}
+
+	.profile-update-firstname{
+		width: 100%;
+		margin-bottom: 25px;
+		border-left: 1px solid $color-3_light;
+		border-right: 0;
+		border-bottom: 1px dotted $color-3_light;
+	}
+
+	.profile-update-lastname{
+		width: 100%;
+	}
+
+	.profile-update-tagline{
+		border-right: 0;
+	}
+
+	.profile-update-pictures-single{
+		width: 100%;
+		margin-left: 0;
+		padding-bottom: 100%;
+	}
+
+	.profile-update-pictures-lead{
+		width: 100%;
+		height: auto;
+		background-image: none;
+		padding-bottom: 0;
+	}
+
+//
+//  call to action
+//
+
+	#call-to-action{
+		padding: $sm 0 $sm 0;
+
+		button{
+			width: 100%;
+			font-size: 120%;
+		}
+	}
+
+
+
+//
+//  footer
+//
+
+} // /phone
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+
+	body{
+		min-width: 0px;
+	}
+
+	.margins-95,
+	.margins-90,
+	.margins-80,
+	.margins-70,
+	.margins-60{
+		min-width: 0px;
+	}
+
+	.hideipad{
+		display: none !important;
+	}
+
+	.equalize{
+		height: auto !important;
+	}
+
+} // / ipad
+
+
+
+

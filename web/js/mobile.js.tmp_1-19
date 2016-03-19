@@ -1,0 +1,168 @@
+jQuery(function ($) {
+
+    if (!$('html').hasClass('mobile')) {
+        return;
+    }
+
+    // modal popup
+    var modalContent = $('.modal_popup .modal_content'),
+        modalPlaceholder = $('<span style="display:none;"></span>'),
+        modalPopup = $('.modal_popup'),
+        modalWrapper = $('.modal_wrapper'),
+        popupContent = null;
+
+    modalPopup.on('click', '.close', function () {
+        modalPopup.trigger('close');
+        return false;
+    });
+    modalPopup.on('click', '.ajax-link', function (event) {
+        loadAjaxPopup($(this).attr('href'));
+    });
+    modalPopup.on('close', function () {
+        $('body').removeClass('modal--visible');
+
+        if (popupContent) {
+            popupContent.insertBefore(modalPlaceholder);
+        }
+        popupContent = null;
+        modalPlaceholder.remove();
+    });
+    modalPopup.on('loading', function () {
+        modalContent.addClass('loading');
+    });
+    modalPopup.on('loadend', function () {
+        modalContent.removeClass('loading');
+    });
+
+    modalWrapper.on('click', function (event) {
+        if($(event.target).is(modalWrapper)){
+            modalPopup.trigger('close');
+        }
+    });
+
+    $('body').on('click', '[data-modal]', function () {
+        showPopup($($(this).attr('data-modal')));
+        return false;
+    });
+
+
+    function initPopupSpecificCode() {
+        // remove all handlers
+        modalContent.off('change click');
+
+        if (modalContent.find('.photo-view').length) {
+            initPhotoView();
+        }
+        if (modalContent.find('#upload-to-party').length) {
+            initUploadToParty();
+        }
+    }
+
+    function initPhotoView() {
+        modalContent.on('click', '[data-action]', function () {
+            var action = $(this).attr('data-action'),
+                comment = modalContent.find('textarea'),
+                photoId = modalContent.find('.photo-view').attr('data-id'),
+                partyId = modalContent.find('.photo-view').attr('data-party');
+
+            switch (action) {
+                case 'delete':
+                    modalPopup.trigger('loading');
+                    $.post('/site/delete-photo/' + photoId, {new : '1'}).done(function () {
+                        window.location.reload();
+                    });
+                    break;
+                case 'like':
+                    loadAjaxPopup($(this).attr('data-url'));
+                    break;
+                case 'save':
+                    modalPopup.trigger('loading');
+                    $.post('/site/save-comment', {
+                        id: photoId,
+                        model: 'Photo',
+                        name: 'comment',
+                        obj_id: photoId,
+                        party_id: partyId,
+                        val: comment.val()
+                    }).done(function () {
+                        window.location.reload();
+                    });
+                    break;
+            }
+        });
+
+        modalContent.find('.photo-comment').each(function(){
+            var container = $(this),
+                comment = container.find('.comment-text'),
+                textarea = container.find('textarea');
+            if(comment.length){
+                textarea.hide();
+            }
+            if(textarea.length){
+                comment.on('click', function(){
+                    comment.hide();
+                    textarea.show();
+                    modalContent.find('.button[data-action="save"]').show();
+                });
+            }
+        });
+    }
+
+    function initUploadToParty() {
+        modalContent.on('change', '.custom-file-input input', function () {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    modalPopup.trigger('loading');
+                    $('#upload-to-party').ajaxSubmit(function (html) {
+                        modalPopup.trigger('loadend');
+                        modalContent.empty().html(html);
+                        initPopupSpecificCode();
+                    });
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+    }
+
+    function loadAjaxPopup(url) {
+        $('body').addClass('loading');
+        modalPopup.trigger('loading');
+
+        $.ajax({url: url})
+            .complete(function () {
+                $('body').removeClass('loading');
+                modalPopup.trigger('loadend');
+            })
+            .success(function (html) {
+                showPopup($($(html).length === 1 ? html : '<div>' + html + '</div>'));
+            });
+    }
+
+    function showPopup(content) {
+        modalPopup.trigger('close');
+        modalPopup.trigger('loadend');
+
+        if (content) {
+            popupContent = $(content);
+            modalPlaceholder.insertBefore(popupContent);
+            popupContent.appendTo(modalContent.empty());
+        }
+
+        $('body').addClass('modal--visible');
+        setTimeout(function(){
+            modalPopup.scrollTop(0);
+        }, 100);
+
+        initPopupSpecificCode();
+    }
+
+
+    if ($('#party-single-photos-past').length) {
+        $('#party-single-photos-past').on('click', '.fancybox-ajax', function () {
+            loadAjaxPopup($(this).attr('href'));
+            return false;
+        });
+    }
+});

@@ -46,7 +46,7 @@ class User extends ActiveRecord implements IdentityInterface
             }],
             ['email', 'email'],
             [['password'], 'string', 'min' => 6, 'tooShort' => 'Weak sauce'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message'=>"OOPS. PASSWORDS DON'T MATCH. TRY AGAIN"],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message'=>"Oops. Passwords don't match. Try again"],
             [['name', 'last_name', 'city', 'region', 'state', 'zip_code', 'relation_status', 'gender', 'work', 'love', 'tag_line', 'password_repeat', 'password'], 'safe']
         ];
     }
@@ -470,22 +470,55 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateDob($attribute, $params)
     {
 
-        $dob_arr  = explode('/', $this->dob);
+/*
+	$dob_test = explode('-', (string)$this->dob);
+	if(strlen($dob_test) == 4){
+		$dob_test = (string)date('m/d/Y', strtotime($this->dob));
+		$dob_arr = explode('/', $dob_test);
+	}
 
-        if (count($dob_arr) !== 3 or !checkdate($dob_arr[0], $dob_arr[1], $dob_arr[2]) or strlen($dob_arr[2]) !=4) {
-            $this->addError($attribute, 'Enter Valid DOB  MM/DD/YYYY');
+	if( is_numeric(substr($this->dob,0,1)) ){
+        	$dob_arr  = explode('/', $this->dob);
+	}else{
+		$dob_test = (string)date('m/d/Y', strtotime($this->dob));
+		$dob_arr = explode('/', $dob_test);
+	}
+*/
+
+	$dob_arr = array();
+	$dob_test[0] = 0;
+        $dob_test[1] = 0;
+        $dob_test[2] = 0;
+        $dob_arr[0] = 0;
+        $dob_arr[1] = 0;
+        $dob_arr[2] = 0;
+	$dob_test = explode('-', (string)$this->dob);
+	//hacky dob flex input. NOT for long term use
+	if(strlen($dob_test[0]) == 4){
+		$dob_arr[0] = $dob_test[1];
+		$dob_arr[1] = $dob_test[2];
+		$dob_arr[2] = $dob_test[0];
+
+		$this->dob = $dob_arr[0] . '/' . $dob_arr[1] . '/' . $dob_arr[2];
+
+	}else{
+		$dob_arr = explode('/', $this->dob);
+	}	
+
+        if (count($dob_arr) !== 3 or !checkdate($dob_arr[0], $dob_arr[1], $dob_arr[2]) or strlen($dob_arr[2]) !=4 or $dob_arr[0] == 0 or $dob_arr[1] == 0) {
+            $this->addError($attribute, 'Enter valid birthdate mm/dd/yyyy');
             return false;
         }
 
         $this->dateTimeDob = \DateTime::createFromFormat('m/d/Y', $this->dob);
         $interval = $this->dateTimeDob->diff(new \DateTime);
         if($interval->y < 18){
-            $this->addError($attribute, 'Oops sorry! you are so young.');
+            $this->addError($attribute, 'You are too young');
             return false;
 
         }
         if($interval->y > 8000){
-            $this->addError($attribute, 'Oops sorry! you are so young.');
+            $this->addError($attribute, 'You are too young');
             return false;
         }
     }
