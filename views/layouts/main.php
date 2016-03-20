@@ -334,10 +334,10 @@ $bodyClasses = array('page-' . $controller->action->id);
 
             </div><!-- footer middle -->
 
-            <div class="footer-right">
+            <a class="footer-right" href="/member/qt84">
 
                 &nbsp;
-            </div><!-- footer right -->
+            </a><!-- footer right -->
 
         </div><!-- margins: footer -->
 

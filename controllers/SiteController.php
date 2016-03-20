@@ -359,21 +359,13 @@ class SiteController extends Controller
             ->andWhere(['org_user' => null])
             ->andWhere('tag_line = ""')
             ->andWhere('id not in (' . $popularMembersList . ',' . $popularMembersList_section2 . ')')
-            ->limit(14)
             ->asArray()
             ->all();
         //print_r($popularMembers_section3);
 
         $this->saveViewedProfile(array_merge($popularMembers, $popularMembers_section2));
 
-        $members = User::find()
-            ->orderBy('rank ASC, view_count DESC')
-            ->where('id not in ('.$this->getViewedMemberIds().')')
-            ->andWhere(['status' => 10])
-            ->andWhere(['org_user' => null])
-            ->limit(12)
-            ->asArray()
-            ->all();
+
 
         $countAll = User::find()
             ->where('id not in ('.$this->getViewedMemberIds().')')
@@ -383,7 +375,6 @@ class SiteController extends Controller
             'popularMembers' => $popularMembers,
             'newMembers' => $popularMembers_section2,
             'membersNoTagline' => $popularMembers_section3,
-            'members' => $members,
             'is_last' => ($countAll <= 20)
         ]);
     }
