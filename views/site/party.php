@@ -88,7 +88,7 @@ $img_map2 = 'usemap="#contestants2"';
 
                 $i = 1;
                 foreach ($profile as $p) {
-                    if ($i == 21)
+                    if ($i == 2100)
                         break;
                     $m = $p->user;
                     if ($m->org_user == 1) {

@@ -140,7 +140,7 @@ $bodyClasses = array('page-' . $controller->action->id);
 
                 <div class="nav-link-cell">
                     <?php if ($user): ?>
-		    <a href="<?= Url::to(['/user/dashboard']) ?>">
+		    <!--a href="<?= Url::to(['/user/dashboard']) ?>">
 			<?php $count =0 ;?>
                                 <?php $count = $count+ \app\models\Notification::countNew()?>
                                 <?php $count = $count+ \app\models\Message::getAllUnreadMessageCount()?>
@@ -150,7 +150,8 @@ $bodyClasses = array('page-' . $controller->action->id);
 			<span style="<?php if(is_numeric($user->relation_status)){}else{ echo 'display: none;';}?>">
                             messages
                         </span>
-		    </a>
+		    </a-->
+                        <a href="<?= Url::to(['/user/dashboard']) ?>">Dashboard</a>
                     <?php else: ?>
                         <a href="#join" class="fancybox" id="join-url">
                             <span>

@@ -105,7 +105,7 @@ use yii\widgets\ActiveForm;
 
                         $i=1;
                         foreach ($profile as $p) {
-                        if($i==21) break;
+                        if($i==21000) break;
                         $m = $p->user;
 			if($m->org_user == 1) { continue;}
            ?>
