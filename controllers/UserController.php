@@ -545,7 +545,14 @@ class UserController extends Controller
         }
 
         $flashMessages = Yii::$app->session->getAllFlashes();
-
+        $parties = [
+            [
+                'id' => 18,
+                'yes' => '',
+                'no' => '',
+            ]
+        ];
+        $dashParties  = Party::find()->where(['on_dashboard' => 1])->all();
         return $this->render('dashboard',
             [
                 'user' => $user,
@@ -553,6 +560,7 @@ class UserController extends Controller
                 'parties' => $parties,
                 'messages' => $Messages,
                 'myTickets' => $myTickets,
+                'dashParties' => $dashParties,
                 'partyTickets' => $partyTickets,
                 'notification' => $notification,
                 'flashMessages' => $flashMessages,
@@ -560,7 +568,7 @@ class UserController extends Controller
                 'memberNotification' => $memberNotification,
             ]
         );
-        
+
     }
 
     public function actionStripe()

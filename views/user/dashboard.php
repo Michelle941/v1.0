@@ -31,65 +31,31 @@ $current_date = (string)date( 'M d Y h:i A');
 
 
 <div class="form popup__form profile-update">
-    <?php $party_id = 18; ?>
-    <?php
-    if(!Party2profile::is_shared($party_id, $user->id) ):
-    $banners = \app\models\Party::getBanners($party_id);
-    $party = \app\models\Party::findOne($party_id);
-    $party_name = $party->title;
-    ?>
-
-    <form>
+    <?php foreach($dashParties as $party): $party_id = $party->id; if(!Party2profile::is_shared($party_id, $user->id) ): ?>
+        <?php
+            $banners = \app\models\Party::getBanners($party_id);
+            $party_name = $party->title;
+        ?>
         <div>
-            <img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
+            <div>
+                <img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
+            </div>
+            <span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?</span>
+            <div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
+                <div class="radio-group__label">
+                    <input name="going_<?php echo $party_id?>" class="going" type="radio" value="1" uncheckvalue="null" id="going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                    <label for="going_<?php echo $party_id?>"><?php echo $party['yes']?></label>
+                </div>
+                <br>
+                <div class="radio-group__label">
+                    <input name="going_<?php echo $party_id?>"  class="going" type="radio" value="0" uncheckvalue="null" id="not_going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                    <label for="not_going_<?php echo $party_id?>"><?php echo $party['no']?></label>
+                </div>
+            </div><!-- profile update toggles right -->
         </div>
-        <span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?</span>
-        <div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
-            <div class="radio-group__label">
-                <input name="going_<?php echo $party_id?>" class="going" type="radio" value="1" uncheckvalue="null" id="going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
-                <label for="going_<?php echo $party_id?>">YASSSS! Attach my cute face to the party page so everyone can see that I'm going</label>
-            </div>
-            <br>
-            <div class="radio-group__label">
-                <input name="going_<?php echo $party_id?>"  class="going" type="radio" value="0" uncheckvalue="null" id="not_going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
-                <label for="not_going_<?php echo $party_id?>">Nah, but let me take a look at who is going... maybe I will change my mind</label>
-            </div>
-        </div><!-- profile update toggles right -->
-    </form>
-    <div class="clearfix"></div>
-    <?php endif;?>
+        <div class="clearfix"></div>
 
-    <?php $party_id = 20; ?>
-
-    <?php
-    if(!Party2profile::is_shared($party_id, $user->id) ):
-    $banners = \app\models\Party::getBanners($party_id);
-        $party = \app\models\Party::findOne($party_id);
-        $party_name = $party->title;
-    ?>
-
-    <form>
-        <div>
-            <img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
-        </div>
-        <span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?</span>
-        <div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
-            <div class="radio-group__label">
-                <input name="going_<?php echo $party_id?>"  class="going" type="radio" value="1" uncheckvalue="null" id="going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
-                <label for="going_<?php echo $party_id?>">YASSSS! Attach my cute face to the party page so everyone can see that I'm going</label>
-            </div>
-            <br>
-            <div class="radio-group__label">
-                <input name="going_<?php echo $party_id?>" class="going" type="radio" value="0" uncheckvalue="null" id="not_going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
-                <label for="not_going_<?php echo $party_id?>">Nah, but let me take a look at who is going... maybe I will change my mind</label>
-            </div>
-        </div><!-- profile update toggles right -->
-    </form>
-    <div class="clearfix"></div>
-    <?php endif;?>
-</section><!-- dashboard vitals section -->
-<div class="clearfix"></div>
-
+    <?php endif; endforeach;?>
 
 
 <section id="dashboard-messages">
