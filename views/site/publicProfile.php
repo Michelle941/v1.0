@@ -59,7 +59,7 @@ if(Yii::$app->user->getId()){}?>
 		
 		    <?php if(Yii::$app->user->isGuest) {
                         ?>
-                        <a href="#login" class="fancybox noline"><div class="button-follow noline">Message</div></a>
+<!--                        <a href="#login" class="fancybox noline"><div class="button-follow noline">Message</div></a>-->
                     <?php
                     }
                     elseif(Yii::$app->user->getId() == $user->id)
@@ -68,7 +68,7 @@ if(Yii::$app->user->getId()){}?>
                     }
                     else {
                         ?>
-			<a href="<?php echo Url::to(['/user/send-mail', 'id' => $user->id]); ?>" class="fancybox fancybox.ajax noline"><div class="button-follow noline">Message</div></a>
+<!--			<a href="--><?php //echo Url::to(['/user/send-mail', 'id' => $user->id]); ?><!--" class="fancybox fancybox.ajax noline"><div class="button-follow noline">Message</div></a>-->
                     <?php
                     }
                     ?>
@@ -109,6 +109,29 @@ if(Yii::$app->user->getId()){}?>
 				</span>
 
 			</div><!-- profile left cell -->
+            <div class="profile-left-cell">
+
+				<span>
+					<i class="fa fa-eye fa-1x"></i>
+				</span>
+
+				<span>
+				<a href="#secret" class="fancybox noline"><?=Statistic::countByType($user->id, Statistic::TYPE_PROFILE_VIEWS);?> profile views</a>
+				</span>
+
+            </div><!-- profile left cell -->
+
+            <div class="profile-left-cell">
+
+				<span>
+					<i class="fa fa-street-view fa-1x"></i>
+				</span>
+
+				<span>
+				 <a href="#secret" class="fancybox noline"><?=\app\models\Following::countFollowing($user->id);?> followers</a>
+				</span>
+
+            </div><!-- profile left cell -->
 
                 <?php
                         if(!empty($user->work) && strlen($user->work) > 5) { ?>
@@ -147,29 +170,6 @@ if(Yii::$app->user->getId()){}?>
 
 			</div><!-- profile left cell -->
 		<?php } ?>
-			<div class="profile-left-cell">
-
-				<span>
-					<i class="fa fa-eye fa-1x"></i>
-				</span>
-
-				<span>
-				<a href="#secret" class="fancybox noline"><?=Statistic::countByType($user->id, Statistic::TYPE_PROFILE_VIEWS);?> profile views</a>
-				</span>
-
-			</div><!-- profile left cell -->
-
-			<div class="profile-left-cell">
-				
-				<span>
-					<i class="fa fa-street-view fa-1x"></i>
-				</span>
-
-				<span>
-				 <a href="#secret" class="fancybox noline"><?=\app\models\Following::countFollowing($user->id);?> followers</a>
-				</span>
-
-			</div><!-- profile left cell -->
 
 		</div><!-- profile left under -->
 
