@@ -442,6 +442,29 @@ class UserController extends Controller
         $this->redirect(Url::to(['/user/profile']));
     }
 
+    public function actionDparty(){
+        $data = Yii::$app->request->post();
+        if(empty($data)){
+            return '';
+        }
+
+        if(($dashParty = Dashparty::getOne($data['user_id'], $data['party_id'])) !== null){
+            $dashParty->going_flag = $data['val'];
+        }else{
+            $dashParty = new Dashparty();
+            $dashParty->user_id = $data['user_id'];
+            $dashParty->party_id = $data['party_id'];
+            $dashParty->going_flag = $data['val'];
+        }
+
+        $dashParty->save();
+        if($dashParty->going_flag == 1){
+            Party2profile::share($data['party_id'], $data['user_id']);
+        }
+        echo json_encode((array) $dashParty);
+    }
+
+
     /******************  Dashboard  ****************/
 
     public function actionDashboard()
@@ -523,31 +546,6 @@ class UserController extends Controller
 
         $flashMessages = Yii::$app->session->getAllFlashes();
 
-	if(($dashparty = Dashparty::findOne($user->id)) !== null){
-	}else{
-	     $dashparty = new Dashparty();
-	}
-
-        if ($dashparty->load(Yii::$app->request->post()) ) {
-	
-	$dashparty->save();
-
-	return $this->render('dashboard',
-            [
-                'user' => $user,
-                'parties' => $parties,
-                'parties' => $parties,
-                'messages' => $Messages,
-                'myTickets' => $myTickets,
-                'partyTickets' => $partyTickets,
-                'notification' => $notification,
-                'flashMessages' => $flashMessages,
-                'notification941' => $notification941,
-                'memberNotification' => $memberNotification,
-		'dashparty' => $dashparty
-            ]
-        );
-        }else{
         return $this->render('dashboard',
             [
                 'user' => $user,
@@ -560,11 +558,9 @@ class UserController extends Controller
                 'flashMessages' => $flashMessages,
                 'notification941' => $notification941,
                 'memberNotification' => $memberNotification,
-		'dashparty' => $dashparty
             ]
         );
-	}
-
+        
     }
 
     public function actionStripe()

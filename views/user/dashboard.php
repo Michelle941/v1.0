@@ -8,20 +8,6 @@ use yii\widgets\ActiveForm;
 use app\helpers\HandBook;
 use app\models\Party2profile;
 
-$submitted_party_id = null;
-$submitted_party_name = null;
-if(!empty($_POST)){
-print_r($_POST);
-$submitted_party_id = $_POST['Dashparty']['party_id'];
-$submitted_party_name = \app\models\Party::findOne($submitted_party_id)->url;
-$submitted_party_name = str_replace(' ', '', $submitted_party_name);
-$submitted_party_name = str_replace('.', '', $submitted_party_name);
-if((Party2profile::findOne($user->id)) == null){
-$p2u = new Party2profile(['user_id' => $user->id, 'party_id' => $submitted_party_id, 'created_at' => time()]);
-$p2u->save();
-}
-//print_r($submitted_party_name);
-}
 
 $current_date = (string)date( 'M d Y h:i A');
 //TODO: onclik помечать прочтенным. Ответ на письмо.
@@ -45,94 +31,64 @@ $current_date = (string)date( 'M d Y h:i A');
 
 
 <div class="form popup__form profile-update">
-<?php $form = ActiveForm::begin(['id' => 'dashparty-form',
-                ]); ?>
+    <?php $party_id = 18; ?>
+    <?php
+    if(!Party2profile::is_shared($party_id, $user->id) ):
+    $banners = \app\models\Party::getBanners($party_id);
+    $party = \app\models\Party::findOne($party_id);
+    $party_name = $party->title;
+    ?>
 
-<?php
-$party_id = 18;
-$banners = \app\models\Party::getBanners($party_id);
-$party_name = \app\models\Party::findOne($party_id)->title;
-?>
+    <form>
+        <div>
+            <img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
+        </div>
+        <span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?</span>
+        <div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
+            <div class="radio-group__label">
+                <input name="going_<?php echo $party_id?>" class="going" type="radio" value="1" uncheckvalue="null" id="going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                <label for="going_<?php echo $party_id?>">YASSSS! Attach my cute face to the party page so everyone can see that I'm going</label>
+            </div>
+            <br>
+            <div class="radio-group__label">
+                <input name="going_<?php echo $party_id?>"  class="going" type="radio" value="0" uncheckvalue="null" id="not_going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                <label for="not_going_<?php echo $party_id?>">Nah, but let me take a look at who is going... maybe I will change my mind</label>
+            </div>
+        </div><!-- profile update toggles right -->
+    </form>
+    <div class="clearfix"></div>
+    <?php endif;?>
 
+    <?php $party_id = 20; ?>
 
-<?php //check for existing flag for user_id and party_id
-                                //find matching user and party_id in dashparty table
-                                $checker = \app\models\Dashparty::checkExists($user->id, $party_id);
-                                if(isset($checker->going_flag)){$going_flag = $checker->going_flag;}else{ $going_flag = 3; }
-				if($going_flag != 1):
-                                //send default values for form ?>
-<br>
-<br>
-<div>
-<img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
-</div>
+    <?php
+    if(!Party2profile::is_shared($party_id, $user->id) ):
+    $banners = \app\models\Party::getBanners($party_id);
+        $party = \app\models\Party::findOne($party_id);
+        $party_name = $party->title;
+    ?>
 
-<span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>? 
-</span>
-<div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
-<br>
-			<?php echo   $form->field($dashparty, 'user_id',
-                                ['options' => ['value'=> $user->id] ])->hiddenInput(['value'=> $user->id])->label(false);?>
-			<?php echo   $form->field($dashparty, 'party_id',
-                                ['options' => ['value'=> $party_id] ])->hiddenInput(['value'=> $party_id])->label(false);?>
-			<div class="radio-group__label">
-			<?php  echo '<input type="radio" name="Dashparty[going_flag]" value="1" uncheckValue="null" id="Going" '.(($going_flag == 1)? 'checked' : '').'><label for="Going">YASSSS! Attach my cute face to the party page so everyone can see that I\'m going</label>';?>
-			</div>
-<br>
-			<div class="radio-group__label">
-	                <?php  echo '<input type="radio" name="Dashparty[going_flag]" value="0" uncheckValue="null" id="Not Going" '.(($going_flag == 0)? 'checked' : '').'><label for="Not Going">Nah, but let me take a look at who is going... maybe I will change my mind</label>';?>
-			</div>
-			<?php endif; ?>
-                </div><!-- profile update toggles right -->
-
-<?php ActiveForm::end(); ?>
-<div class="clearfix"></div>
-
-<?php $form = ActiveForm::begin(['id' => 'dashparty-form2',
-                ]); ?>
-
-<?php
-$party_id = 20;
-$banners = \app\models\Party::getBanners($party_id);
-$party_name = \app\models\Party::findOne($party_id)->title;
-?>
-
-
-<?php //check for existing flag for user_id and party_id                                //find matching user and party_id in dashparty table
-                                $checker = \app\models\Dashparty::checkExists($user->id, $party_id);
-                                if(isset($checker->going_flag)){$going_flag = $checker->going_flag;}else{ $going_flag = 3; }
-                                if($going_flag != 1):
-                                //send default values for form ?>
-<br>
-<br>
-<div>
-<img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
-</div>
-
-<span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?
-</span>
-<div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
-<br>
-                        <?php echo   $form->field($dashparty, 'user_id',
-                                ['options' => ['value'=> $user->id] ])->hiddenInput(['value'=> $user->id])->label(false);?>
-                        <?php echo   $form->field($dashparty, 'party_id',
-                                ['options' => ['value'=> $party_id] ])->hiddenInput(['value'=> $party_id])->label(false);?>
-                        <div class="radio-group__label">
-                        <?php  echo '<input type="radio" name="Dashparty[going_flag]" value="1" uncheckValue="null" id="Going2" '.(($going_flag == 1)? 'checked' : '').'><label for="Going2">YASSSS! Attach my
- cute face to the party page so everyone can see that I\'m going</label>';?>
-                        </div>
-<br>
-                        <div class="radio-group__label">
-                        <?php  echo '<input type="radio" name="Dashparty[going_flag]" value="0" uncheckValue="null" id="Not Going2" '.(($going_flag == 0)? 'checked' : '').'><label for="Not Going2">Nah, but let me take a look at who is going... maybe I will change my mind</label>';?>
-                        </div>
-                        <?php endif; ?>
-                </div><!-- profile update toggles right -->
-
-<?php ActiveForm::end(); ?>
-<div class="clearfix"></div>
-
+    <form>
+        <div>
+            <img src="<?=Yii::$app->params['flayerPath'];?>/<?=$banners['thumbnail'];?>" style="height: 200px; width: 200px; margin-left: 150px; float: left;">
+        </div>
+        <span style="font-size: 30px; margin-left: 50px;">Are you going to <?php echo $party_name; ?>?</span>
+        <div class="radio-group" style="text-align: center; font-size: 25px; margin-left: 28%; margin-top: 20px;">
+            <div class="radio-group__label">
+                <input name="going_<?php echo $party_id?>"  class="going" type="radio" value="1" uncheckvalue="null" id="going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                <label for="going_<?php echo $party_id?>">YASSSS! Attach my cute face to the party page so everyone can see that I'm going</label>
+            </div>
+            <br>
+            <div class="radio-group__label">
+                <input name="going_<?php echo $party_id?>" class="going" type="radio" value="0" uncheckvalue="null" id="not_going_<?php echo $party_id?>" data-party-id="<?php echo $party_id?>" data-party-url="<?php echo $party->url?>">
+                <label for="not_going_<?php echo $party_id?>">Nah, but let me take a look at who is going... maybe I will change my mind</label>
+            </div>
+        </div><!-- profile update toggles right -->
+    </form>
+    <div class="clearfix"></div>
+    <?php endif;?>
 </section><!-- dashboard vitals section -->
-
+<div class="clearfix"></div>
 
 
 
@@ -239,8 +195,8 @@ function closeFancyBox(){
   $.fancybox.close();
 }
 
-var submitted_party_id = "$submitted_party_id";
-var submitted_party_name = "$submitted_party_name";
+var submitted_party_id = "";
+var submitted_party_name = "";
 if(submitted_party_id > 0){
 window.location="../party/" + submitted_party_name;
 }
@@ -268,23 +224,25 @@ function showonlyone(thechosenone) {
 }
 
 $(document).ready(function(){
-  $('.dashboard-messages-right').animate({
-  scrollTop: $('.dashboard-messages-right').get(0).scrollHeight}, 0);
+  $('input[type=radio]').change(function() {
+
+    var data = {} ;
+    var url = $(this).data('party-url') ;
+    data.party_id = $(this).data('party-id');
+    data.val = $(this).val();
+    data.user_id = $user->id;
+    console.log(data);
+    $.post( '/user/dparty',data).done(function(response){
+      if(data.val == 1){
+        location.reload();
+      }else{
+        window.location.href = '/party/'+url;
+      }
+    });
+
+  });
+
 });
-
-document.getElementById("Going").onchange = function() {
-    document.getElementById("dashparty-form").submit();
-}
-document.getElementById("Not Going").onchange = function() {
-    document.getElementById("dashparty-form").submit();
-}
-document.getElementById("Going2").onchange = function() {
-    document.getElementById("dashparty-form2").submit();
-}
-document.getElementById("Not Going2").onchange = function() {
-    document.getElementById("dashparty-form2").submit();
-}
-
 
 var user_avatar = "$user->avatar";
 var current_date = "$current_date"; 
